@@ -31,4 +31,31 @@ test('CoreCircsim.evaluateInitialVariableSelection()', function() {
 
 });
 
+test('CoreCircsim.evaluateInitialVariableDirection()', function() {
+  
+  procedure.set('initialVariableDirection', 0);
+  
+  var wrong = CoreCircsim.evaluateInitialVariableDirection(procedure, 1);
+  var right = CoreCircsim.evaluateInitialVariableDirection(procedure, 0);
+
+  ok(right, "Returns true when initial variable direction is correct");
+  ok(!wrong, "Returns false when initial variable direction is incorrect");
+});
+
+test('Initial Variable Evaluations when NO initial variable exists', function() {
+  
+  procedure.set('initialVariable', -1);
+  procedure.set('initialVariableDirection', -1);
+    
+  var correct = CoreCircsim.evaluateInitialVariableSelection(procedure, 4);
+  var alsoCorrect = CoreCircsim.evaluateInitialVariableSelection(procedure, 5);
+  var directionCorrect = CoreCircsim.evaluateInitialVariableDirection(procedure, 1);
+  var directionAlsoCorrect = CoreCircsim.evaluateInitialVariableDirection(procedure, 0);
+
+  ok(correct, "Handles situation where no initial variable changes...");
+  ok(alsoCorrect, "Handles situation where no initial variable changes... Returns true no matter what");
+  ok(directionCorrect, "Handles situation where no initial variable direction changes...");
+  ok(directionAlsoCorrect, "Handles situation where no initial variable direction changes... Returns true no matter what");
+
+});
 

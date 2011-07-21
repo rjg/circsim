@@ -2,7 +2,7 @@
 
 CoreCircsim.Grid = SC.Record.extend({
 
-  column: SC.Record.toMany('CoreCircsim.Column', {
+  columns: SC.Record.toMany('CoreCircsim.Column', {
     isMaster: YES,
     inverse: 'grid'
   }),

@@ -2,7 +2,7 @@
 
 CoreCircsim.Column = SC.Record.extend({
 
-  title: SC.Record.attr(String),
+  header: SC.Record.attr(String),
 
   cells: SC.Record.toMany('CoreCircsim.Cell', {
     isMaster: YES,

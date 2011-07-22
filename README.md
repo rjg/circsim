@@ -1,7 +1,7 @@
 Circsim
 ====================
 
--------
+
 
 Installation
 ------------
@@ -33,7 +33,7 @@ Visit [http://localhost:4020/circsim](http://localhost:4020/circsim) to use Circ
 
 Visit [http://localhost:4020/sproutcore/tests](http://localhost:4020/sproutcore/tests) to run the test suite.
 
-----------------
+
 
 Credits
 -------

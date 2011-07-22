@@ -19,7 +19,17 @@ CoreCircsim.Procedure.FIXTURES = [
     key: [],
     errorMessage: 0
   }],
-  errorMessages: []
+  errorMessages: [],
+  relationshipKeys: [{
+    equation: [4, 2, 3],
+    errors: [[2, 1, 1], [2, 1, 0], [2, 0, 0], [2, 0, 1], [1, 2, 2], [1, 2, 0], [1, 0, 0], [1, 0, 2], [0, 2, 2], [0, 2, 0], [0, 1, 1], [0, 1, 0], [0, 0, 2], [0, 0, 1]],
+    errorMessage: "Err message 1"
+  },
+  {
+    equation: [6, 4, 5],
+    errors: [[2, 1, 1], [2, 1, 0], [2, 0, 0], [2, 0, 1], [1, 2, 2], [1, 2, 0], [1, 0, 0], [1, 0, 2], [0, 2, 2], [0, 2, 0], [0, 1, 1], [0, 1, 0], [0, 0, 2], [0, 0, 1]],
+    errorMessage: "Err message 2"
+  }]
 
 }
 

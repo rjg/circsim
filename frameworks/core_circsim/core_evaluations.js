@@ -12,6 +12,39 @@ SC.mixin(CoreCircsim, {
     var correctAnswer = procedure.get('initialVariableDirection');
     if (correctAnswer === -1) return true;
     return studentSelection == correctAnswer ? true: false;
+  },
+
+  evaluateRelationships: function(procedure, studentInput) {
+    var keys, equationVars, errorKeys, message, num, comparisonValue, studentValues = [],
+    evaluations = [],
+    checkSheet = [];
+
+    keys = procedure.get('relationshipKeys');
+
+    keys.forEach(function(key) {
+      equationVars = key.equation;
+      errorKeys = key.errors;
+      message = key.errorMessage;
+
+      // Get student values at equation indices
+      studentValues = [];
+      equationVars.forEach(function(eq) {
+        num = studentInput.objectAt(eq);
+        studentValues.push(num);
+      });
+
+      // Compare student values to all error conditions
+      errorKeys.forEach(function(er) {
+        comparisonValue = SC.compare(studentValues, er);
+        if (comparisonValue === 0) {
+          evaluations.push(message);
+        }
+      });
+
+    });
+
+    return evaluations;
+
   }
 
 });

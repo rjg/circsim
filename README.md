@@ -21,7 +21,7 @@ Click the download link at [https://www.github.com/rjg/circsim](https://www.gith
 
 Or if you have git: 
 
-    git clone https://www.github.com/rjg/circsim
+    git clone https://www.github.com/rjg/circsim.git
 
 **3. Open Terminal and Start the SproutCore server**
 

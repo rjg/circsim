@@ -45,6 +45,15 @@ SC.mixin(CoreCircsim, {
 
     return evaluations;
 
-  }
+  },
 
+  evaluateProcedureSpecificErrors: function(procedure, col, studentInput) {
+    
+    var key = procedure.get('answerKey')[col];
+    var errorMessages = [];
+    
+    if (SC.compare(studentInput, key) === 0) return true; 
+    
+    return false;
+  }
 });

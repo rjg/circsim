@@ -15,11 +15,11 @@ CoreCircsim.Procedure.FIXTURES = [
   initialVariable: 5,
   initialVariableDirection: 1,
   errorKeys: [{
-    col: 0,
+    col: 0, // Do I need this?
     key: [],
     errorMessage: 0
   }],
-  errorMessages: [],
+  errorMessages: ["Error message 1", "Error message 2"],
   relationshipKeys: [{
     equation: [4, 2, 3],
     errors: [[2, 1, 1], [2, 1, 0], [2, 0, 0], [2, 0, 1], [1, 2, 2], [1, 2, 0], [1, 0, 0], [1, 0, 2], [0, 2, 2], [0, 2, 0], [0, 1, 1], [0, 1, 0], [0, 0, 2], [0, 0, 1]],

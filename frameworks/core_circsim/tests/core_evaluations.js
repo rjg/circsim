@@ -90,3 +90,26 @@ test('CoreCircsim.evaluateRelationships()', function() {
   equals(incorrect3[0], 'Err message 1', 'returns correct error messages when all relationships DO NOT evaluate correctly');
   equals(incorrect3[1], 'Err message 2', 'returns correct error messages when all relationships DO NOT evaluate correctly');
 });
+
+test('CoreCircsim.evaluateProcedureSpecificErrors()', function() {
+    
+    procedure.set('answerKey', [[0, 1, 2, 0, 2, 1, 1], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]]);
+    
+    procedure.set("errorKeys", [{
+      col: 0,
+      key: [3, null, null, 0, null, null, null],
+      message: 0
+    }, {
+      col: 0,
+      key: [0, null, null, 3, null, null, null],
+      message: 1      
+    }]);
+
+    procedure.set('errorMessages', ["Error message 0", "Error message 1", "Error message 2"]);
+  
+    var correct = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [0, 1, 2, 0, 2, 1, 1]);
+    
+
+    equals(correct, true, 'returns true if student input is correct.'); 
+  
+});

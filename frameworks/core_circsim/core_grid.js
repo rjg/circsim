@@ -6,6 +6,8 @@ SC.mixin(CoreCircsim, {
     var headers = procedure.get('cols');
     var grid = procedure.get('grid');
     
+    headers.unshift("Procedure Name:");
+    
     headers.forEach(function(header) {
       var id = Math.random(Math.floor(Math.random() * 99999999));
       var col = CoreCircsim.store.createRecord(CoreCircsim.Column, {header: header}, id);
@@ -13,4 +15,5 @@ SC.mixin(CoreCircsim, {
     });
   }
 
+  
 });

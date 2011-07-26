@@ -16,7 +16,7 @@ SC.mixin(CoreCircsim, {
       grid.get('columns').pushObject(col);
     });
     
-    return grid.get('columns');
+    return procedure;
   },
 
   createCells: function(procedure) {

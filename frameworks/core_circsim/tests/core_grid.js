@@ -26,7 +26,9 @@ test('CoreCircsim.createColumns()', function() {
 
   procedure.set('cols', ["col1", "col2"]);
   
-  var cols = CoreCircsim.createColumns(procedure);
+  CoreCircsim.createColumns(procedure);
+  
+  var cols = grid.get('columns');
   
   equals(cols.length(), 3, "creates the correct number of columns based on the cols property of the procedure (+1 for the first column)");
   

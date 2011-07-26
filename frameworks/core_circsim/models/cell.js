@@ -1,8 +1,10 @@
 /*globals CoreCircsim*/
 
 CoreCircsim.Cell = SC.Record.extend({
-
-  column: SC.Record.toOne('CoreCirsim.Column', {
+  
+  value: SC.Record.attr(String),
+  
+  column: SC.Record.toOne('CoreCircsim.Column', {
     isMaster: NO
   })
 

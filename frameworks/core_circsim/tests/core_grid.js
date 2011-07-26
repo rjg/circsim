@@ -30,5 +30,6 @@ test('CoreCircsim.createColumns()', function() {
   
   equals(grid.get('columns').length(), 2, "creates the correct number of columns based on the cols property of the procedure");
   
+  equals(grid.get('columns').firstObject().get('header'), "col1", "The column is named correctly.");
   
 });

@@ -26,12 +26,31 @@ test('CoreCircsim.createColumns()', function() {
 
   procedure.set('cols', ["col1", "col2"]);
   
+  var cols = CoreCircsim.createColumns(procedure);
+  
+  equals(cols.length(), 3, "creates the correct number of columns based on the cols property of the procedure (+1 for the first column)");
+  
+  equals(cols.lastObject().get('header'), "col2", "The columns are named correctly.");
+  
+  equals(cols.firstObject().get('header'), "Procedure Name:", "The first column header is set as 'Procedure Name:'");
+});
+
+test('CoreCircsim.createCells()', function() {
+  procedure.set('cols', ["col1", "col2"]);
   CoreCircsim.createColumns(procedure);
   
-  equals(grid.get('columns').length(), 3, "creates the correct number of columns based on the cols property of the procedure (+1 for the first column)");
+  procedure.set('rows', ["proc name 1", "proc name 2", "proc name 3"]);
   
-  equals(grid.get('columns').lastObject().get('header'), "col2", "The columns are named correctly.");
+  CoreCircsim.createCells(procedure);
+
+  var firstCol = grid.get('columns').firstObject();
+  var secondCol = grid.get('columns').objectAt(1);
+    
+  equals(firstCol.get('cells').firstObject().get("value"), 'proc name 1', 'Sets the first column cells based on the names supplied in procedure.get("rows")');
   
-  equals(grid.get('columns').firstObject().get('header'), "Procedure Name:", "The first column header is set as 'Procedure Name:'");
+  equals(secondCol.get('cells').length(), 3, 'Creates the correct number of cells based on the names supplied in procedure.get("rows")');
+  
+  
+
 });
 

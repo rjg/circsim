@@ -6,7 +6,7 @@ sc_require('core_evaluations');
 // 
 var procedure;
 
-module("Core Evaluations", {
+module("Initial Variable and Relationship Evaluations", {
   setup: function() {
     procedure = CoreCircsim.store.createRecord(CoreCircsim.Procedure, {
       cols: ["DR", "RR", "SS"],
@@ -91,25 +91,142 @@ test('CoreCircsim.evaluateRelationships()', function() {
   equals(incorrect3[1], 'Err message 2', 'returns correct error messages when all relationships DO NOT evaluate correctly');
 });
 
+module("Procedure Specific Evaluations", {
+  setup: function() {
+    procedure = CoreCircsim.store.createRecord(CoreCircsim.Procedure, {
+      cols: ["DR", "RR", "SS"],
+      rows: ["IS", "CVP", "SV", "HR", "CO", "Ra", "MAP"]
+    }, 1);
+
+    // Reminder: When adding answerKeys, be sure to add the ids to the teardown function! 
+    // TODO: refactor this... has to be a better way...
+    var answerKeys = [{
+      highlights: [0,1],
+      category: "Category 1",
+      isCorrect: YES,
+      comment: "Correct Message",
+      cells: [0,1],
+      cellValues: [0,0],
+      column: 0,
+      id: 1
+    },  {
+      highlights: [0,1],
+      category: "Category 1",
+      isCorrect: NO,
+      comment: "Explanation of incorrect answer.",
+      cells: [0,1],
+      cellValues: [3,0],
+      column: 0,
+      id: 2
+    },  {
+      highlights: [0,1],
+      category: "Category 1",
+      isCorrect: NO,
+      comment: "Another explanation of incorrect answer.",
+      cells: [0,1],
+      cellValues: [0,3],
+      column: 0,
+      id: 3
+    },  {
+      highlights: [0,1],
+      category: "Category 1",
+      isCorrect: NO,
+      comment: "Another explanation of incorrect answer.",
+      cells: [0,1],
+      cellValues: [0,4],
+      column: 0,
+      id: 4
+    }];
+        
+    answerKeys.forEach(function(k) {
+      var key = CoreCircsim.store.createRecord(CoreCircsim.AnswerKey, {
+        highlights: k["highlights"],
+        category: k["category"],
+        isCorrect: k["isCorrect"],
+        comment: k["comment"],
+        cells: k["cells"],
+        cellValues: k["cellValues"],
+        column: k["column"]
+      }, k["id"]);      
+      procedure.get('answerKeys').pushObject(key);
+    });
+  },
+
+  teardown: function() {
+    CoreCircsim.store.destroyRecord(CoreCircsim.Procedure, 1);
+    [1, 2, 3, 4].forEach(function(i) {
+      CoreCircsim.store.destroyRecord(CoreCircsim.AnswerKey, i);
+    });
+    
+  }
+});
+
 test('CoreCircsim.evaluateProcedureSpecificErrors()', function() {
-    
-    procedure.set('answerKey', [[0, 1, 2, 0, 2, 1, 1], [null, null, null, null, null, null, null], [null, null, null, null, null, null, null]]);
-    
-    procedure.set("errorKeys", [{
-      col: 0,
-      key: [3, null, null, 0, null, null, null],
-      message: 0
-    }, {
-      col: 0,
-      key: [0, null, null, 3, null, null, null],
-      message: 1      
-    }]);
-
-    procedure.set('errorMessages', ["Error message 0", "Error message 1", "Error message 2"]);
   
-    var correct = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [0, 1, 2, 0, 2, 1, 1]);
+  var aone = procedure.get('answerKeys').firstObject();
+  var atwo = procedure.get('answerKeys').objectAt(1);
+  var athree = procedure.get('answerKeys').objectAt(2);
+  var afour = procedure.get('answerKeys').objectAt(3);
+  
+  [
+    [[0,0], [aone, afour]],
+    [[1,0], [atwo]],
+    [[0,1], [athree]],
+    [[0,2], [athree, afour]],
+    [[1,1], []]
+  ].forEach(function(n) {    
+    var a = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, n[0]);
+    console.log(a);
+    ok(SC.compare(a, n[1]) === 0, "Displays the correct message when there is a match.");
+  });
+  
+  var noMatches = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [null, null, null, null, null, null, null]);
+  var wrongNumberOfAnswers = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [null]);
     
+  ok(SC.compare(noMatches,[]) === 0, "returns null if there are no matches (TODO: handle this situation)");
+  ok(SC.compare(wrongNumberOfAnswers,[]) === 0, "returns null if studentInput has wrong number of answers (TODO: handle this situation)");
+  
 
-    equals(correct, true, 'returns true if student input is correct.'); 
+});
+
+test('CoreCircsim.compareStudentInputWithKey', function() {
+  var noNotKeysMatch = CoreCircsim.compareStudentInputWithKey([0,0,0], [0,0,0]);
+  var noNotKeysNonMatch = CoreCircsim.compareStudentInputWithKey([0,0,0], [1,0,0]);
+  
+  var oneNotKeyMatch = CoreCircsim.compareStudentInputWithKey([0,3,0], [0,1,0]);
+  var oneNotKeyMatch2 = CoreCircsim.compareStudentInputWithKey([0,3,0], [0,2,0]);
+  var oneNotKeyNonMatch = CoreCircsim.compareStudentInputWithKey([0,3,0], [0,0,0]);
+  
+  var twoNotKeyMatch = CoreCircsim.compareStudentInputWithKey([0,3,4], [0,1,0]);
+  
+  ok(noNotKeysMatch, "0 'Not' keys, Match");
+  ok(!noNotKeysNonMatch, "0 'Not' keys, Nonmatch");
+
+  ok(oneNotKeyMatch, "1 'Not' keys, Match");
+  ok(oneNotKeyMatch2, "1 'Not' keys, Match 2");
+  ok(!oneNotKeyNonMatch, "1 'Not' keys, Nonmatch");
+  
+  [
+    [[0,3,4],[0,1,0]],
+    [[0,3,4],[0,1,2]],
+    [[0,3,4],[0,2,0]],
+    [[0,3,4],[0,2,2]]
+  ].forEach(function(n) {
+    ok(CoreCircsim.compareStudentInputWithKey(n[0], n[1]), "2 'Not' keys, Matches");
+  });
+
+  [
+    [[0,3,4],[0,0,0]],
+    [[0,3,4],[0,0,2]],
+    [[0,3,4],[0,1,1]],
+    [[0,3,4],[0,2,1]],            
+    [[0,3,4],[1,0,0]],
+    [[0,3,4],[2,0,0]]    
+  ].forEach(function(n) {
+    ok(!CoreCircsim.compareStudentInputWithKey(n[0], n[1]), "2 'Not' keys, NonMatches");
+  });
+  
+  
   
 });
+

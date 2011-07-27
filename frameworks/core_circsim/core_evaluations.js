@@ -47,13 +47,60 @@ SC.mixin(CoreCircsim, {
 
   },
 
-  evaluateProcedureSpecificErrors: function(procedure, col, studentInput) {
-    
-    var key = procedure.get('answerKey')[col];
-    var errorMessages = [];
-    
-    if (SC.compare(studentInput, key) === 0) return true; 
-    
-    return false;
+  // This method returns an array populated by CoreCircsim.AnswerKey objects.
+  evaluateProcedureSpecificErrors: function(procedure, columnNumber, studentInput) {
+    var keyMatches = [];
+    var answerKeys = procedure.get('answerKeys').filterProperty("column", columnNumber);
+
+    function getStudentInput(indices, studentInput) {
+      var arr = [];
+      indices.forEach(function(i) {
+        arr.push(studentInput[i]);
+      });
+      return arr;
+    }
+
+    answerKeys.forEach(function(answerKey) {
+      keyMatches.push(answerKey);
+      var key = answerKey.get('cellValues');
+      var indices = answerKey.get('cells');
+      var student = getStudentInput(indices, studentInput);
+
+      if (CoreCircsim.compareStudentInputWithKey(key, student) === false) keyMatches.removeObject(answerKey);
+    });
+
+    return keyMatches;
+  },
+
+  // This returns true or false based on whether it's a match
+  compareStudentInputWithKey: function(key, student) {
+    var returnVal = true;
+    for (var i = 0; i < key.length; i++) {
+      var k = key[i];
+      var s = student[i];
+      if (k == 3) {
+        if (SC.compare(0, s) === 0) {
+          returnVal = false;
+          break;
+        }
+      } else if (k == 4) {
+        if (SC.compare(1, s) === 0) {
+          returnVal = false;
+          break;
+        }
+      } else if (k == 5) {
+        if (SC.compare(2, s) === 0) {
+          returnVal = false;
+          break;
+        }
+      } else {
+        if (SC.compare(k, s) !== 0) {
+          returnVal = false;
+          break;
+        }
+      }
+    }
+    return returnVal;
   }
+
 });

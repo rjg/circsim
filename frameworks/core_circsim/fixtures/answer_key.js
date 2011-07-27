@@ -4,6 +4,7 @@ sc_require('models/answer_key');
 
 CoreCircsim.AnswerKey.FIXTURES = [{   
   guid: 1,
+  procedure: 1,
   column: 0,
   highlights: [0,3],
   cells: [0,3],
@@ -12,8 +13,9 @@ CoreCircsim.AnswerKey.FIXTURES = [{
   category: "Neural Variables",
   comment: "Right!  IS and HR are both controlled by the nervous system (they’re neural variables).  By definition, the DR interval occurs BEFORE any changes in neural firing occurs.  So, there are no changes to these two variables."
 },
-{
+{  
   guid: 2,
+  procedure: 1,
   column: 0,
   highlights: [0,3],
   cells: [0,3],

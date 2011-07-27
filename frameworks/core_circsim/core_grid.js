@@ -28,7 +28,7 @@ SC.mixin(CoreCircsim, {
     // Setup first column
     rows.forEach(function(physiologicalVariable) {
       var id = Math.random(Math.floor(Math.random() * 99999999));
-      var cell = CoreCircsim.store.createRecord(CoreCircsim.Cell, { value: physiologicalVariable }, id);
+      var cell = CoreCircsim.store.createRecord(CoreCircsim.Cell, { text: physiologicalVariable }, id);
       firstColumn.get('cells').pushObject(cell);        
     });
     

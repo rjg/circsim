@@ -48,7 +48,7 @@ test('CoreCircsim.createCells()', function() {
   var firstCol = grid.get('columns').firstObject();
   var secondCol = grid.get('columns').objectAt(1);
     
-  equals(firstCol.get('cells').firstObject().get("value"), 'proc name 1', 'Sets the first column cells based on the names supplied in procedure.get("rows")');
+  equals(firstCol.get('cells').firstObject().get("text"), 'proc name 1', 'Sets the first column cells based on the names supplied in procedure.get("rows")');
   
   equals(secondCol.get('cells').length(), 3, 'Creates the correct number of cells based on the names supplied in procedure.get("rows")');
   

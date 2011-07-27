@@ -5,11 +5,8 @@ CoreCircsim.Procedure = SC.Record.extend({
   title: SC.Record.attr(String),
   cols: SC.Record.attr(Array),
   rows: SC.Record.attr(Array),
-  answerKey: SC.Record.attr(Array),
-  errorKeys: SC.Record.attr(Array),
-  errorMessages: SC.Record.attr(Array),
   initialVariable: SC.Record.attr(Number),
-  initialVariableDirection: SC.Record.attr(Number),
+  initialVariableDirection: SC.Record.attr(Number),  
   remainingColumns: SC.Record.attr(Number, {
     defaultValue: 0
   }),
@@ -17,6 +14,12 @@ CoreCircsim.Procedure = SC.Record.extend({
     defaultValue: false
   }),
 
-  grid: SC.Record.toOne('CoreCircsim.Grid')
+  grid: SC.Record.toOne('CoreCircsim.Grid'),
+  
+  answerKeys: SC.Record.toMany('CoreCircsim.AnswerKey', {
+    isMaster: YES,
+    inverse: 'procedure'
+  })
+  
 
 });

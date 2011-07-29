@@ -48,9 +48,10 @@ Circsim.mainPage = SC.Page.design({
           centerY: 0,
           height: 24,
           right: 8,
-          width: 60
+          width: 70
         },
-        title: "Help"
+        title: "Help",
+        icon: sc_static('images/help.png')
       })
     }),
     

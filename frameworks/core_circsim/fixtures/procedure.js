@@ -14,14 +14,16 @@ CoreCircsim.Procedure.FIXTURES = [
   initialVariable: 5,
   initialVariableDirection: 1,
   answerKeys: [1,2],
-  relationshipKeys: [{
+  relationshipEvaluationIntro: "You will now be evaluated for your relationship accuracy.",  
+  relationshipEvaluations: [{
     equation: [4, 2, 3],
-    errors: [[2, 1, 1], [2, 1, 0], [2, 0, 0], [2, 0, 1], [1, 2, 2], [1, 2, 0], [1, 0, 0], [1, 0, 2], [0, 2, 2], [0, 2, 0], [0, 1, 1], [0, 1, 0], [0, 0, 2], [0, 0, 1]],
-    errorMessage: "Err message 1"
+    errorMessage: "Err message 1",
+    isComplete: false
   },
   {
     equation: [6, 4, 5],
-    errors: [[2, 1, 1], [2, 1, 0], [2, 0, 0], [2, 0, 1], [1, 2, 2], [1, 2, 0], [1, 0, 0], [1, 0, 2], [0, 2, 2], [0, 2, 0], [0, 1, 1], [0, 1, 0], [0, 0, 2], [0, 0, 1]],
-    errorMessage: "Err message 2"
+    errorMessage: "Err message 2",
+    isComplete: false
   }]
 }];
+

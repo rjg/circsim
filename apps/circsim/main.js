@@ -12,6 +12,9 @@ Circsim.main = function main() {
   // var procedure = Circsim.proceduresController.get('content').firstObject();
   // Circsim.proceduresController.selectObject(procedure);
 
+  // Initialize Statechart
+  Circsim.statechart.initStatechart();  
+
 };
 
 function main() {

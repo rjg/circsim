@@ -11,6 +11,12 @@ CoreCircsim.Column = SC.Record.extend({
 
   procedure: SC.Record.toOne('CoreCircsim.Procedure', {
     isMaster: NO
+  }),
+  
+  answerKeys: SC.Record.toMany('CoreCircsim.AnswerKey', {
+    isMaster: YES,
+    inverse: 'column'
   })
+  
 
 });

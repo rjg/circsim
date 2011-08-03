@@ -14,7 +14,11 @@ CoreCircsim.Procedure = SC.Record.extend({
     defaultValue: false
   }),
 
-  grid: SC.Record.toOne('CoreCircsim.Grid'),
+  columns: SC.Record.toMany('CoreCircsim.Column', {
+    isMaster: YES,
+    inverse: 'procedure'
+  }),
+  
   
   answerKeys: SC.Record.toMany('CoreCircsim.AnswerKey', {
     isMaster: YES,

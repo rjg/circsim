@@ -9,7 +9,7 @@ CoreCircsim.Column = SC.Record.extend({
     inverse: 'column'
   }),
 
-  grid: SC.Record.toOne('CoreCircsim.Grid', {
+  procedure: SC.Record.toOne('CoreCircsim.Procedure', {
     isMaster: NO
   })
 

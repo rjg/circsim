@@ -50,7 +50,8 @@ SC.mixin(CoreCircsim, {
   // This method returns an array populated by CoreCircsim.AnswerKey objects.
   evaluateProcedureSpecificErrors: function(procedure, columnNumber, studentInput) {
     var keyMatches = [];
-    var answerKeys = procedure.get('answerKeys').filterProperty("column", columnNumber);
+    var column = procedure.get('columns').objectAt(columnNumber);
+    var answerKeys = column.get('answerKeys');
 
     function getStudentInput(indices, studentInput) {
       var arr = [];

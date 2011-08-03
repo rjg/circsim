@@ -9,15 +9,10 @@ var procedure, grid;
 module("Core Grid", {
   setup: function() {
     procedure = CoreCircsim.store.createRecord(CoreCircsim.Procedure, {}, 1);
-    grid = CoreCircsim.store.createRecord(CoreCircsim.Grid, {}, 1);
-    procedure.set('grid', grid);
-    grid.set('procedure', procedure);
   },
 
   teardown: function() {
-    [CoreCircsim.Procedure, CoreCircsim.Grid].forEach(function(model) {
-      CoreCircsim.store.destroyRecord(model, 1);
-    });
+    CoreCircsim.store.destroyRecord(CoreCircsim.Procedure, 1);
   }
 
 });
@@ -28,7 +23,7 @@ test('CoreCircsim.createColumns()', function() {
   
   CoreCircsim.createColumns(procedure);
   
-  var cols = grid.get('columns');
+  var cols = procedure.get('columns');
   
   equals(cols.length(), 3, "creates the correct number of columns based on the cols property of the procedure (+1 for the first column)");
   
@@ -45,8 +40,8 @@ test('CoreCircsim.createCells()', function() {
   
   CoreCircsim.createCells(procedure);
 
-  var firstCol = grid.get('columns').firstObject();
-  var secondCol = grid.get('columns').objectAt(1);
+  var firstCol = procedure.get('columns').firstObject();
+  var secondCol = procedure.get('columns').objectAt(1);
     
   equals(firstCol.get('cells').firstObject().get("text"), 'proc name 1', 'Sets the first column cells based on the names supplied in procedure.get("rows")');
   

@@ -4,8 +4,7 @@ SC.mixin(CoreCircsim, {
 
   createColumns: function(procedure) {
     var headers = procedure.get('cols');
-    var grid = procedure.get('grid');
-
+    
     headers.unshift("Procedure Name:");
 
     headers.forEach(function(header) {
@@ -13,15 +12,14 @@ SC.mixin(CoreCircsim, {
       var col = CoreCircsim.store.createRecord(CoreCircsim.Column, {
         header: header
       }, id);
-      grid.get('columns').pushObject(col);
+      procedure.get('columns').pushObject(col);
     });
     
     return procedure;
   },
 
   createCells: function(procedure) {
-    var grid = procedure.get('grid');
-    var cols = grid.get('columns');
+    var cols = procedure.get('columns');
     var rows = procedure.get('rows');
     var firstColumn = cols.firstObject();
     

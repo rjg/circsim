@@ -8,6 +8,7 @@ CoreCircsim.Procedure.FIXTURES = [
   // GUID Must be a unique string for each procedure!
   guid: '1',
   title: "Decrease Ra",
+  introduction: "This is the introduction to the procedure.",
   isComplete: false,
   cols: ["DR", "RR", "SS"],
   rows: ["IS", "CVP", "SV", "HR", "CO", "Ra", "MAP"],

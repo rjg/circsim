@@ -3,6 +3,7 @@
 CoreCircsim.Procedure = SC.Record.extend({
 
   title: SC.Record.attr(String),
+  introduction: SC.Record.attr(String),
   cols: SC.Record.attr(Array),
   rows: SC.Record.attr(Array),
   initialVariable: SC.Record.attr(Number),

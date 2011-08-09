@@ -1,0 +1,29 @@
+@mixin sc-toolbar {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  height: 36px;
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  color: #555;
+  border-bottom: 1px solid #999;
+  z-index: 10;  
+  @include single-text-shadow(white, 0px, 1px, 1px);
+  @include single-box-shadow(rgba(0, 0, 0, 0.5), 0px, 0px, 4px);
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAsCAAAAACBTI29AAAAGklEQVR4nGN6x8TA9B+OUUlUFjoPXQ2CBGIAcuYgKD9pJ2MAAAAASUVORK5CYII=");
+}
+
+
+@mixin box-attrs-h {
+  @include display-box;
+  @include box-orient(horizontal);
+  @include box-align(stretch);
+  @include box-direction(reverse);      
+};
+@mixin box-attrs-v {
+  @include display-box;
+  @include box-orient(vertical);
+  @include box-align(stretch);
+  @include box-direction(normal);      
+};

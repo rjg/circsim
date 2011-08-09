@@ -1,16 +1,3 @@
-@mixin box-attrs-h {
-  @include display-box;
-  @include box-orient(horizontal);
-  @include box-align(stretch);
-  @include box-direction(reverse);      
-};
-@mixin box-attrs-v {
-  @include display-box;
-  @include box-orient(vertical);
-  @include box-align(stretch);
-  @include box-direction(normal);      
-};
-
 $grid-and-message-height: 300px;
 
 #procedure {

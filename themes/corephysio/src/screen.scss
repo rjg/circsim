@@ -6,18 +6,9 @@
 
 @import "blueprint/typography";
 
-@import "compass/layout/stretching";
+@import "partials/base";
+@import "partials/mixins";
 
-
-body {
-  font-family:Helvetica, sans-serif;
-  font-size: 12px;
-  line-height: 1.4;
-};
-
-div {
-  outline-width: 0px !important;
-};
 
 @import "views/procedure";
 @import "views/toolbar";

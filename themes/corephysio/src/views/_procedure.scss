@@ -1,0 +1,72 @@
+@mixin box-attrs-h {
+  @include display-box;
+  @include box-orient(horizontal);
+  @include box-align(stretch);
+  @include box-direction(reverse);      
+};
+@mixin box-attrs-v {
+  @include display-box;
+  @include box-orient(vertical);
+  @include box-align(stretch);
+  @include box-direction(normal);      
+};
+
+$grid-and-message-height: 300px;
+
+#procedure {
+  @include blueprint-typography;
+  font-family:Helvetica, sans-serif;;
+  padding:10px;
+  min-width: 800px;
+  
+  #procedure-title {
+    width:100%; 
+    color:#4080B1;
+    font-weight: bold;
+  };
+  
+  #procedure-instructions {
+    width:100%;  
+    margin-bottom:40px;    
+  };
+  
+  #procedure-interaction {
+    width:100%;
+    @include box-attrs-h;
+    #grid, 
+    #procedure-messages {
+      width: 50%;
+      @include box-flex(1);    
+    }
+    
+    #grid {
+      background-color:#FBFBFB;
+      margin-right: 10px;
+      height:$grid-and-message-height+22px;
+      @include box-attrs-h;      
+      .column{
+        @include box-flex(1);          
+        @include box-attrs-v;
+        .cell, 
+        .header {
+          border: 1px solid #D2D2D2;
+          background-color: #FBFBFB;
+        };
+        .header { 
+          height:40px;
+        };        
+        .cell {
+          @include box-flex(1);
+        };        
+      };
+    };
+
+    #procedure-messages {
+      height:$grid-and-message-height;
+      padding: 10 20;
+      background-color:#FBFBFB;
+      border: 1px solid #D2D2D2;      
+      overflow-y: scroll;
+    };    
+  };
+};

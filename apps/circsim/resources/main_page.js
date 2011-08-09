@@ -6,12 +6,10 @@ Circsim.mainPage = SC.Page.design({
   mainPane: SC.MainPane.design({
     childViews: 'topView middleView bottomView'.w(),
     
-    // Top View
-    topView: SC.ContainerView.design({
-      nowShowingBinding: "Circsim.toolbarView"
+    topView: SC.TemplateView.design({
+      templateName: "toolbar"
     }),
     
-    // Middle View
     middleView: SC.SplitView.design({
       layout: {
         left: 0,
@@ -39,20 +37,8 @@ Circsim.mainPage = SC.Page.design({
 
     }),
 
-    // Bottom View
-    bottomView: SC.ToolbarView.design({
-      layout: {
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: 32
-      },      
-      anchorLocation: SC.ANCHOR_BOTTOM,
-      childViews: 'copyrightView'.w(),
-      copyrightView: SC.LabelView.design({
-        layout: {right: 10, centerY: 0, height: 16, width: 130},
-        value: '© 2011 Rush University'        
-      })
+    bottomView: SC.TemplateView.design({
+      templateName: "footer"
     })
   })
 

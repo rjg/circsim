@@ -1,35 +1,51 @@
-/*globals Circsim*/
+/*globals Circsim CoreCircsim*/
 
 Circsim.statechart = SC.Statechart.create({
-  trace: YES,
+  // trace: YES,
 
   initialState: "Title",
 
   "Title": SC.State.design({
+    enterState: function(){
+      Circsim.set("contentView", "Circsim.contentViews.titleView");
+      Circsim.set("sidebarView", "Circsim.sidebarViews.titleView");
+    },
+    
     startCircsim: function() {
       this.gotoState("Running");
     }
   }),
 
   "Running": SC.State.design({
+    enterState: function(){
+      Circsim.set('sidebarView', 'Circsim.sidebarViews.runningView');
+    },
+    
     initialSubstate: "Introduction",
 
     "Introduction": SC.State.design({
-      // TODO: Implement this state.
-    }),
-
-    "Help": SC.State.design({
-      enterState: function() {
-        // TODO: Implement this function
-      },
-
-      closeHelp: function() {
-        this.gotoState("Running");
+      enterState: function(){
+        Circsim.set('contentView', 'Circsim.contentViews.introView');        
       }
     }),
 
     "Procedure": SC.State.design({
+      enterState: function(){
+        var procedure = Circsim.procedureController;
+        CoreCircsim.createColumns(procedure);
+      },
+      
+      initialSubstate: "ProcedureIntro",
+      
       "ProcedureIntro": SC.State.design({
+        enterState: function(){
+          Circsim.set('contentView', 'Circsim.contentViews.procedureIntroView');          
+        },
+
+        exitState: function(){
+          Circsim.set('contentView', 'Circsim.contentViews.procedureView');
+        },
+        
         beginProcedure: function(){
           this.gotoState("InitialVariableEvaluation");
         }
@@ -222,6 +238,17 @@ Circsim.statechart = SC.Statechart.create({
     openHelp: function() {
       this.gotoState("Help");
     }
+  }),
+  
+  "Help": SC.State.design({
+    enterState: function() {
+      Circsim.set('contentView', 'Circsim.contentViews.helpView');
+    },
+
+    closeHelp: function() {
+      this.gotoHistoryState("Running");
+    }
   })
+  
 
 });

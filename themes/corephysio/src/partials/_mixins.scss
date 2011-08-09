@@ -14,7 +14,6 @@
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAsCAAAAACBTI29AAAAGklEQVR4nGN6x8TA9B+OUUlUFjoPXQ2CBGIAcuYgKD9pJ2MAAAAASUVORK5CYII=");
 }
 
-
 @mixin box-attrs-h {
   @include display-box;
   @include box-orient(horizontal);

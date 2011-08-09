@@ -442,7 +442,7 @@ div {
 #top-toolbar #help-button {
   margin-top: -12px;
   right: 8px;
-  width: 170px;
+  width: 64px;
   top: 50%;
   height: 24px;
   border: 0px none;
@@ -462,18 +462,25 @@ div {
 #top-toolbar #help-button:disabled {
   opacity: .5;
 }
-/* line 13, ../src/partials/_button.scss */
+/* line 12, ../src/partials/_button.scss */
+#top-toolbar #help-button .img {
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  z-index: 2;
+}
+/* line 19, ../src/partials/_button.scss */
 #top-toolbar #help-button:sel, #top-toolbar #help-button:def {
   color: #fff;
   font-weight: 200;
   text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 1px;
 }
-/* line 18, ../src/partials/_button.scss */
+/* line 24, ../src/partials/_button.scss */
 #top-toolbar #help-button:active {
   color: #333;
   text-shadow: white 0px 1px 1px;
 }
-/* line 21, ../src/partials/_button.scss */
+/* line 27, ../src/partials/_button.scss */
 #top-toolbar #help-button:active .left {
   background-position: 0px 0px;
   background-repeat: no-repeat;
@@ -485,7 +492,7 @@ div {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAd0lEQVR4nGOyYfCUjljBJKKufFk/nEmpW0NQm4FJwkWOQZaBiY+Tn4GTgYmDgZWBCQgZ/gMhkAIxmEDsfwxM/xhAkOk/jAIrQRX8h5DDouEfSAPjz38MfxmYuB/8ZPjNwGS06MuPrwxMBnO9Zvy5xeTyUqIhqBUAMGc432X/lp0AAAAASUVORK5CYII=");
   *background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1311210814!__s41_15' + '")');
 }
-/* line 32, ../src/partials/_button.scss */
+/* line 38, ../src/partials/_button.scss */
 #top-toolbar #help-button:active .middle {
   background-position: 0px 0px;
   background-repeat: repeat-x;
@@ -497,7 +504,7 @@ div {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAQAAACRxV9RAAAAK0lEQVR4nGNKecJkJs2kycAkzsDExMD0n4HpH4z8h8HGFPzFwPThK1NoNwCtVhWvCA2FFgAAAABJRU5ErkJggg==");
   *background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1311210814!__s41_16' + '")');
 }
-/* line 43, ../src/partials/_button.scss */
+/* line 49, ../src/partials/_button.scss */
 #top-toolbar #help-button:active .right {
   background-position: 0px 0px;
   background-repeat: no-repeat;
@@ -509,7 +516,7 @@ div {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAc0lEQVR4nGOKWOEp/Z+BST9c5XKgFpM2g7qgUjeTLIMcg7gzEyeDAAM/OxMTAwsDBwPTf4b/DIwgigHIYPrH8B9CgSCY+g9RgiEI52HVAKb+AimG30y/GX4y8Nxj+srw5YfRIqY/t7xmGMxlCmqVaGB4CQBP+DqbwhbMewAAAABJRU5ErkJggg==");
   *background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1311210814!__s41_17' + '")');
 }
-/* line 56, ../src/partials/_button.scss */
+/* line 62, ../src/partials/_button.scss */
 #top-toolbar #help-button .left {
   background-position: 0px 0px;
   background-repeat: no-repeat;
@@ -520,7 +527,7 @@ div {
   width: 3px;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAZElEQVR4nGPaxLBJeuMKJgb1f5flw5mYulUE5RmY/rlIMDAwMP3lZGT4z8DEAAYw6j/Df4jgPyCEUf9RKLgcWCV+QTCP5ec/ECXw4D2IUlv04scrBibpuU4z/t5i2viSv8GhFQCWUDZMrKdSJwAAAABJRU5ErkJggg==");
 }
-/* line 66, ../src/partials/_button.scss */
+/* line 72, ../src/partials/_button.scss */
 #top-toolbar #help-button .middle {
   background-position: 0px 0px;
   background-repeat: repeat-x;
@@ -531,7 +538,7 @@ div {
   bottom: 0px;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAQAAACRxV9RAAAAKklEQVR4nGPa8ITJUpqJjYGJgYHpP5iEMP6hov+ojP8w9IuB6d5XJv9uAIJ2FK/beYvTAAAAAElFTkSuQmCC");
 }
-/* line 77, ../src/partials/_button.scss */
+/* line 83, ../src/partials/_button.scss */
 #top-toolbar #help-button .right {
   background-position: 0px 0px;
   background-repeat: no-repeat;
@@ -542,14 +549,14 @@ div {
   width: 3px;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAZ0lEQVR4nGPauGKT9H8GJvnwf5c3azHJM6gKMnUzMTCIM/xzZvrPwMjwlx3IAwEY9Z8BBJn+MfwD8ZCo/ygUVCUDfkEo7z+Qx/wbSL1nELzH9IrhxQ+1RUx/bznNkJ7L5NDK38DwEgBOEjabenxcDAAAAABJRU5ErkJggg==");
 }
-/* line 88, ../src/partials/_button.scss */
+/* line 94, ../src/partials/_button.scss */
 #top-toolbar #help-button label {
   height: 24px;
   padding-top: 2px;
   position: relative;
   display: block;
   line-height: 21px;
-  text-align: center;
+  text-align: right;
   margin-top: 0px;
   padding-left: 10px;
   padding-right: 10px;

@@ -28,10 +28,10 @@
   #help-button{
     margin-top: -12px;
     right: 8px; 
-    width: 170px; 
+    width: 64px; 
     top: 50%; 
     height: 24px;
-    @include sc-button;    
+    @include sc-button(right);    
   };
 };
 

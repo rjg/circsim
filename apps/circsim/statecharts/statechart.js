@@ -10,6 +10,18 @@ Circsim.statechart = SC.Statechart.create({
       Circsim.contentController.set("contentDisplay", "Circsim.contentViews.titleView");
       Circsim.set("sidebarView", "Circsim.sidebarViews.titleView");
       Circsim.toolbarController.set('helpDisplay', 'display:none;');
+
+      // // TODO: Remove this... It's just for dev purposes. 
+      // var p = Circsim.proceduresController.firstObject();
+      // SC.RunLoop.begin();
+      // Circsim.proceduresController.selectObject(p);
+      // SC.RunLoop.end();
+      // var procedure = Circsim.procedureController;
+      // CoreCircsim.createGrid(procedure);
+      // 
+      // 
+      // this.gotoState("InitialVariableEvaluation");
+      // /////////////////////////////////////////////////////////////
     },
     
     startCircsim: function() {

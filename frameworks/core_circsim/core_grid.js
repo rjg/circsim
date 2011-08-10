@@ -2,6 +2,12 @@
 
 SC.mixin(CoreCircsim, {
 
+  createGrid: function(procedure){
+    procedure = this.createColumns(procedure);
+    procedure = this.createCells(procedure);
+    return procedure;
+  },
+
   createColumns: function(procedure) {
     var headers = procedure.get('cols');
     

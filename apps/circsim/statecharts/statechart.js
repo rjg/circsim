@@ -35,6 +35,8 @@ Circsim.statechart = SC.Statechart.create({
       enterState: function(){
         var procedure = Circsim.procedureController;
         CoreCircsim.createGrid(procedure);
+        var firstColumn = Circsim.columnsController.firstObject();
+        Circsim.columnsController.selectObject(firstColumn);
       },
       
       initialSubstate: "ProcedureIntro",

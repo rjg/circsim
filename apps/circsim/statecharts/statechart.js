@@ -7,7 +7,7 @@ Circsim.statechart = SC.Statechart.create({
 
   "Title": SC.State.design({
     enterState: function(){
-      Circsim.set("contentView", "Circsim.contentViews.titleView");
+      Circsim.contentController.set("contentDisplay", "Circsim.contentViews.titleView");
       Circsim.set("sidebarView", "Circsim.sidebarViews.titleView");
       Circsim.toolbarController.set('helpDisplay', 'display:none;');
     },

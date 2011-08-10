@@ -1,5 +1,6 @@
 /*globals Circsim*/
 
 Circsim.contentViews.procedureView = SC.TemplateView.design({  
-  templateName: 'procedure'  
+  templateName: 'procedure',
+  columnsBinding: 'Circsim.columnsController.arrangedObjects'  
 });

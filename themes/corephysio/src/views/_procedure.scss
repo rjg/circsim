@@ -1,4 +1,5 @@
 $grid-and-message-height: 300px;
+$header-height: 40px;
 
 #procedure {
   @include blueprint-typography;
@@ -29,22 +30,26 @@ $grid-and-message-height: 300px;
     #grid {
       background-color:#FBFBFB;
       margin-right: 10px;
-      height:$grid-and-message-height+22px;
+      height:$grid-and-message-height;
       @include box-attrs-h;      
       .column{
         @include box-flex(1);          
-        @include box-attrs-v;
         .cell, 
         .header {
           border: 1px solid #D2D2D2;
           background-color: #FBFBFB;
         };
         .header { 
-          height:40px;
-        };        
-        .cell {
-          @include box-flex(1);
-        };        
+          height:$header-height;
+        };
+        .cell-group{
+          height: $grid-and-message-height - $header-height;
+          @include box-attrs-v;
+    
+          .cell {
+            @include box-flex(1);
+          };                  
+        }        
       };
     };
 

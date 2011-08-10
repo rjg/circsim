@@ -18,7 +18,7 @@
   @include display-box;
   @include box-orient(horizontal);
   @include box-align(stretch);
-  @include box-direction(reverse);      
+  @include box-direction(normal);      
 };
 @mixin box-attrs-v {
   @include display-box;

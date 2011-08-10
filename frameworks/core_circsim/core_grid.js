@@ -10,8 +10,6 @@ SC.mixin(CoreCircsim, {
 
   createColumns: function(procedure) {
     var headers = procedure.get('cols');
-    
-    headers.unshift("Procedure Name:");
 
     headers.forEach(function(header) {
       var id = Math.random(Math.floor(Math.random() * 99999999));

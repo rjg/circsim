@@ -25,11 +25,11 @@ test('CoreCircsim.createColumns()', function() {
   
   var cols = procedure.get('columns');
   
-  equals(cols.length(), 3, "creates the correct number of columns based on the cols property of the procedure (+1 for the first column)");
+  equals(cols.length(), 2, "creates the correct number of columns based on the cols property of the procedure");
   
   equals(cols.lastObject().get('header'), "col2", "The columns are named correctly.");
   
-  equals(cols.firstObject().get('header'), "Procedure Name:", "The first column header is set as 'Procedure Name:'");
+  equals(cols.firstObject().get('header'), "col1", "The first column header is set as 'Procedure Name:'");
 });
 
 test('CoreCircsim.createCells()', function() {

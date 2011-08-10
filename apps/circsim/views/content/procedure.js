@@ -1,7 +1,5 @@
 /*globals Circsim*/
 
-Circsim.contentViews.procedureView = SC.TemplateView.design({
-  
-  templateName: 'procedure'
-  
+Circsim.contentViews.procedureView = SC.TemplateView.design({  
+  templateName: 'procedure'  
 });

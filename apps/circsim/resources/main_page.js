@@ -30,7 +30,7 @@ Circsim.mainPage = SC.Page.design({
       }),
 
       bottomRightView: SC.ContainerView.extend({
-        nowShowingBinding: 'Circsim.contentView'
+        nowShowingBinding: 'Circsim.contentController.contentDisplay'
       })
 
     }),

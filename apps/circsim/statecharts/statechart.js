@@ -27,7 +27,7 @@ Circsim.statechart = SC.Statechart.create({
 
     "Introduction": SC.State.design({
       enterState: function(){
-        Circsim.set('contentView', 'Circsim.contentViews.introView');        
+        Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.introView');        
       }
     }),
 
@@ -43,11 +43,7 @@ Circsim.statechart = SC.Statechart.create({
       
       "ProcedureIntro": SC.State.design({
         enterState: function(){
-          Circsim.set('contentView', 'Circsim.contentViews.procedureIntroView');          
-        },
-
-        exitState: function(){
-          Circsim.set('contentView', 'Circsim.contentViews.procedureView');
+          Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureIntroView');          
         },
         
         beginProcedure: function(){
@@ -59,6 +55,10 @@ Circsim.statechart = SC.Statechart.create({
         initialSubstate: "IVStudentPrompt", 
         
         "IVStudentPrompt": SC.State.design({
+          enterState: function(){
+            Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
+          },
+          
           clickCorrectIVa: function(){
             this.gotoState("IVSelectDirection");
           },
@@ -246,7 +246,7 @@ Circsim.statechart = SC.Statechart.create({
   
   "Help": SC.State.design({
     enterState: function() {
-      Circsim.set('contentView', 'Circsim.contentViews.helpView');
+      Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.helpView');
       Circsim.toolbarController.set('helpDisplay', 'display:none;');
     },
 

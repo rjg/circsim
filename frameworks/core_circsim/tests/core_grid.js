@@ -36,15 +36,14 @@ test('CoreCircsim.createCells()', function() {
   procedure.set('cols', ["col1", "col2"]);
   CoreCircsim.createColumns(procedure);
   
-  procedure.set('rows', ["proc name 1", "proc name 2", "proc name 3"]);
+  procedure.set('rows', ["var 1", "var 2", "var 3"]);
   
   CoreCircsim.createCells(procedure);
 
   var firstCol = procedure.get('columns').firstObject();
   var secondCol = procedure.get('columns').objectAt(1);
     
-  equals(firstCol.get('cells').firstObject().get("text"), 'proc name 1', 'Sets the first column cells based on the names supplied in procedure.get("rows")');
-  
+  ok(SC.compare(firstCol.get('cells').firstObject().get("value"), null) === 0, 'Creates the first column and sets value to null');  
   equals(secondCol.get('cells').length(), 3, 'Creates the correct number of cells based on the names supplied in procedure.get("rows")');
   
   

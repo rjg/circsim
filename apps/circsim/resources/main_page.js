@@ -6,9 +6,7 @@ Circsim.mainPage = SC.Page.design({
   mainPane: SC.MainPane.design({
     childViews: 'topView middleView bottomView'.w(),
     
-    topView: SC.TemplateView.design({
-      templateName: "toolbar"
-    }),
+    topView: Circsim.toolbarView,
     
     middleView: SC.SplitView.design({
       layout: {

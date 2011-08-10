@@ -6,7 +6,6 @@ Circsim = SC.Application.create({
   VERSION: '0.1.0',
   
   contentView: '',
-  sidebarView: '',
-  toolbarView: ''
+  sidebarView: ''
   
 });

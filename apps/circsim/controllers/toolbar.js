@@ -1,5 +1,5 @@
 /*globals Circsim*/
 
-Circsim.toolbarController = SC.Object.create({
+Circsim.toolbarDisplayController = SC.Object.create({
   helpDisplay: ""
 });

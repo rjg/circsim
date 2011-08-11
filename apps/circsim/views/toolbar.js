@@ -1,19 +1,39 @@
 /*globals Circsim*/
 
-Circsim.toolbarView = SC.TemplateView.design({
-    templateName: "toolbar",
+Circsim.toolbarView = SC.View.design({
     iconUrl: sc_static('images/help'),
-    helpDisplayBinding: 'Circsim.toolbarController.helpDisplay',
+    helpDisplayBinding: "Circsim.toolbarDisplayController.helpDisplay",
+    tagName: "div",
+    layerId: "top-toolbar",
+    useStaticLayout: YES,
+    displayProperties: ["helpDisplay"],
     
-    // TODO: This seems ugly.
-    mouseUp: function(evt){      
+    render: function(context){    
+      var helpDisplay = this.get('helpDisplay');
+      var iconUrl = this.get('iconUrl');
+      context.push(
+        '  <div id="logo-image"></div>',
+        '  <div id="circsim-title">',
+        '    Circsim',
+        '  </div>',
+        '  <div id="help-button" style="'+helpDisplay+'">',
+        '    <div class="img"><img src="'+iconUrl+'" width="16" height="16" alt="Help"></div>',
+        '    <div class="left"></div>',
+        '    <div class="middle"></div>',
+        '    <div class="right"></div>',
+        '    <label>Help</label> ',
+        '  </div>'     
+      );
+    },
+    
+    click: function(evt){      
       var target = evt.target,
-          id1    = target.parentElement.id,
-          id2    = target.parentElement.parentElement.id,
-          ary    = [];
-      ary.push(id1);
-      ary.push(id2)
-      if (ary.contains("help-button")) {
+          id     = target.id;
+      while(!id) {
+        target = target.parentElement; 
+        id     = target.id;
+      }
+      if (id == "help-button") {
         Circsim.statechart.sendEvent('openHelp');
       }
     }

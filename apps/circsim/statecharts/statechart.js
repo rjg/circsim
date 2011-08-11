@@ -9,19 +9,7 @@ Circsim.statechart = SC.Statechart.create({
     enterState: function(){
       Circsim.contentController.set("contentDisplay", "Circsim.contentViews.titleView");
       Circsim.set("sidebarView", "Circsim.sidebarViews.titleView");
-      Circsim.toolbarController.set('helpDisplay', 'display:none;');
-
-      // // TODO: Remove this... It's just for dev purposes. 
-      // var p = Circsim.proceduresController.firstObject();
-      // SC.RunLoop.begin();
-      // Circsim.proceduresController.selectObject(p);
-      // SC.RunLoop.end();
-      // var procedure = Circsim.procedureController;
-      // CoreCircsim.createGrid(procedure);
-      // 
-      // 
-      // this.gotoState("InitialVariableEvaluation");
-      // /////////////////////////////////////////////////////////////
+      Circsim.toolbarDisplayController.set("helpDisplay", "display:none;");
     },
     
     startCircsim: function() {
@@ -32,7 +20,7 @@ Circsim.statechart = SC.Statechart.create({
   "Running": SC.State.design({
     enterState: function(){
       Circsim.set('sidebarView', 'Circsim.sidebarViews.runningView');
-      Circsim.toolbarController.set('helpDisplay', '');
+      Circsim.toolbarDisplayController.set('helpDisplay', '');
     },
     
     initialSubstate: "Introduction",
@@ -259,7 +247,7 @@ Circsim.statechart = SC.Statechart.create({
   "Help": SC.State.design({
     enterState: function() {
       Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.helpView');
-      Circsim.toolbarController.set('helpDisplay', 'display:none;');
+      Circsim.toolbarDisplayController.set('helpDisplay', 'display:none;');
     },
 
     closeHelp: function() {

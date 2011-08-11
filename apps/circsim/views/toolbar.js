@@ -1,12 +1,6 @@
 /*globals Circsim*/
 
-Circsim.toolbarView = SC.View.design({
-    iconUrl: sc_static('images/help'),
-    helpDisplayBinding: "Circsim.toolbarDisplayController.helpDisplay",
-    tagName: "div",
-    layerId: "top-toolbar",
-    useStaticLayout: YES,
-    displayProperties: ["helpDisplay"],
+Circsim.ToolbarView = SC.View.extend({
     
     render: function(context){    
       var helpDisplay = this.get('helpDisplay');

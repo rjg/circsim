@@ -1,12 +1,21 @@
 /*globals Circsim */
 
+sc_require("views/toolbar");
+
 // This page describes the main user interface for your application.  
 Circsim.mainPage = SC.Page.design({
 
   mainPane: SC.MainPane.design({
-    childViews: 'topView middleView bottomView'.w(),
+    childViews: 'toolbar middleView bottomView'.w(),
     
-    topView: Circsim.toolbarView,
+    toolbar: Circsim.ToolbarView.design({
+      iconUrl: sc_static('images/help'),
+      helpDisplayBinding: "Circsim.toolbarDisplayController.helpDisplay",
+      displayProperties: ["helpDisplay"],
+      tagName: "div",
+      layerId: "top-toolbar",
+      useStaticLayout: YES      
+    }),
     
     middleView: SC.SplitView.design({
       layout: {

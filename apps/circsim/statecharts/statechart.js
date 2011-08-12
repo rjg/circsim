@@ -59,13 +59,36 @@ Circsim.statechart = SC.Statechart.create({
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
           },
           
+          evaluateClick: function(){
+            this.gotoState("EvaluateClick");
+          }
+          
+        }),
+        
+        "EvaluateClick": SC.State.design({
+          enterState: function(){         
+            debugger; 
+            var cell      = Circsim.cellController.get('content'),
+                column    = cell.get('column'),
+                idx       = column.get('cells').indexOf(cell),
+                procedure = Circsim.procedureController.get('content'),
+                correctAnswer;
+            
+            correctAnswer = CoreCircsim.evaluateInitialVariableSelection(procedure, idx);
+            if (correctAnswer) {
+              this.clickCorrectIVa();
+            } else {
+              this.clickIncorrectIVa();
+            }
+          },
+        
           clickCorrectIVa: function(){
             this.gotoState("IVSelectDirection");
           },
           
           clickIncorrectIVa: function(){
             this.gotoState("IVSecondChance");
-          }
+          }          
         }),
         
         "IVSecondChance": SC.State.design({

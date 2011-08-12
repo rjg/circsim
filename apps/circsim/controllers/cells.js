@@ -14,5 +14,5 @@ Circsim.cellsController = SC.ArrayController.create({
       });
     });
     return allCells;
-  }.property()
+  }.property().cacheable()
 });

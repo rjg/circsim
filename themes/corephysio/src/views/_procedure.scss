@@ -1,6 +1,18 @@
 $grid-and-message-height: 300px;
 $header-height: 40px;
 
+
+
+.sc-view .cell {  
+  .test{
+    border: 1px solid #444;
+    position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;
+    &:hover{
+      background-color: steelblue;
+    }    
+  }
+}
+
 #procedure {
   @include blueprint-typography;
   font-family:Helvetica, sans-serif;;

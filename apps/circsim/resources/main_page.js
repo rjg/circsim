@@ -1,6 +1,7 @@
 /*globals Circsim */
 
 sc_require("views/toolbar");
+sc_require("views/procedure");
 
 // This page describes the main user interface for your application.  
 Circsim.mainPage = SC.Page.design({
@@ -14,7 +15,7 @@ Circsim.mainPage = SC.Page.design({
       displayProperties: ["helpDisplay"],
       tagName: "div",
       layerId: "top-toolbar",
-      useStaticLayout: YES      
+      useStaticLayout: YES
     }),
     
     middleView: SC.SplitView.design({
@@ -25,20 +26,20 @@ Circsim.mainPage = SC.Page.design({
         bottom: 32
       },
       canCollapseViews: NO,
-      topLeftMinThickness: 250,
+      defaultThickness: 250,
       topLeftMaxThickness: 250,
-    
+      dividerThickness: 0,
+      layoutDirection: SC.LAYOUT_HORIZONTAL,
+          
       topLeftView: SC.ContainerView.extend({
         layout:{width: 250},
         nowShowingBinding: 'Circsim.sidebarView'
       }),
 
-      dividerView: SC.SplitDividerView.design({
-        backgroundColor: '#555',
-        layout: {width: 2, top: 0, bottom: 0}
-      }),
+      dividerView: SC.View,
 
       bottomRightView: SC.ContainerView.extend({
+        // REDO This!!
         nowShowingBinding: 'Circsim.contentController.contentDisplay'
       })
 

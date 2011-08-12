@@ -80,7 +80,21 @@ div {
   outline-width: 0px !important;
 }
 
-/* line 4, ../src/views/_procedure.scss */
+/* line 7, ../src/views/_procedure.scss */
+.sc-view .cell .test {
+  border: 1px solid #444;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+/* line 10, ../src/views/_procedure.scss */
+.sc-view .cell .test:hover {
+  background-color: steelblue;
+}
+
+/* line 16, ../src/views/_procedure.scss */
 #procedure {
   font-family: Helvetica, sans-serif;
   padding: 10px;
@@ -283,18 +297,18 @@ div {
 #procedure .loud {
   color: #111111;
 }
-/* line 10, ../src/views/_procedure.scss */
+/* line 22, ../src/views/_procedure.scss */
 #procedure #procedure-title {
   width: 100%;
   color: #4080B1;
   font-weight: bold;
 }
-/* line 16, ../src/views/_procedure.scss */
+/* line 28, ../src/views/_procedure.scss */
 #procedure #procedure-instructions {
   width: 100%;
   margin-bottom: 40px;
 }
-/* line 21, ../src/views/_procedure.scss */
+/* line 33, ../src/views/_procedure.scss */
 #procedure #procedure-interaction {
   width: 100%;
   display: -moz-box;
@@ -314,7 +328,7 @@ div {
   -ms-box-direction: normal;
   box-direction: normal;
 }
-/* line 25, ../src/views/_procedure.scss */
+/* line 37, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #grid,
 #procedure #procedure-interaction #procedure-messages {
   width: 50%;
@@ -323,7 +337,7 @@ div {
   -ms-box-flex: 1;
   box-flex: 1;
 }
-/* line 30, ../src/views/_procedure.scss */
+/* line 42, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #grid {
   background-color: #FBFBFB;
   margin-right: 10px;
@@ -345,24 +359,24 @@ div {
   -ms-box-direction: normal;
   box-direction: normal;
 }
-/* line 35, ../src/views/_procedure.scss */
+/* line 47, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #grid .column {
   -moz-box-flex: 1;
   -webkit-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
 }
-/* line 38, ../src/views/_procedure.scss */
+/* line 50, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #grid .column .cell,
 #procedure #procedure-interaction #grid .column .header {
   border: 1px solid #D2D2D2;
   background-color: #FBFBFB;
 }
-/* line 42, ../src/views/_procedure.scss */
+/* line 54, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #grid .column .header {
   height: 40px;
 }
-/* line 45, ../src/views/_procedure.scss */
+/* line 57, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #grid .column .cell-group {
   height: 260px;
   display: -moz-box;
@@ -382,17 +396,17 @@ div {
   -ms-box-direction: normal;
   box-direction: normal;
 }
-/* line 49, ../src/views/_procedure.scss */
+/* line 61, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #grid .column .cell-group .cell {
   -moz-box-flex: 1;
   -webkit-box-flex: 1;
   -ms-box-flex: 1;
   box-flex: 1;
 }
-/* line 56, ../src/views/_procedure.scss */
+/* line 68, ../src/views/_procedure.scss */
 #procedure #procedure-interaction #procedure-messages {
   height: 300px;
-  padding: 10 20;
+  padding: 10px 20px;
   background-color: #FBFBFB;
   border: 1px solid #D2D2D2;
   overflow-y: scroll;

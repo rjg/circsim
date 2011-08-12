@@ -1,7 +1,7 @@
 /*globals Circsim CoreCircsim*/
 
 Circsim.statechart = SC.Statechart.create({
-  // trace: YES,
+  trace: YES,
 
   initialState: "Title",
 
@@ -66,9 +66,8 @@ Circsim.statechart = SC.Statechart.create({
         }),
         
         "EvaluateClick": SC.State.design({
-          enterState: function(){         
-            debugger; 
-            var cell      = Circsim.cellController.get('content'),
+          enterState: function(){          
+            var cell      = Circsim.cellController.get('content').firstObject(),
                 column    = cell.get('column'),
                 idx       = column.get('cells').indexOf(cell),
                 procedure = Circsim.procedureController.get('content'),

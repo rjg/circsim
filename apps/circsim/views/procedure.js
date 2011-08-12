@@ -59,9 +59,9 @@ Circsim.contentViews.procedureView = SC.SplitView.design({
           rowHeight: 53.75,
           contentBinding: "Circsim.cellsController.allCells",           
           selectionBinding: "Circsim.cellController.content", 
-          // target: "Circsim.statechart",
-          // action: "evaluateClick",
-          // actOnSelect: YES,
+          target: "Circsim.statechart",
+          action: "evaluateClick",
+          actOnSelect: YES,
           exampleView: Circsim.CellView.design({
             backgroundColor: "white",
             classNames: "cell"

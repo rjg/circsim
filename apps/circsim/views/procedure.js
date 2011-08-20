@@ -29,7 +29,7 @@ Circsim.contentViews.procedureView = SC.SplitView.design({
       layout: {top: 52, right: 10, left: 10, bottom: 0},
       tagName: "div",
       layerId: "procedure-instructions",
-      valueBinding: "Circsim.procedureController.instructions"
+      valueBinding: "Circsim.instructionsController.content"
     })
   }),
   

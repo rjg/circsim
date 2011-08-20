@@ -51,21 +51,27 @@ Circsim.contentViews.procedureView = SC.SplitView.design({
       topLeftView: SC.View.extend({
         layout: { left: 0, top: 0, right: 0, bottom: 0 },
         backgroundColor: "#EBEBEB",
-        childViews: "predictionTable".w(),
+        childViews: "predictionTable evaluateButton".w(),
         predictionTable: SC.GridView.design({
-          layout: {right: 0, bottom: 0, top: 0, left: 0},
+          layout: {right: 0, bottom: 20, top: 0, left: 0},
           insertionOrientation: SC.VERTICAL_ORIENTATION,
           columnWidth:160,
-          rowHeight: 53.75,
+          rowHeight: 53,
           contentBinding: "Circsim.cellsController.allCells",           
-          selectionBinding: "Circsim.cellController.content", 
           target: "Circsim.statechart",
-          action: "evaluateClick",
+          action: "clickedOnCell",
           actOnSelect: YES,
           exampleView: Circsim.CellView.design({
             backgroundColor: "white",
             classNames: "cell"
           })
+        }),
+        
+        evaluateButton: SC.ButtonView.design({
+          layout: {bottom: 0, right: 0, width: 50, height: 20},
+          title: "Evaluate Column",
+          target: "Circsim.statechart",
+          action: "beginEvaluations"
         })
       }),
 

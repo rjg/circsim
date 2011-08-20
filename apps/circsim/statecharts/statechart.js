@@ -47,7 +47,7 @@ Circsim.statechart = SC.Statechart.create({
         },
         
         beginProcedure: function(){
-          this.gotoState("InitialVariableEvaluation");
+          this.gotoState("ColumnInput");
         }
       }),
       
@@ -147,7 +147,16 @@ Circsim.statechart = SC.Statechart.create({
       
       "ColumnInput": SC.State.design({
         
-        evaluateColumns: function(){
+        enterState: function(){
+          Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
+        },
+        
+        clickedOnCell: function(s) {
+          var cell = s.selection.firstObject();
+          CoreCircsim.updateCell(cell);        
+        },
+        
+        beginEvaluations: function(){
           this.gotoState("ColumnEvaluation");
         }
       }),
@@ -159,6 +168,10 @@ Circsim.statechart = SC.Statechart.create({
           initialSubstate: "REIntroduction",
           
           "REIntroduction": SC.State.design({
+            enterState: function(){
+              
+            },
+            
             beginRE: function(){
               this.gotoState("EvaluateRelationship");
             }

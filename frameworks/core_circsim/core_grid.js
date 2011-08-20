@@ -35,5 +35,28 @@ SC.mixin(CoreCircsim, {
     });
     
    return procedure;   
+  },
+  
+  updateCell: function(cell){
+    var val    = cell.get('value'),
+        newVal = "";
+    switch (val) {
+      case null: 
+        newVal = 0;
+        break;
+      case 0: 
+        newVal = 1;
+        break;
+      case 1: 
+        newVal = 2;
+        break;
+      case 2: 
+        newVal = 0;
+        break;
+      default:        
+        break;
+    }    
+    cell.set('value', newVal);
   }
+  
 });

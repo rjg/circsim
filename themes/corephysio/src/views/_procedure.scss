@@ -4,18 +4,21 @@ $header-height: 40px;
 
 
 .sc-view .cell {  
-  .test{
-    border: 1px solid #444;
-    position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;
-    &:hover{
-      background-color: steelblue;
-    }    
+  border: 1px solid #444;
+  position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;
+  &:hover{
+    background-color: steelblue;
+  }    
+  .cell-value {
+    position: absolute;
+    top: 40%;
+    left: 45%;
   }
 }
 
-#procedure {
+body {
   @include blueprint-typography;
-  font-family:Helvetica, sans-serif;;
+  font-family:Helvetica, sans-serif;
   padding:10px;
   min-width: 800px;
   

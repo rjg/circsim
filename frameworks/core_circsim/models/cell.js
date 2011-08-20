@@ -2,7 +2,7 @@
 
 CoreCircsim.Cell = SC.Record.extend({
   
-  value: SC.Record.attr(String),
+  value: SC.Record.attr(Number, {defaultValue: null}),
   isHighlighted: SC.Record.attr(Boolean),
   
   column: SC.Record.toOne('CoreCircsim.Column', {

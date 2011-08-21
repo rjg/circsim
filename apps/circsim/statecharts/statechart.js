@@ -3,7 +3,8 @@
 Circsim.statechart = SC.Statechart.create({
   trace: YES,
 
-  initialState: "Title",
+  // initialState: "Title",
+  initialState: "Running",
 
   "Title": SC.State.design({
     enterState: function(){
@@ -39,7 +40,8 @@ Circsim.statechart = SC.Statechart.create({
         Circsim.columnsController.selectObject(firstColumn);
       },
       
-      initialSubstate: "ProcedureIntro",
+      // initialSubstate: "ProcedureIntro",
+      initialSubstate: "InitialVariableEvaluation",
       
       "ProcedureIntro": SC.State.design({
         enterState: function(){
@@ -47,7 +49,7 @@ Circsim.statechart = SC.Statechart.create({
         },
         
         beginProcedure: function(){
-          this.gotoState("ColumnInput");
+          this.gotoState("InitialVariableEvaluation");
         }
       }),
       
@@ -57,40 +59,53 @@ Circsim.statechart = SC.Statechart.create({
         "IVStudentPrompt": SC.State.design({
           enterState: function(){
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
+            Circsim.instructionsController.set("content", "Click the button to select PV:");
           },
           
-          evaluateClick: function(){
-            this.gotoState("EvaluateClick");
-          }
-          
-        }),
-        
-        "EvaluateClick": SC.State.design({
-          enterState: function(){          
-            var cell      = Circsim.cellController.get('content').firstObject(),
-                column    = cell.get('column'),
-                idx       = column.get('cells').indexOf(cell),
-                procedure = Circsim.procedureController.get('content'),
-                correctAnswer;
+          selectedPV: function(){
+            var procedure = Circsim.procedureController.get('content');
+            var rows = procedure.get("rows");
+            var pv = Circsim.pvSelectionController.get("content");
+            var idx = rows.indexOf(pv);
             
-            correctAnswer = CoreCircsim.evaluateInitialVariableSelection(procedure, idx);
-            if (correctAnswer) {
-              this.clickCorrectIVa();
+            var answerIsCorrect = CoreCircsim.evaluateInitialVariableSelection(procedure, idx);
+            
+            if (answerIsCorrect) {
+              this.clickCorrectIVa();              
             } else {
               this.clickIncorrectIVa();
             }
           },
-        
+
           clickCorrectIVa: function(){
             this.gotoState("IVSelectDirection");
           },
-          
+
           clickIncorrectIVa: function(){
             this.gotoState("IVSecondChance");
-          }          
+          }                      
         }),
-        
+                
         "IVSecondChance": SC.State.design({
+          enterState: function() {
+            Circsim.messageController.set('content', 'Sorry, that\'s wrong. Try again.');
+          },
+          
+          selectedPV: function(){
+            var procedure = Circsim.procedureController.get('content');
+            var rows = procedure.get("rows");
+            var pv = Circsim.pvSelectionController.get("content");
+            var idx = rows.indexOf(pv);
+            
+            var answerIsCorrect = CoreCircsim.evaluateInitialVariableSelection(procedure, idx);
+            
+            if (answerIsCorrect) {
+              this.clickCorrectIVb();              
+            } else {
+              this.clickIncorrectIVb();
+            }
+          },
+          
           clickCorrectIVb: function(){
             this.gotoState("IVSelectDirection");
           },
@@ -101,44 +116,96 @@ Circsim.statechart = SC.Statechart.create({
         }),
           
         "IVSelectDirection": SC.State.design({
-          submitIVa: function(){
-            this.gotoState("IVEvaluateDirection");
-          }
-        }),
-        
-        "IVEvaluateDirection": SC.State.design({
-          IVDirectionCorrect: function(){
+          enterState: function(){
+            Circsim.messageController.set('content', 'Great! Now, select the direction in the table.');
+          },
+
+          clickedOnCell: function(s) {
+            var cell = s.selection.firstObject();
+            CoreCircsim.updateCell(cell);        
+          },
+          
+          next: function(){
+            var procedure = Circsim.procedureController.get("content");
+            var IVIdx = procedure.get('initialVariable');
+            var cell = procedure.get('columns').firstObject().get('cells').objectAt(IVIdx);
+            var direction = cell.get('value');            
+
+            var answerIsCorrect = CoreCircsim.evaluateInitialVariableDirection(procedure, direction);
+            if (answerIsCorrect) {
+              this.directionCorrect();
+            }else{
+              this.directionIncorrect();
+            }
+            
+          },
+          
+          directionCorrect: function(){
             this.gotoState("IVCorrectSummary");
           },
           
-          IVDirectionIncorrect: function(){
+          directionIncorrect: function(){
             this.gotoState("IVDirectionSecondChance");
           }
         }),
         
         "IVDirectionSecondChance": SC.State.design({
-          submitIVb: function(){
-            this.gotoState("IVFinalEvaluation");
-          }
-        }),
-        
-        "IVFinalEvaluation": SC.State.design({
-          finalIVCorrect: function(){
+          enterState: function(){
+            Circsim.messageController.set("content", "Yikes. That's the wrong direction. Try again dude");
+          },
+
+          clickedOnCell: function(s) {
+            var cell = s.selection.firstObject();
+            CoreCircsim.updateCell(cell);        
+          },
+          
+          next: function(){
+            var procedure = Circsim.procedureController.get("content");
+            var IVIdx = procedure.get('initialVariable');
+            var cell = procedure.get('columns').firstObject().get('cells').objectAt(IVIdx);
+            var direction = cell.get('value');            
+
+            var answerIsCorrect = CoreCircsim.evaluateInitialVariableDirection(procedure, direction);
+            if (answerIsCorrect) {
+              this.directionCorrect();
+            }else{
+              this.directionIncorrect();
+            }
+            
+          },
+          
+          directionCorrect: function(){
             this.gotoState("IVCorrectSummary");
           },
           
-          finalIVIncorrect: function(){
-            this.gotoState("IVIncorrectSummary");
+          directionIncorrect: function(){
+            this.gotoState("IVDirectionSecondChance");
           }
         }),
-        
+                
         "IVCorrectSummary": SC.State.design({
+          enterState: function(){
+            Circsim.messageController.set("content", "You're Amazing Dude!  Here's the summary.");
+          },
+
+          next: function() {
+            this.completeRestOfColumn();
+          },
+          
           completeRestOfColumn: function(){
             this.gotoState("ColumnInput");
           }
         }),
         
         "IVIncorrectSummary": SC.State.design({
+          enterState: function(){
+            Circsim.messageController.set("content", "Incorrect Dude.  Here's the summary.");
+          },
+          
+          next: function() {
+            this.completeRestOfColumn();
+          },
+          
           completeRestOfColumn: function(){
             this.gotoState("ColumnInput");
           }          
@@ -148,12 +215,16 @@ Circsim.statechart = SC.Statechart.create({
       "ColumnInput": SC.State.design({
         
         enterState: function(){
-          Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
+          Circsim.messageController.set('content', 'Now, go ahead and fill out the rest of the column, \'natch!');
         },
-        
+
         clickedOnCell: function(s) {
           var cell = s.selection.firstObject();
           CoreCircsim.updateCell(cell);        
+        },
+
+        next: function() {
+          this.beginEvaluations();
         },
         
         beginEvaluations: function(){
@@ -169,8 +240,12 @@ Circsim.statechart = SC.Statechart.create({
           
           "REIntroduction": SC.State.design({
             enterState: function(){
-              
+              Circsim.messageController.set("content", "Now's the time to evaluate the physiological relationships.");
             },
+            
+            next: function() {
+              this.beginRE();
+            },            
             
             beginRE: function(){
               this.gotoState("EvaluateRelationship");

@@ -1,79 +1,42 @@
-$grid-and-message-height: 300px;
-$header-height: 40px;
+#procedure-title {
+  width:100%; 
+  color:#4080B1;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 10px;
+};
 
+#next-button {
+  padding: 5px;
+}
 
+#grid-headers {
 
-.sc-view .cell {  
-  border: 1px solid #444;
-  position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;
-  &:hover{
-    background-color: steelblue;
-  }    
-  .cell-value {
-    position: absolute;
-    top: 40%;
-    left: 45%;
+  div {
+    width: 74px;
+    float: left;
+    margin-left:50px;
+    margin-top:20px;
   }
 }
 
-body {
-  @include blueprint-typography;
-  font-family:Helvetica, sans-serif;
-  padding:10px;
-  min-width: 800px;
-  
-  #procedure-title {
-    width:100%; 
-    color:#4080B1;
-    font-weight: bold;
-  };
-  
-  #procedure-instructions {
-    width:100%;  
-    margin-bottom:40px;    
-  };
-  
-  #procedure-interaction {
-    width:100%;
-    @include box-attrs-h;
-    #grid, 
-    #procedure-messages {
-      width: 50%;
-      @include box-flex(1);    
-    }
-    
-    #grid {
-      background-color:#FBFBFB;
-      margin-right: 10px;
-      height:$grid-and-message-height;
-      @include box-attrs-h;      
-      .column{
-        @include box-flex(1);          
-        .cell, 
-        .header {
-          border: 1px solid #D2D2D2;
-          background-color: #FBFBFB;
-        };
-        .header { 
-          height:$header-height;
-        };
-        .cell-group{
-          height: $grid-and-message-height - $header-height;
-          @include box-attrs-v;
-    
-          .cell {
-            @include box-flex(1);
-          };                  
-        }        
-      };
-    };
+ul#grid-rows {
+  text-align: right;
+  li {
+    height: 30px;
+    display: block;
+    padding: 10px 10px 10px 0px;
+  }
+}
 
-    #procedure-messages {
-      height:$grid-and-message-height;
-      padding: 10px 20px;
-      background-color:#FBFBFB;
-      border: 1px solid #D2D2D2;      
-      overflow-y: scroll;
-    };    
-  };
-};
+
+.sc-view .cell {  
+  position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;
+  border: 1px solid #999;
+  background-color: #ddd;
+  .cell-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}

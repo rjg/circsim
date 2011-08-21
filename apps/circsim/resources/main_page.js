@@ -38,11 +38,10 @@ Circsim.mainPage = SC.Page.design({
 
       dividerView: SC.View,
 
-      bottomRightView: SC.ContainerView.extend({
-        // REDO This!!
-        nowShowingBinding: 'Circsim.contentController.contentDisplay'
+      bottomRightView: SC.ContainerView.design({
+        layerId: "content",
+        nowShowingBinding: 'Circsim.contentController.contentDisplay'        
       })
-
     }),
 
     bottomView: SC.TemplateView.design({

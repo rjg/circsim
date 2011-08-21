@@ -10,7 +10,7 @@ CoreCircsim.AnswerKey = SC.Record.extend({
   cellValues: SC.Record.attr(Array),
   column: SC.Record.attr(Number),
 
-  column: SC.Record.toOne('CoreCircsim.Column', {
+  procedure: SC.Record.toOne('CoreCircsim.Procedure', {
     isMaster: NO
   })
 

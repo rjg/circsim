@@ -97,10 +97,6 @@ module("Procedure Specific Evaluations", {
       cols: ["DR", "RR", "SS"],
       rows: ["IS", "CVP", "SV", "HR", "CO", "Ra", "MAP"]
     }, 1);
-    
-    var column = CoreCircsim.store.createRecord(CoreCircsim.Column, {}, 1);
-
-    procedure.get("columns").pushObject(column);
         
     // TODO: refactor this... has to be a better way...
     var answerKeys = [{
@@ -151,13 +147,12 @@ module("Procedure Specific Evaluations", {
         cellValues: k["cellValues"],
         column: k["column"]
       }, k["id"]);      
-      column.get('answerKeys').pushObject(key);
+      procedure.get('answerKeys').pushObject(key);
     });
   },
 
   teardown: function() {
     CoreCircsim.store.destroyRecord(CoreCircsim.Procedure, 1);
-    CoreCircsim.store.destroyRecord(CoreCircsim.Column, 1);
     [1, 2, 3, 4].forEach(function(i) {
       CoreCircsim.store.destroyRecord(CoreCircsim.AnswerKey, i);
     });
@@ -167,10 +162,10 @@ module("Procedure Specific Evaluations", {
 
 test('CoreCircsim.evaluateProcedureSpecificErrors()', function() {
   var column = procedure.get('columns').firstObject();
-  var aone = column.get('answerKeys').firstObject();
-  var atwo = column.get('answerKeys').objectAt(1);
-  var athree = column.get('answerKeys').objectAt(2);
-  var afour = column.get('answerKeys').objectAt(3);
+  var aone = procedure.get('answerKeys').firstObject();
+  var atwo = procedure.get('answerKeys').objectAt(1);
+  var athree = procedure.get('answerKeys').objectAt(2);
+  var afour = procedure.get('answerKeys').objectAt(3);
   
   [
     [[0,0], [aone, afour]],

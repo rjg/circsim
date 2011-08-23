@@ -30,15 +30,34 @@ ul#grid-rows {
 }
 
 
+
+.sc-view {
+  .disabled {
+    background-color: #FBFBFB;
+    .cell-value {
+      opacity: 0.3;
+    }
+  }
+
+  .enabled {
+    background-color: #fff;
+  }
+
+  .highlighted {
+    border: 1px solid red;
+  }  
+}
+
 .sc-view .cell {  
   position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;
   border: 1px solid #999;
-  background-color: #ddd;
   .cell-value {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 37%;
+    left: 43%;
+    display: block;
+    height: 24px;
+    width: 24px;
   }
+  
 }
-
-

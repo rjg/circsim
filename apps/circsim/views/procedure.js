@@ -84,8 +84,7 @@ Circsim.contentViews.procedureView = SC.View.design({
         target: "Circsim.statechart",
         action: "clickedOnCell",
         actOnSelect: YES,
-        exampleView: Circsim.CellView.design({
-          backgroundColor: "white",
+        exampleView: Circsim.CellView.design({          
           classNames: "cell"
         })
       })

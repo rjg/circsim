@@ -243,6 +243,13 @@ Circsim.statechart = SC.Statechart.create({
           });
         },
         
+        exitState: function(){
+          Circsim.cellsController.get('allCells').forEach(function(c) {
+            c.set('isEnabled', false);
+          });
+          
+        },
+        
         setCurrentColumn: function(){
           var current = Circsim.columnController.get('current');
           Circsim.columnController.set('content', Circsim.columnsController.objectAt(current));          

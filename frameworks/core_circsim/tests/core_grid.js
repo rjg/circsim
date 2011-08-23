@@ -17,6 +17,21 @@ module("Core Grid", {
 
 });
 
+test('CoreCircsim.createGrid()', function() {
+
+  procedure.set('cols', ["col1", "col2"]);
+  procedure.set('rows', ["var 1", "var 2", "var 3"]);
+  CoreCircsim.createGrid(procedure);
+  CoreCircsim.createGrid(procedure);
+
+  var cols = procedure.get('columns');
+  var cells = procedure.get('columns').firstObject().get('cells');
+
+  equals(cols.length(), 2, "When createGrid is called, it will remove previous versions of columns and cells. Those are created dynamically each time.");
+  equals(cells.length(), 3, "When createGrid is called, it will remove previous versions of columns and cells. Those are created dynamically each time.");
+});
+
+
 test('CoreCircsim.createColumns()', function() {
 
   procedure.set('cols', ["col1", "col2"]);
@@ -45,8 +60,5 @@ test('CoreCircsim.createCells()', function() {
     
   ok(SC.compare(firstCol.get('cells').firstObject().get("value"), null) === 0, 'Creates the first column and sets value to null');  
   equals(secondCol.get('cells').length(), 3, 'Creates the correct number of cells based on the names supplied in procedure.get("rows")');
-  
-  
-
 });
 

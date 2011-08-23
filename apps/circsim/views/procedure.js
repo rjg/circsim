@@ -3,6 +3,7 @@
 sc_require("views/procedure_messages");
 sc_require("views/pv");
 sc_require("views/row_view");
+sc_require("views/select_view");
 sc_require("lib/grid_patch");
 
 Circsim.contentViews.procedureView = SC.View.design({
@@ -43,25 +44,19 @@ Circsim.contentViews.procedureView = SC.View.design({
       tagName: "div",
       layerId: "pv-view",
       backgroundColor: "#999",
-      childViews: "pvLabel pvSelection pvSubmit".w(),
+      childViews: "pvLabel pvSelection".w(),
         
         pvLabel: SC.LabelView.design({
-          layout: {top: 15, width: 150, height: 20, left: 10},
+          layout: {top: 15, width: 150, height: 20, left: 20},
           value: "Select the primary variable:"
         }),
         
-        pvSelection: SC.SelectView.design({
-          layout: {top: 15, width: 200, height: 20, left: 165},
-          backgroundColor: "#DDD", 
-          itemsBinding: "Circsim.procedureController.rows",
-          valueBinding: "Circsim.pvSelectionController.content"
-        }),
-        
-        pvSubmit: SC.ButtonView.design({
-          layout: {top: 15, width: 60, height: 80, left: 375},
-          title: "Submit PV",
-          target: "Circsim.statechart",
-          action: "selectedPV"
+        pvSelection: SC.SelectFieldView.design({          
+          layout: {top: 15, width: 250, height: 20, right: 50},
+          valueBinding: "Circsim.pvSelectionController.content",
+          objectsBinding: "Circsim.procedureController.rows",
+          disableSort: true,
+          emptyName: "Primary Variable"
         })
     }),
     
@@ -107,130 +102,3 @@ Circsim.contentViews.procedureView = SC.View.design({
   
     
 });
-
-
-
-
-
-// layerId: 'procedure',
-// layout: { left: 0, top: 0, right: 0, bottom: 0 },
-// layoutDirection: SC.LAYOUT_VERTICAL,
-// canCollapseViews: NO,
-// defaultThickness: 120,
-// topLeftMinThickness: 120, 
-// dividerThickness: 0,
-// autoresizeBehavior: SC.RESIZE_BOTTOM_RIGHT,
-//   
-// topLeftView: SC.View.design({
-//   tagName: "div",
-//   layerId: "procedure-info",
-//   childViews: "procedureTitle procedureInstructions pvSelection pvSubmit".w(),
-//   
-//   procedureTitle: SC.LabelView.design({
-//     layout: {top: 10, right: 0, left: 10},
-//     tagName: "h1",
-//     layerId: "procedure-title",
-//     valueBinding: "Circsim.procedureController.title"            
-//   }),
-//   
-//   procedureInstructions: SC.LabelView.design({
-//     layout: {top: 52, right: 10, left: 10},
-//     tagName: "div",
-//     layerId: "procedure-instructions",
-//     valueBinding: "Circsim.instructionsController.content"
-//   }),
-//   
-//   pvSelection: SC.SelectView.design({
-//     layout: {top: 90, width: 100, height: 20, left: 0},
-//     backgroundColor: "#DDD", 
-//     itemsBinding: "Circsim.procedureController.rows",
-//     valueBinding: "Circsim.pvSelectionController.content"
-//   }),
-//   
-//   pvSubmit: SC.ButtonView.design({
-//     layout: {top: 90, width: 50, height: 80, left: 120},
-//     title: "Submit PV",
-//     target: "Circsim.statechart",
-//     action: "selectedPV"
-//   })
-// 
-// 
-// }),
-// 
-// dividerView: SC.View,
-// 
-// bottomRightView: SC.View.design({
-//   tagName: "div",
-//   layerId: "procedure-interaction",
-//   childViews: "split".w(),
-//   layout: { left: 0, top: 0, right: 0, bottom: 0 },    
-//   split: SC.SplitView.design({
-//     canCollapseViews: NO,
-//     defaultThickness: 500,
-//     topLeftMaxThickness: 500,
-//     dividerThickness: 0,
-//     layoutDirection: SC.LAYOUT_HORIZONTAL,
-//         
-//     topLeftView: SC.View.extend({
-//       layout: { left: 0, top: 0, right: 0, bottom: 0 },
-//       backgroundColor: "#EBEBEB",
-//       childViews: "predictionTable evaluateButton".w(),
-//       predictionTable: SC.GridView.design({
-//         layout: {right: 0, bottom: 20, top: 0, left: 0},
-//         insertionOrientation: SC.VERTICAL_ORIENTATION,
-//         columnWidth:160,
-//         rowHeight: 50,
-//         contentBinding: "Circsim.cellsController.allCells",           
-//         target: "Circsim.statechart",
-//         action: "clickedOnCell",
-//         actOnSelect: YES,
-//         exampleView: Circsim.CellView.design({
-//           backgroundColor: "white",
-//           classNames: "cell"
-//         })
-//       }),
-//       
-//       evaluateButton: SC.ButtonView.design({
-//         layout: {bottom: 0, right: 0, width: 150, height: 20},
-//         title: "Submit",
-//         target: "Circsim.statechart",
-//         action: "submitForEvaluation"
-//       })
-//     }),
-// 
-//     dividerView: SC.View,
-// 
-//     bottomRightView: SC.View.extend({
-//       layout: { left: 0, top: 0, right: 0, bottom: 0 },
-//       childViews: "messages".w(),
-//       backgroundColor: "#EBEBEB",
-//       layerId: "message-container",
-//       valueBinding: "Circsim.messageController.content",
-//       messages: SC.View.design({
-//         useStaticLayout: YES,
-//         layerId: "messages",
-//         childViews: "split".w(),
-//         split: SC.SplitView.design({
-//           layout: {top: 0, bottom: 0, left: 0, right: 0},
-//           canCollapseViews: NO,
-//           defaultThickness: 250,
-//           topLeftMaxThickness: 250,
-//           dividerThickness: 2,
-//           layoutDirection: SC.LAYOUT_HORIZONTAL,            
-//           topLeftView: SC.View.design({
-//             backgroundColor: "red"
-//           }),
-//           dividerView: SC.View, 
-//           bottomRightView: SC.View.design({
-//             backgroundColor: "green",
-//             layerId: "green"
-//           })
-//           
-//         })
-//       })
-//     })
-//     
-//     
-//     
-//   })
-// })  

@@ -3,8 +3,16 @@
 SC.mixin(CoreCircsim, {
 
   createGrid: function(procedure){
+    var ids,    
+        columns = procedure.get('columns');
+
+    if (columns.length()>0) {      
+      return procedure;
+    }
+    
     procedure = this.createColumns(procedure);
     procedure = this.createCells(procedure);
+    
     return procedure;
   },
 
@@ -29,7 +37,7 @@ SC.mixin(CoreCircsim, {
     cols.forEach(function(col) {
       for (var i=0; i < rows.length; i++) {
         var id = Math.random(Math.floor(Math.random() * 99999999));
-        var cell = CoreCircsim.store.createRecord(CoreCircsim.Cell, {}, id);        
+        var cell = CoreCircsim.store.createRecord(CoreCircsim.Cell, {isEnabled: NO}, id);        
         col.get('cells').pushObject(cell);          
       }
     });
@@ -38,6 +46,9 @@ SC.mixin(CoreCircsim, {
   },
   
   updateCell: function(cell){
+    var isEnabled = cell.get('isEnabled');
+    if (!isEnabled) return;
+    
     var val    = cell.get('value'),
         newVal = "";
     switch (val) {
@@ -55,8 +66,9 @@ SC.mixin(CoreCircsim, {
         break;
       default:        
         break;
-    }    
+    }
     cell.set('value', newVal);
   }
+  
   
 });

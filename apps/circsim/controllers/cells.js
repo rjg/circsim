@@ -3,10 +3,13 @@
 Circsim.cellsController = SC.ArrayController.create({  
   
   contentBinding: "Circsim.columnController.selection",
+  
+  colsBinding: "Circsim.procedureController.columns",
 
   allCells: function() {
-    var cols     = Circsim.procedureController.get('columns'),
+    var cols     = this.get("cols"),
         allCells = [];         
+
     cols.forEach(function(col) {
       var cells = col.get('cells');
       cells.forEach(function(cell) {
@@ -14,5 +17,5 @@ Circsim.cellsController = SC.ArrayController.create({
       });
     });
     return allCells;
-  }.property().cacheable()
+  }.property("cols").cacheable()
 });

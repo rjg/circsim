@@ -16,16 +16,19 @@ CoreCircsim.Procedure.FIXTURES = [
   initialVariable: 5,
   initialVariableDirection: 1,
   answerKeys: [1,2],
-  relationshipEvaluationIntro: "You will now be evaluated for your relationship accuracy.",  
   relationshipEvaluations: [{
     equation: [4, 2, 3],
-    errorMessage: "Err message 1",
-    isComplete: false
+    intro: "You will now be evaluated for CO=SVxHR",
+    errorMessage: "Your CO=SVxHR is wrong. Please fix it.",
+    summaryCorrectMessage: "CO=SVxHR correct",
+    summaryIncorrectMessage: "CO=SVxHR incorrect"
   },
   {
     equation: [6, 4, 5],
-    errorMessage: "Err message 2",
-    isComplete: false
+    intro: "You will now be evaluated for MAP",
+    errorMessage: "Your MAP is wrong 2. please fix it.",
+    summaryCorrectMessage: "MAP correct",
+    summaryIncorrectMessage: "MAP incorrect"
   }]
 }];
 

@@ -1,7 +1,7 @@
 /*globals Circsim CoreCircsim*/
 
 Circsim.statechart = SC.Statechart.create({
-  trace: YES,
+  // trace: YES,
 
   // initialState: "Title",
   initialState: "Running",
@@ -35,9 +35,7 @@ Circsim.statechart = SC.Statechart.create({
     "Procedure": SC.State.design({
       enterState: function(){
         var procedure = Circsim.procedureController;
-        CoreCircsim.createGrid(procedure);
-        var firstColumn = Circsim.columnsController.firstObject();
-        Circsim.columnsController.selectObject(firstColumn);
+        CoreCircsim.createGrid(procedure);        
       },
       
       // initialSubstate: "ProcedureIntro",
@@ -59,7 +57,11 @@ Circsim.statechart = SC.Statechart.create({
         "IVStudentPrompt": SC.State.design({
           enterState: function(){
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
-            Circsim.instructionsController.set("content", "Click the button to select PV:");
+            Circsim.messageController.set("content", "Please use the select menu to the left to select the primary variable that is changed in this procedure.");
+          },
+          
+          next: function() {  
+            this.selectedPV();
           },
           
           selectedPV: function(){
@@ -90,6 +92,11 @@ Circsim.statechart = SC.Statechart.create({
           enterState: function() {
             Circsim.messageController.set('content', 'Sorry, that\'s wrong. Try again.');
           },
+
+          next: function() {  
+            this.selectedPV();
+          },
+
           
           selectedPV: function(){
             var procedure = Circsim.procedureController.get('content');
@@ -118,6 +125,10 @@ Circsim.statechart = SC.Statechart.create({
         "IVSelectDirection": SC.State.design({
           enterState: function(){
             Circsim.messageController.set('content', 'Great! Now, select the direction in the table.');
+            Circsim.mainPage.mainPane.middleView.bottomRightView.contentView.procedureContent.pvView.pvSelection.set('isEnabled', false);
+            var pvIdx = Circsim.procedureController.get('initialVariable');
+            var pvCell = Circsim.cellsController.get('allCells').objectAt(pvIdx);
+            pvCell.set('isEnabled', YES);
           },
 
           clickedOnCell: function(s) {
@@ -164,13 +175,15 @@ Circsim.statechart = SC.Statechart.create({
             var IVIdx = procedure.get('initialVariable');
             var cell = procedure.get('columns').firstObject().get('cells').objectAt(IVIdx);
             var direction = cell.get('value');            
-
+            
             var answerIsCorrect = CoreCircsim.evaluateInitialVariableDirection(procedure, direction);
+            
             if (answerIsCorrect) {
               this.directionCorrect();
             }else{
               this.directionIncorrect();
             }
+            
             
           },
           
@@ -179,7 +192,7 @@ Circsim.statechart = SC.Statechart.create({
           },
           
           directionIncorrect: function(){
-            this.gotoState("IVDirectionSecondChance");
+            this.gotoState("IVIncorrectSummary");
           }
         }),
                 
@@ -215,16 +228,52 @@ Circsim.statechart = SC.Statechart.create({
       "ColumnInput": SC.State.design({
         
         enterState: function(){
-          Circsim.messageController.set('content', 'Now, go ahead and fill out the rest of the column, \'natch!');
+          this.setCurrentColumn();
+          var header = Circsim.columnController.get('content').get('header');
+          Circsim.messageController.set('content', 'At this time, please fill out the '+header+' column.');
+          
+          // Enable only correct cells.
+          var activeCells = Circsim.columnController.get('content').get('cells');
+          Circsim.cellsController.get('allCells').forEach(function(c) {
+            if (activeCells.contains(c)) {
+              c.set('isEnabled', true);
+            }else{
+              c.set('isEnabled', false);
+            }
+          });
         },
-
+        
+        setCurrentColumn: function(){
+          var current = Circsim.columnController.get('current');
+          Circsim.columnController.set('content', Circsim.columnsController.objectAt(current));          
+        },
+        
         clickedOnCell: function(s) {
           var cell = s.selection.firstObject();
           CoreCircsim.updateCell(cell);        
         },
 
         next: function() {
-          this.beginEvaluations();
+          var cells = Circsim.columnController.get('content').get('cells'); 
+          var ary = [];
+          
+          cells.forEach(function(c) {
+            ary.push(c.get('value'));
+          });
+          
+          if (ary.contains(null) || ary.length > 7) {            
+            // TODO: This is a bug.. Why is it doing this?  Fix this.            
+            ary = ary.slice(0,7);
+            if (ary.contains(null)) {
+              Circsim.messageController.set('content',"You haven't filled in a value for all the cells yet.  Please do that before continuing.");
+            } else {
+              this.beginEvaluations();
+            }
+          } else {
+            this.beginEvaluations();
+          }
+          
+          
         },
         
         beginEvaluations: function(){
@@ -238,98 +287,223 @@ Circsim.statechart = SC.Statechart.create({
         "RelationshipEvaluation": SC.State.design({
           initialSubstate: "REIntroduction",
           
+          enterState: function() {
+            var relationshipEvaluations = Circsim.procedureController.get('content').get('relationshipEvaluations');
+            Circsim.relationshipEvaluationsController.set('content', relationshipEvaluations);
+            Circsim.relationshipEvaluationsController.set('current', 0);            
+          },
+          
           "REIntroduction": SC.State.design({
             enterState: function(){
-              Circsim.messageController.set("content", "Now's the time to evaluate the physiological relationships.");
+              var idx = Circsim.relationshipEvaluationsController.get('current'),
+                  re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
+              Circsim.messageController.set("content", re.intro);
             },
             
             next: function() {
-              this.beginRE();
-            },            
-            
-            beginRE: function(){
-              this.gotoState("EvaluateRelationship");
-            }
-          }),
-          
-          "EvaluateRelationship": SC.State.design({
-            REErrors: function(){
-              this.gotoState("REErrorCorrection");
+              this.evaluateRE();
             },
             
-            RECorrect: function(){
-              this.gotoState("RECorrectSummary");
+            evaluateRE: function() {
+              var column = Circsim.columnController.get('content'),
+                  cells  = column.get('cells'),
+                  ary    = [],
+                  re     = Circsim.relationshipEvaluationsController.get('content');
+              
+              if (re) {
+                var idx = Circsim.relationshipEvaluationsController.get('current');
+                re=re.objectAt(idx);  
+
+                cells.forEach(function(c) {
+                  ary.push(c.get('value'));
+                });
+
+                var errorMessage = CoreCircsim.evaluateRelationships(re, ary);
+
+                if (errorMessage) {
+                  Circsim.messageController.set('content',errorMessage);
+                  this.gotoState("REErrorCorrection");
+                } else {                
+                  this.gotoState("RECorrectSummary");
+                }                                            
+              } else {
+                this.gotoState("ProcedureSpecificEvaluation");
+              }
+              
             }
+            
           }),
           
           "REErrorCorrection": SC.State.design({
-            submitRECorrections: function(){
-              this.gotoState("EvaluateRelationshipCorrections");
-            }
-          }),
-          
-          "EvaluateRelationshipCorrections": SC.State.design({
-            RECorrectionCorrect: function(){
-              this.gotoState("RECorrectSummary");
+            enterState: function() {
+              var idx = Circsim.relationshipEvaluationsController.get('current');
+              var re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);  
+              Circsim.messageController.set('content', re.errorMessage);    
+
+              // Enable only correct cells.
+              var activeCells = re.equation;
+              Circsim.columnController.get('content').get('cells').forEach(function(c) {
+                c.set('isEnabled', false);
+              });              
+              activeCells.forEach(function(i) {
+                var cell = Circsim.columnController.get('content').get('cells').objectAt(i);
+                cell.set('isEnabled', true);
+              });
+              
             },
             
-            RECorrectionIncorrect: function(){
-              this.gotoState("REIncorrectSummary");
+            clickedOnCell: function(s) {
+              var cell = s.selection.firstObject();
+              CoreCircsim.updateCell(cell);        
+            },            
+            
+            next: function(){
+              this.submitRECorrections();
+            },
+            
+            submitRECorrections: function(){
+              var column    = Circsim.columnController.get('content'),
+                  cells     = column.get('cells'),
+                  ary       = [],
+                  idx       = Circsim.relationshipEvaluationsController.get('current'),
+                  re        = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
+
+              cells.forEach(function(c) {
+                ary.push(c.get('value'));
+              });
+
+              var errorMessage = CoreCircsim.evaluateRelationships(re, ary);
+
+              if (errorMessage) {
+                this.gotoState("REIncorrectSummary");
+              } else {                
+                this.gotoState("RECorrectSummary");
+              }                                            
             }
           }),
           
           "RECorrectSummary": SC.State.design({
-            REComplete: function(){
-              this.gotoState("CheckForRemainingRE");
+            enterState: function(){
+              var idx = Circsim.relationshipEvaluationsController.get('current'),
+                  re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
+              
+              Circsim.messageController.set('content', re.summaryCorrectMessage);
+            },
+            
+            next: function(){
+              var idx                          = Circsim.relationshipEvaluationsController.get('current'),
+                  totalRelationshipEvaluations = Circsim.relationshipEvaluationsController.get('content').length;
+              
+              if (idx+1 == totalRelationshipEvaluations) {
+                this.gotoState("ProcedureSpecificEvaluation");
+              } else {
+                Circsim.relationshipEvaluationsController.set('current', idx+1);
+                this.gotoState("REIntroduction");
+              }
             }
           }),
           
           "REIncorrectSummary": SC.State.design({
-            REComplete: function(){
-              this.gotoState("CheckForRemainingRE");
-            }            
-          }),
-          
-          "CheckForRemainingRE": SC.State.design({
-            RERemain: function(){
-              this.gotoState("EvaluateRelationship");
+            enterState: function(){
+              var idx = Circsim.relationshipEvaluationsController.get('current'),
+                  re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
+              
+              Circsim.messageController.set('content', re.summaryIncorrectMessage);
             },
             
-            performProcedureSpecificEvaluations: function(){
-              this.gotoState("ProcedureSpecificEvaluations");
+            next: function(){
+              var idx                          = Circsim.relationshipEvaluationsController.get('current'),
+                  totalRelationshipEvaluations = Circsim.relationshipEvaluationsController.get('content').length;
+              
+              if (idx+1 == totalRelationshipEvaluations) {
+                this.gotoState("ProcedureSpecificEvaluation");
+              } else {
+                Circsim.relationshipEvaluationsController.set('current', idx+1);
+                this.gotoState("REIntroduction");
+              }
             }
-          })
+          })          
         }),
         
         "ProcedureSpecificEvaluation": SC.State.design({
-          initialSubstate: "PerformProcedureSpecificEvaluations",
+                    
+          initialSubstate: "ProcedureSpecificIntro",
+          
+          "ProcedureSpecificIntro": SC.State.design({
+            enterState: function() {
+              Circsim.messageController.set('content', "We will now evaluate you for procedure specific errors.");
+            },
+            
+            next: function() {
+              this.gotoState("PerformProcedureSpecificEvaluations");
+            }
+          }),
           
           "PerformProcedureSpecificEvaluations": SC.State.design({
-            displayProcedureSpecificComments: function(){
-              this.gotoState("CheckForMoreProcedureSpecificComments");
+            enterState: function(){
+              var column    = Circsim.columnController.get('content'),
+                  cells     = column.get('cells'),
+                  ary       = [],
+                  procedure = Circsim.procedureController.get('content'),
+                  colNumber = Circsim.columnController.get('current');
+              
+              cells.forEach(function(c) {
+                ary.push(c.get('value'));
+              });
+                            
+              var answerKeys = CoreCircsim.evaluateProcedureSpecificErrors(procedure, colNumber ,ary);              
+              
+              if (answerKeys.length === 0) {
+                Circsim.messageController.set('content', "Your answers don't match any of the answer keys.  This is probably an error.  Please notify Dr. Michael or Dr. Shannon and record the answers you submitted so we can fix this bug.");
+                this.gotoState("DisplayProcedureSpecificComment");
+              } else {
+                Circsim.messagesController.set('content', answerKeys);
+                this.gotoState("DisplayProcedureSpecificComment");
+              }
             }            
           }),
           
           "DisplayProcedureSpecificComment": SC.State.design({
-            checkForMoreComments: function(){
-              this.gotoState("");
-            }            
-          }),
-          
-          "CheckForMoreProcedureSpecificComments": SC.State.design({
-            commentsRemaining: function(){
-              this.gotoState("DisplayProcedureSpecificComment");
+            enterState: function() {              
+              
+              var answerKey = Circsim.messagesController.get('content'),
+                  comment;
+              
+              if (SC.compare(answerKey, []) !== 0 && SC.compare(answerKey, null) !== 0) {
+                answerKey = answerKey.shiftObject();
+                comment   = answerKey.get('comment');              
+                Circsim.messageController.set('content', comment);
+              }              
             },
             
-            columnComplete: function(){
-              this.gotoState("CheckForRemainingColumns");
-            }
+            next: function(){
+              var commentsRemaining = Circsim.messagesController.get('content'); 
+              if (commentsRemaining && commentsRemaining.length > 0) {                
+                this.gotoState("DisplayProcedureSpecificComment");
+              } else {
+                this.gotoState("CheckForRemainingColumns");
+              }
+            }           
           })
         })
       }),
       
       "CheckForRemainingColumns": SC.State.design({
+        
+        enterState: function() {
+          var totalColumns  = Circsim.procedureController.get('columns').length(),
+              currentColumn = Circsim.columnController.get("current")+1;
+              console.log("current: "+currentColumn+"; Total: "+totalColumns);
+          if (currentColumn < totalColumns) {
+            this.remainingColumns();
+          }else{
+            this.procedureComplete();            
+          }          
+        },
+        
         remainingColumns: function(){
+          var current = Circsim.columnController.get('current');
+          Circsim.columnController.set('current', current+1);
           this.gotoState("ColumnInput");
         },
         
@@ -341,7 +515,21 @@ Circsim.statechart = SC.Statechart.create({
 
     "ProcedureComplete": SC.State.design({
       enterState: function(){
-        // TODO: Mark this procedure isComplete to true
+        Circsim.procedureController.get('content').set('isComplete', true);
+        var title = Circsim.procedureController.get('content').get('title');
+        Circsim.messageController.set('content', "You have completed the "+title+" procedure!  Click on another procedure from the list to the left to continue Circsim.");
+      },
+      
+      exitState: function(){
+        // Reset stuff...
+        Circsim.cellsController.get('allCells').forEach(function(c) {c.set('value', null);});
+        Circsim.columnController.set('current', 0);
+        Circsim.columnController.set('content', "");
+        Circsim.relationshipEvaluationsController.set('current', 0);
+      },
+      
+      next: function() {        
+        this.gotoState("Running");
       }
     }),
 

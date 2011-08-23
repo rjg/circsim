@@ -61,34 +61,33 @@ test('Initial Variable Evaluations when NO initial variable exists', function() 
 
 test('CoreCircsim.evaluateRelationships()', function() {
   // Setup procedure
-  procedure.set('relationshipKeys', [{
+  procedure.set('relationshipEvaluations', [{
     equation: [4, 2, 3],
-    errors: [[2, 1, 1], [2, 1, 0], [2, 0, 0]],
     errorMessage: "Err message 1"
   },
   {
     equation: [6, 4, 5],
-    errors: [[2, 1, 1], [2, 1, 0], [0, 1, 0], [0, 2, 0]],
     errorMessage: "Err message 2"
   }]);
 
-  var relationshipKeys = procedure.get('relationshipKeys');
+  var relationshipKeys = procedure.get('relationshipEvaluations');
 
   // Create fictitious student input
-  var correctStudentInput = [0, 0, 1, 1, 1, 0, 1];
+  var correctStudentInput    = [0, 0, 1, 1, 1, 0, 1];
   var incorrectStudentInput1 = [0, 0, 1, 1, 2, 0, 2]; // Triggers first error message
   var incorrectStudentInput2 = [0, 0, 1, 1, 1, 0, 0]; // Triggers second error message
-  var incorrectStudentInput3 = [0, 0, 1, 1, 2, 0, 0]; // Triggers both error messages
-  var correct = CoreCircsim.evaluateRelationships(procedure, correctStudentInput);
-  var incorrect1 = CoreCircsim.evaluateRelationships(procedure, incorrectStudentInput1);
-  var incorrect2 = CoreCircsim.evaluateRelationships(procedure, incorrectStudentInput2);
-  var incorrect3 = CoreCircsim.evaluateRelationships(procedure, incorrectStudentInput3);
+  var nullValues             = [null,null,null,null,null,null,null];
+  var correct                = CoreCircsim.evaluateRelationships(procedure.get('relationshipEvaluations')[0], correctStudentInput);
+  var incorrect1             = CoreCircsim.evaluateRelationships(procedure.get('relationshipEvaluations')[0], incorrectStudentInput1);
+  var incorrect2             = CoreCircsim.evaluateRelationships(procedure.get('relationshipEvaluations')[1], incorrectStudentInput2);
+  var nullVals               = CoreCircsim.evaluateRelationships(procedure.get('relationshipEvaluations')[0], nullValues);
 
-  ok(correct, 'returns true when all relationships evaluate correctly');
-  equals(incorrect1[0], 'Err message 1', 'returns correct error messages when all relationships DO NOT evaluate correctly');
-  equals(incorrect2[0], 'Err message 2', 'returns correct error messages when all relationships DO NOT evaluate correctly');
-  equals(incorrect3[0], 'Err message 1', 'returns correct error messages when all relationships DO NOT evaluate correctly');
-  equals(incorrect3[1], 'Err message 2', 'returns correct error messages when all relationships DO NOT evaluate correctly');
+  ok(!correct, 'returns false when all relationships evaluate correctly');
+  ok(!correct, 'returns false when null values are given.');
+  equals(incorrect1, 'Err message 1', 'returns correct error messages when all relationships DO NOT evaluate correctly');
+  equals(incorrect2, 'Err message 2', 'returns correct error messages when all relationships DO NOT evaluate correctly');
+
+  
 });
 
 module("Procedure Specific Evaluations", {
@@ -180,9 +179,11 @@ test('CoreCircsim.evaluateProcedureSpecificErrors()', function() {
   
   var noMatches = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [null, null, null, null, null, null, null]);
   var wrongNumberOfAnswers = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [null]);
+  var noAnswerKeys = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 1, [0,0,0,0,0,0,0]);
     
-  ok(SC.compare(noMatches,[]) === 0, "returns null if there are no matches (TODO: handle this situation)");
-  ok(SC.compare(wrongNumberOfAnswers,[]) === 0, "returns null if studentInput has wrong number of answers (TODO: handle this situation)");
+  ok(SC.compare(noMatches,[]) === 0, "returns empty array if there are no matches (TODO: handle this situation)");
+  ok(SC.compare(wrongNumberOfAnswers,[]) === 0, "returns empty array if studentInput has wrong number of answers (TODO: handle this situation)");
+  ok(SC.compare(noAnswerKeys,[]) === 0, "returns empty array if there are no keys for that column. (TODO: handle this situation)");
   
 
 });

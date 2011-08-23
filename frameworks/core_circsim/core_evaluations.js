@@ -14,17 +14,13 @@ SC.mixin(CoreCircsim, {
     return studentSelection == correctAnswer ? true: false;
   },
 
-  evaluateRelationships: function(procedure, studentInput) {
+  evaluateRelationships: function(relationshipEvaluation, studentInput) {
     var keys, equationVars, errorKeys, message, num, comparisonValue, studentValues = [],
-    evaluations = [],
-    checkSheet = [];
+        evaluations = [];
 
-    keys = procedure.get('relationshipKeys');
-
-    keys.forEach(function(key) {
-      equationVars = key.equation;
-      errorKeys = key.errors;
-      message = key.errorMessage;
+      equationVars = relationshipEvaluation.equation;
+      errorKeys = [[2,1,1], [2,1,0], [2,0,0], [2,0,1], [1,2,2], [1,2,0], [1,0,0], [1,0,2], [0,2,2], [0,2,0], [0,1,1], [0,1,0], [0,0,2], [0,0,1]];
+      message = relationshipEvaluation.errorMessage;
 
       // Get student values at equation indices
       studentValues = [];
@@ -32,27 +28,22 @@ SC.mixin(CoreCircsim, {
         num = studentInput.objectAt(eq);
         studentValues.push(num);
       });
-
-      // Compare student values to all error conditions
-      errorKeys.forEach(function(er) {
-        comparisonValue = SC.compare(studentValues, er);
-        if (comparisonValue === 0) {
+      
+      errorKeys.forEach(function(k){
+        if (SC.compare(k, studentValues)===0) {
           evaluations.push(message);
         }
       });
-
-    });
-
-    return evaluations;
-
+      
+      return SC.compare(evaluations, []) === 0 ? false : message;
+  
   },
 
   // This method returns an array populated by CoreCircsim.AnswerKey objects.
   evaluateProcedureSpecificErrors: function(procedure, columnNumber, studentInput) {
-    var keyMatches = [];
-    var column = procedure.get('columns').objectAt(columnNumber);
-    var answerKeys = column.get('answerKeys');
-
+    var keyMatches = [];    
+    var answerKeys = procedure.get('answerKeys').filterProperty('column', columnNumber);
+    
     function getStudentInput(indices, studentInput) {
       var arr = [];
       indices.forEach(function(i) {

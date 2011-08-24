@@ -57,7 +57,8 @@ Circsim.statechart = SC.Statechart.create({
         "IVStudentPrompt": SC.State.design({
           enterState: function(){
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
-            Circsim.messageController.set("content", "Please use the select menu to the left to select the primary variable that is changed in this procedure.");
+            Circsim.messageController.set("title", "Primary Variable");
+            Circsim.messageController.set("content", "Please use the select menu to the left to select the primary variable that is changed in this procedure.");            
           },
           
           next: function() {  
@@ -91,6 +92,13 @@ Circsim.statechart = SC.Statechart.create({
         "IVSecondChance": SC.State.design({
           enterState: function() {
             Circsim.messageController.set('content', 'Sorry, that\'s wrong. Try again.');
+            Circsim.messageController.set('color', Circsim.ERRORCOLOR);
+            Circsim.mainPage.mainPane.middleView.bottomRightView.contentView.procedureContent.pvView.pvSelection.set('isEnabled', true);
+          },
+          
+          exitState: function() {
+            Circsim.messageController.set('content', '');
+            Circsim.messageController.set('color', Circsim.NORMALCOLOR);
           },
 
           next: function() {  
@@ -124,7 +132,7 @@ Circsim.statechart = SC.Statechart.create({
           
         "IVSelectDirection": SC.State.design({
           enterState: function(){
-            Circsim.messageController.set('content', 'Great! Now, select the direction in the table.');
+            Circsim.messageController.set('content', 'Ok! Now, select the direction in the table.');
             Circsim.mainPage.mainPane.middleView.bottomRightView.contentView.procedureContent.pvView.pvSelection.set('isEnabled', false);
             var pvIdx = Circsim.procedureController.get('initialVariable');
             var pvCell = Circsim.cellsController.get('allCells').objectAt(pvIdx);
@@ -163,6 +171,12 @@ Circsim.statechart = SC.Statechart.create({
         "IVDirectionSecondChance": SC.State.design({
           enterState: function(){
             Circsim.messageController.set("content", "Yikes. That's the wrong direction. Try again dude");
+            Circsim.messageController.set("color", Circsim.ERRORCOLOR);
+          },
+          
+          exitState: function(){
+            Circsim.messageController.set("content", "");
+            Circsim.messageController.set("color", Circsim.NORMALCOLOR);            
           },
 
           clickedOnCell: function(s) {
@@ -199,6 +213,12 @@ Circsim.statechart = SC.Statechart.create({
         "IVCorrectSummary": SC.State.design({
           enterState: function(){
             Circsim.messageController.set("content", "You're Amazing Dude!  Here's the summary.");
+            Circsim.messageController.set("color", Circsim.CORRECTCOLOR);
+          },
+          
+          exitState: function(){
+            Circsim.messageController.set("content", "");
+            Circsim.messageController.set("color", Circsim.NORMALCOLOR);
           },
 
           next: function() {
@@ -213,6 +233,12 @@ Circsim.statechart = SC.Statechart.create({
         "IVIncorrectSummary": SC.State.design({
           enterState: function(){
             Circsim.messageController.set("content", "Incorrect Dude.  Here's the summary.");
+            Circsim.messageController.set("color", Circsim.ERRORCOLOR);
+          },
+
+          exitState: function(){
+            Circsim.messageController.set("content", "");
+            Circsim.messageController.set("color", Circsim.NORMALCOLOR);
           },
           
           next: function() {
@@ -247,6 +273,8 @@ Circsim.statechart = SC.Statechart.create({
           Circsim.cellsController.get('allCells').forEach(function(c) {
             c.set('isEnabled', false);
           });
+          
+          Circsim.messageController.set('content', '');
           
         },
         
@@ -305,6 +333,7 @@ Circsim.statechart = SC.Statechart.create({
               var idx = Circsim.relationshipEvaluationsController.get('current'),
                   re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
               Circsim.messageController.set("content", re.intro);
+              Circsim.messageController.set("color", Circsim.NORMALCOLOR);
             },
             
             next: function() {
@@ -346,6 +375,7 @@ Circsim.statechart = SC.Statechart.create({
               var idx = Circsim.relationshipEvaluationsController.get('current');
               var re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);  
               Circsim.messageController.set('content', re.errorMessage);    
+              Circsim.messageController.set('color', Circsim.ERRORCOLOR);
 
               // Enable only correct cells.
               var activeCells = re.equation;
@@ -356,7 +386,14 @@ Circsim.statechart = SC.Statechart.create({
                 var cell = Circsim.columnController.get('content').get('cells').objectAt(i);
                 cell.set('isEnabled', true);
               });
-              
+            },
+            
+            exitState: function(){
+              Circsim.messageController.set('content', '');
+              Circsim.messageController.set('color', Circsim.NORMALCOLOR);
+              Circsim.cellsController.get('allCells').forEach(function(c) {
+                c.set('isEnabled', false);
+              });
             },
             
             clickedOnCell: function(s) {
@@ -395,6 +432,12 @@ Circsim.statechart = SC.Statechart.create({
                   re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
               
               Circsim.messageController.set('content', re.summaryCorrectMessage);
+              Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
+            },
+            
+            exitState: function(){
+              Circsim.messageController.set('content', "");
+              Circsim.messageController.set('color', Circsim.NORMALCOLOR);              
             },
             
             next: function(){
@@ -416,6 +459,12 @@ Circsim.statechart = SC.Statechart.create({
                   re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
               
               Circsim.messageController.set('content', re.summaryIncorrectMessage);
+              Circsim.messageController.set('color', Circsim.ERRORCOLOR);
+            },
+            
+            exitState: function(){
+              Circsim.messageController.set('content', '');
+              Circsim.messageController.set('color', Circsim.NORMALCOLOR);              
             },
             
             next: function(){
@@ -438,7 +487,9 @@ Circsim.statechart = SC.Statechart.create({
           
           "ProcedureSpecificIntro": SC.State.design({
             enterState: function() {
+              Circsim.messageController.set('title', "Procedure Specific Errors");
               Circsim.messageController.set('content', "We will now evaluate you for procedure specific errors.");
+              
             },
             
             next: function() {
@@ -533,6 +584,7 @@ Circsim.statechart = SC.Statechart.create({
         Circsim.columnController.set('current', 0);
         Circsim.columnController.set('content', "");
         Circsim.relationshipEvaluationsController.set('current', 0);
+        Circsim.mainPage.mainPane.middleView.bottomRightView.contentView.procedureContent.pvView.pvSelection.set('isEnabled', true);        
       },
       
       next: function() {        

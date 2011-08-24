@@ -90,12 +90,27 @@ Circsim.contentViews.procedureView = SC.View.design({
       })
     }),
     
-    messagesView: SC.LabelView.design({
+    messagesView: SC.View.design({
       layout: {top: 0, left: 480, bottom: 0, right: 0},
+      childViews: "messageTitle messageBody".w(),
       tagName: "div",
       layerId: "messages-view",
       backgroundColor: "#FBFBFB",
-      valueBinding: "Circsim.messageController.content"
+    
+      messageTitle: SC.LabelView.design({        
+        layout: {top: 10, left: 20, height: 20, right: 20},
+        valueBinding: "Circsim.messageController.title",
+        layerId: 'messages-title',
+        backgroundColorBinding: 'Circsim.messageController.titleColor'
+      }),
+      
+      messageBody: SC.LabelView.design({
+        layout: {top: 40, left: 20, bottom: 0, right: 20},
+        valueBinding: "Circsim.messageController.content",
+        layerId: 'messages-body',
+        backgroundColorBinding: 'Circsim.messageController.color'
+        
+      })
     })
   })
   

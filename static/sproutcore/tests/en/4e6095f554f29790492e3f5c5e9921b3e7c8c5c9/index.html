@@ -18,7 +18,7 @@
     <link rel="apple-touch-startup-image" media="screen and (orientation:landscape)" href="/static/sproutcore/foundation/en/bc87bb4b792b5dac3abb5d739360d1c9711b3ede/source/resources/images/sproutcore-startup-landscape.png" />
     <link rel="shortcut icon" href="/static/sproutcore/foundation/en/bc87bb4b792b5dac3abb5d739360d1c9711b3ede/resources/images/favicon.ico" type="image/x-icon" />
     
-    <title>Circsim</title>
+    <title>Sproutcore Tests</title>
   <script type="text/javascript">String.preferredLanguage = "en";</script>
 <script type="text/javascript">
 /* >>>>>>>>>> BEGIN source/core.js */
@@ -334,9 +334,9 @@ SC.setupBodyClassNames = function() {
       (function() { 
         var styles = [];
         if (window.devicePixelRatio == 2 || window.location.search.indexOf("2x") > -1) {
-          styles = ["/static/circsim/en/cfea583b9147113cfeebfa7accf3025ecd8a0bb0/stylesheet-packed.css"];
+          styles = ["/static/sproutcore/tests/en/4e6095f554f29790492e3f5c5e9921b3e7c8c5c9/stylesheet-packed.css"];
         } else {
-          styles = ["/static/circsim/en/cfea583b9147113cfeebfa7accf3025ecd8a0bb0/stylesheet-packed.css"];
+          styles = ["/static/sproutcore/tests/en/4e6095f554f29790492e3f5c5e9921b3e7c8c5c9/stylesheet-packed.css"];
         }
 
         var head = document.getElementsByTagName("head")[0];
@@ -358,7 +358,7 @@ SC.setupBodyClassNames = function() {
     </script>
   </head>
     
-  <body class="corephysio focus">  
+  <body class="sc-theme focus">  
     <script>
     SC.benchmarkPreloadEvents['bodyStart'] = new Date().getTime();
     </script>
@@ -378,12 +378,11 @@ if (SC.setupBodyClassNames) SC.setupBodyClassNames() ;
 
 
 <div id="loading">
-<p class="loading">Loading...<p>
+<p class="loading">Loading...</p>
 
 
 </div>
-  <link rel="stylesheet" href="static/circsim/en/cfea583b9147113cfeebfa7accf3025ecd8a0bb0/stylesheet-packed.css" type="text/css" media="screen" title="no title" charset="utf-8">
-  <script type="text/javascript" src="static/circsim/en/cfea583b9147113cfeebfa7accf3025ecd8a0bb0/javascript-packed.js"></script>
+  <script type="text/javascript" src="/static/sproutcore/tests/en/4e6095f554f29790492e3f5c5e9921b3e7c8c5c9/javascript-packed.js"></script>
 
   <script>
   SC.benchmarkPreloadEvents['bodyEnd'] = new Date().getTime();

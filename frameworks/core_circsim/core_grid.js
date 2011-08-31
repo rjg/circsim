@@ -80,5 +80,16 @@ SC.mixin(CoreCircsim, {
         cell.set('isHighlighted', false);
       });
     }
+  },
+  
+  setCellsToCorrectValues: function(cells, correctVals, col, rowLength, idxs){
+    
+    var vals = correctVals.slice(col*rowLength, (col+1)*rowLength);
+    console.log(vals);
+    idxs.forEach(function(i) {
+      cells.objectAt(i).set('value', vals[i]);
+    });
+    
   }
+
 });

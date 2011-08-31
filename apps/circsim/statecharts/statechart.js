@@ -551,6 +551,13 @@ Circsim.statechart = SC.Statechart.create({
                   Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
                 }else{
                   Circsim.messageController.set('color', Circsim.ERRORCOLOR);
+                  
+                  var idxs        = answerKey.get('cells');
+                  var correctVals = Circsim.procedureController.get('key');
+                  var col         = Circsim.columnController.get('current');
+                  var rowLength   = Circsim.procedureController.get('rows').length;
+                  
+                  CoreCircsim.setCellsToCorrectValues(cells, correctVals, col, rowLength, idxs);
                 }  
               }              
             },
@@ -564,7 +571,7 @@ Circsim.statechart = SC.Statechart.create({
               
               // Reset Messages
               Circsim.messageController.set('title', '');
-              Circsim.messageController.set('content', "");
+              Circsim.messageController.set('content', '');
               Circsim.messageController.set('color', Circsim.NORMALCOLOR);                                          
             },
             

@@ -8,7 +8,10 @@ CoreCircsim.Procedure = SC.Record.extend({
   cols: SC.Record.attr(Array),
   rows: SC.Record.attr(Array),
   initialVariable: SC.Record.attr(Number),
-  initialVariableDirection: SC.Record.attr(Number),  
+  initialVariableDirection: SC.Record.attr(Number),
+  
+  key: [0,1,2,0,2,1,1,2,1,1,2,2,2,2,2,1,1,2,2,1,1],
+    
   remainingColumns: SC.Record.attr(Number, {
     defaultValue: 0
   }),

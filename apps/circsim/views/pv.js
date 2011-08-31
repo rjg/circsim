@@ -1,17 +1,42 @@
 /*globals Circsim*/
 
-Circsim.PVView = SC.View.extend({
+Circsim.PVView = SC.View.design({
+  layout: {top: 0, left: 0, height: 50, width: 480},
+  tagName: "div",
+  layerId: "pv-view",
+  backgroundColor: "#999",
+  childViews: "pvLabel pvSelection".w(),
     
-  
+    pvLabel: SC.LabelView.design({
+      layout: {top: 15, width: 150, height: 20, left: 20},
+      value: "Primary Variable:"
+    }),
     
-    render: function(context){          
-      var rows = Circsim.procedureController.get('rows');
+    pvSelection: SC.SelectFieldView.design({          
+      layout: {top: 15, width: 250, height: 20, right: 50},
+      valueBinding: "Circsim.pvSelectionController.content",
+      objectsBinding: "Circsim.procedureController.rows",
+      disableSort: true,
+      emptyName: "Select the Primary Variable",
+      layerId: 'pv-select'
       
-      context.push('<option>');
-      rows.forEach(function(row) {
-        context.push('<select>'+row+'</select>');
-      });        
-      context.push('</option><button id="submitPV">Evaluate PV Selection</button>');      
-    }
+    })
+});
+
+Circsim.PVSummaryView = SC.View.design({
+  layout: {top: 0, left: 0, height: 50, width: 480},
+  tagName: "div",
+  layerId: "pv-summary-view",
+  backgroundColor: "#999",
+  childViews: "pvLabel pvAnswer".w(),
     
+  pvLabel: SC.LabelView.design({
+    layout: {top: 15, width: 150, height: 20, left: 20},
+    value: "Primary Variable:"
+  }),
+  
+  pvAnswer: SC.LabelView.design({          
+    layout: {top: 15, width: 250, height: 20, left: 180},
+    valueBinding: "Circsim.procedureController.currentPV"
+  })
 });

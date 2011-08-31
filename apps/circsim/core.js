@@ -8,6 +8,7 @@ Circsim = SC.Application.create({
   CORRECTCOLOR: "#80BF34",
   NORMALCOLOR: "#FBFBFB",
 
-  sidebarView: ''
+  pvViewDisplay: ''
+
   
 });

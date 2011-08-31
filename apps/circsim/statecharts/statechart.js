@@ -59,6 +59,7 @@ Circsim.statechart = SC.Statechart.create({
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
             Circsim.messageController.set("title", "Primary Variable");
             Circsim.messageController.set("content", "Please use the select menu to the left to select the primary variable that is changed in this procedure.");            
+            Circsim.set('pvViewDisplay', "Circsim.PVView");
           },
           
           next: function() {  
@@ -92,19 +93,17 @@ Circsim.statechart = SC.Statechart.create({
         "IVSecondChance": SC.State.design({
           enterState: function() {
             Circsim.messageController.set('content', 'Sorry, that\'s wrong. Try again.');
-            Circsim.messageController.set('color', Circsim.ERRORCOLOR);
-            Circsim.mainPage.mainPane.middleView.bottomRightView.contentView.procedureContent.pvView.pvSelection.set('isEnabled', true);
+            Circsim.messageController.set('color', Circsim.ERRORCOLOR);            
           },
           
           exitState: function() {
             Circsim.messageController.set('content', '');
-            Circsim.messageController.set('color', Circsim.NORMALCOLOR);
+            Circsim.messageController.set('color', Circsim.NORMALCOLOR);            
           },
 
           next: function() {  
             this.selectedPV();
           },
-
           
           selectedPV: function(){
             var procedure = Circsim.procedureController.get('content');
@@ -132,11 +131,11 @@ Circsim.statechart = SC.Statechart.create({
           
         "IVSelectDirection": SC.State.design({
           enterState: function(){
-            Circsim.messageController.set('content', 'Ok! Now, select the direction in the table.');
-            Circsim.mainPage.mainPane.middleView.bottomRightView.contentView.procedureContent.pvView.pvSelection.set('isEnabled', false);
+            Circsim.messageController.set('content', 'Ok! Now, select the direction in the table.');            
             var pvIdx = Circsim.procedureController.get('initialVariable');
             var pvCell = Circsim.cellsController.get('allCells').objectAt(pvIdx);
             pvCell.set('isEnabled', YES);
+            Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
           },
 
           clickedOnCell: function(s) {
@@ -172,6 +171,7 @@ Circsim.statechart = SC.Statechart.create({
           enterState: function(){
             Circsim.messageController.set("content", "Yikes. That's the wrong direction. Try again dude");
             Circsim.messageController.set("color", Circsim.ERRORCOLOR);
+            Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
           },
           
           exitState: function(){
@@ -214,6 +214,8 @@ Circsim.statechart = SC.Statechart.create({
           enterState: function(){
             Circsim.messageController.set("content", "You're Amazing Dude!  Here's the summary.");
             Circsim.messageController.set("color", Circsim.CORRECTCOLOR);
+            Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
+            Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
           },
           
           exitState: function(){
@@ -234,6 +236,8 @@ Circsim.statechart = SC.Statechart.create({
           enterState: function(){
             Circsim.messageController.set("content", "Incorrect Dude.  Here's the summary.");
             Circsim.messageController.set("color", Circsim.ERRORCOLOR);
+            Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
+            
           },
 
           exitState: function(){
@@ -625,7 +629,6 @@ Circsim.statechart = SC.Statechart.create({
         Circsim.columnController.set('current', 0);
         Circsim.columnController.set('content', "");
         Circsim.relationshipEvaluationsController.set('current', 0);
-        Circsim.mainPage.mainPane.middleView.bottomRightView.contentView.procedureContent.pvView.pvSelection.set('isEnabled', true);        
       },
       
       next: function() {        

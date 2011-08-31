@@ -39,25 +39,8 @@ Circsim.contentViews.procedureView = SC.View.design({
     tagName: "div",
     layerId: "procedure-content",
     childViews: "pvView predictionTableView messagesView".w(),
-    pvView: SC.View.design({
-      layout: {top: 0, left: 0, height: 50, width: 480},
-      tagName: "div",
-      layerId: "pv-view",
-      backgroundColor: "#999",
-      childViews: "pvLabel pvSelection".w(),
-        
-        pvLabel: SC.LabelView.design({
-          layout: {top: 15, width: 150, height: 20, left: 20},
-          value: "Select the primary variable:"
-        }),
-        
-        pvSelection: SC.SelectFieldView.design({          
-          layout: {top: 15, width: 250, height: 20, right: 50},
-          valueBinding: "Circsim.pvSelectionController.content",
-          objectsBinding: "Circsim.procedureController.rows",
-          disableSort: true,
-          emptyName: "Primary Variable"
-        })
+    pvView: SC.ContainerView.design({
+      nowShowingBinding: "Circsim.pvViewDisplay"
     }),
     
     predictionTableView: SC.View.design({

@@ -1,0 +1,15 @@
+
+$theme: '';/* SC.TabView */
+
+.sc-theme .sc-tab-view > .sc-container-view {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-color: #8991a2;
+  background-color: rgba(205,205,205,0.25);
+  overflow: hidden;
+}
+
+
+.sc-theme .sc-tab-view .sc-tab-view {
+  background-color: transparent;
+}

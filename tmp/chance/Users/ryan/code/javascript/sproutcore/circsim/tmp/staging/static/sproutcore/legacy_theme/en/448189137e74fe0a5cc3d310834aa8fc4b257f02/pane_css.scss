@@ -1,0 +1,11 @@
+
+$theme: '';.sc-theme .sc-dialog-pane {
+  z-index: 2000;
+  background: #494949;
+}
+
+
+.sc-theme div.sc-ghost-view {
+  background-image: url(data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==) top left no-repeat; 
+  *background-image: url('/static/sproutcore/foundation/en/bc87bb4b792b5dac3abb5d739360d1c9711b3ede/source/resources/blank.gif') top left no-repeat; /* IE < 8 */
+}

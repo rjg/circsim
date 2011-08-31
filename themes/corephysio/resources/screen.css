@@ -395,3 +395,8 @@ ul#grid-rows li {
 #procedure-selection {
   border-right: 1px solid #DCDCDC;
 }
+
+/* line 22, ../src/screen.scss */
+.sc-list-item-view.sel {
+  background-color: steelblue;
+}

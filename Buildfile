@@ -11,7 +11,6 @@ config :core_circsim do |c|
 end
 
 
-config :circsim,
-  :theme => 'corephysio'
+config :circsim, :theme => 'corephysio'
 
 

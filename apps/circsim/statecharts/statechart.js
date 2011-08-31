@@ -570,7 +570,7 @@ Circsim.statechart = SC.Statechart.create({
             
             next: function(){
               var commentsRemaining = Circsim.messagesController.get('content'); 
-              if (commentsRemaining && commentsRemaining.length > 0) {                
+              if (commentsRemaining && commentsRemaining.length > 0) {
                 this.gotoState("DisplayProcedureSpecificComment");
               } else {
                 this.gotoState("CheckForRemainingColumns");

@@ -24,13 +24,16 @@ Circsim.contentViews.procedureView = SC.View.design({
     backgroundColor: "#777",
     childViews: "nextButton".w(),
     nextButton: SC.ButtonView.design({
-      layout: {centerY: -5, right: 10, width: 100, height: 20},
+      useStaticLayou: YES,
       tagName: "div",
       layerId: "next-button",
-      backgroundColor: "#EBEBEB",
       title: "Next",
       target: "Circsim.statechart",
-      action: "next"      
+      action: "next",
+      render: function(context) {
+        var title = this.get('title');
+        context.push(title);
+      }      
     })
   }),
   

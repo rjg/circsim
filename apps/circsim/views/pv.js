@@ -36,7 +36,9 @@ Circsim.PVSummaryView = SC.View.design({
   }),
   
   pvAnswer: SC.LabelView.design({          
-    layout: {top: 15, width: 250, height: 20, left: 180},
-    valueBinding: "Circsim.procedureController.currentPV"
+    layout: {top: 15, width: 250, height: 20, left: 120},
+    valueBinding: "Circsim.procedureController.currentPV",
+    fontWeight: SC.BOLD_WEIGHT
+    
   })
 });

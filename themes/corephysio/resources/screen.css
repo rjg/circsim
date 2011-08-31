@@ -390,3 +390,8 @@ ul#grid-rows li {
   height: 18px;
   text-align: center;
 }
+
+/* line 18, ../src/screen.scss */
+#procedure-selection {
+  border-right: 1px solid #DCDCDC;
+}

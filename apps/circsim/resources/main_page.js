@@ -33,7 +33,8 @@ Circsim.mainPage = SC.Page.design({
           
       topLeftView: SC.ContainerView.extend({
         layout:{width: 250},
-        nowShowingBinding: 'Circsim.sidebarView'
+        nowShowingBinding: 'Circsim.sidebarView',
+        layerId: "procedure-selection"
       }),
 
       dividerView: SC.View,

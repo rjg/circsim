@@ -268,6 +268,7 @@ Circsim.statechart = SC.Statechart.create({
         enterState: function(){
           this.setCurrentColumn();
           var header = Circsim.columnController.get('content').get('header');
+          Circsim.messageController.set('title', '');
           Circsim.messageController.set('content', 'At this time, please fill out the '+header+' column.');
           
           // Enable only correct cells.
@@ -338,6 +339,11 @@ Circsim.statechart = SC.Statechart.create({
             var relationshipEvaluations = Circsim.procedureController.get('content').get('relationshipEvaluations');
             Circsim.relationshipEvaluationsController.set('content', relationshipEvaluations);
             Circsim.relationshipEvaluationsController.set('current', 0);            
+            Circsim.messageController.set('title', "Relationship Evaluations");
+          },
+          
+          exitState: function() {
+            Circsim.messageController.set('title', "");
           },
           
           "REIntroduction": SC.State.design({
@@ -499,7 +505,7 @@ Circsim.statechart = SC.Statechart.create({
           
           "ProcedureSpecificIntro": SC.State.design({
             enterState: function() {
-              Circsim.messageController.set('title', "Procedure Specific Errors");
+              Circsim.messageController.set('title', "Procedure Specific Evaluations");
               Circsim.messageController.set('content', "We will now evaluate you for procedure specific errors.");
               
             },

@@ -148,7 +148,7 @@ ul#grid-rows li {
 }
 /* line 61, ../src/views/_procedure.scss */
 .sc-view .disabled .cell-value {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 /* line 66, ../src/views/_procedure.scss */
 .sc-view .enabled {

@@ -90,6 +90,13 @@ SC.mixin(CoreCircsim, {
       cells.objectAt(i).set('value', vals[i]);
     });
     
+  },
+  
+  setPVToCorrect: function(procedure, cells){
+    var pvIdx = procedure.get('initialVariable');
+    var pvDirection = procedure.get('initialVariableDirection');
+    var pvText = procedure.get('rows')[pvIdx];
+    cells.objectAt(pvIdx).set('value', pvDirection);
   }
 
 });

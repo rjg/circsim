@@ -215,7 +215,10 @@ Circsim.statechart = SC.Statechart.create({
             Circsim.messageController.set("content", "You're Amazing Dude!  Here's the summary.");
             Circsim.messageController.set("color", Circsim.CORRECTCOLOR);
             Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
-            Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
+            var procedure = Circsim.procedureController.get('content');
+            var cells = Circsim.cellsController.get('allCells');
+            CoreCircsim.setPVToCorrect(procedure, cells);
+            
           },
           
           exitState: function(){
@@ -237,6 +240,11 @@ Circsim.statechart = SC.Statechart.create({
             Circsim.messageController.set("content", "Incorrect Dude.  Here's the summary.");
             Circsim.messageController.set("color", Circsim.ERRORCOLOR);
             Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
+            
+            var procedure = Circsim.procedureController.get('content');
+            var cells = Circsim.cellsController.get('allCells');
+            CoreCircsim.setPVToCorrect(procedure, cells);
+                        
             
           },
 

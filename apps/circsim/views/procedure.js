@@ -54,7 +54,7 @@ Circsim.contentViews.procedureView = SC.View.design({
       childViews: "gridView headerView rowTitleView".w(),
       
       headerView: Circsim.GridHeaderView.design({
-        layout: {right: 0, left: 90, top: 0, height: 50 }
+        layout: {right: 0, left: 0, top: 0, height: 50 }
       }),
       
       rowTitleView: Circsim.RowView.design({
@@ -62,7 +62,7 @@ Circsim.contentViews.procedureView = SC.View.design({
       }),
       
       gridView: SC.GridView.design({
-        layout: {right: 0, top: 50, left: 90},
+        layout: {right: 4, top: 50, left: 68},
         insertionOrientation: SC.VERTICAL_ORIENTATION,
         columnWidth:120,
         rowHeight: 50,

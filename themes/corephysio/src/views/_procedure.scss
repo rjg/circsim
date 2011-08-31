@@ -37,19 +37,21 @@
 #grid-headers {
 
   div {
-    width: 74px;
+    width: 15px;
     float: left;
-    margin-left:50px;
+    margin-left:121px;
     margin-top:20px;
   }
 }
 
 ul#grid-rows {
   text-align: right;
+  width: 70px;
   li {
-    height: 30px;
+    height: 32px;
     display: block;
-    padding: 10px 10px 10px 0px;
+    padding: 0px 14px 10px 0px;
+    margin-top: 10px;
   }
 }
 
@@ -68,7 +70,7 @@ ul#grid-rows {
   }
 
   .highlighted {
-    background-color: yellow;
+    background-color: #FFF7CB;
   }  
 }
 

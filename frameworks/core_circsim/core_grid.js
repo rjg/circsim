@@ -68,7 +68,17 @@ SC.mixin(CoreCircsim, {
         break;
     }
     cell.set('value', newVal);
+  },
+  
+  updateHighlighting: function(cells, highlights) {
+    if (highlights) {
+      highlights.forEach(function(i) {
+        cells.objectAt(i).set('isHighlighted', true);
+      });
+    }else{
+      cells.forEach(function(cell) {
+        cell.set('isHighlighted', false);
+      });
+    }
   }
-  
-  
 });

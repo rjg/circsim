@@ -44,7 +44,7 @@ ul#grid-rows {
   }
 
   .highlighted {
-    border: 1px solid red;
+    background-color: yellow;
   }  
 }
 
@@ -61,6 +61,8 @@ ul#grid-rows {
   }
   
 }
+
+
 
 #messages-title {
   font-weight: bold;

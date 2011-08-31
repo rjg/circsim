@@ -522,16 +522,50 @@ Circsim.statechart = SC.Statechart.create({
           }),
           
           "DisplayProcedureSpecificComment": SC.State.design({
-            enterState: function() {              
+            enterState: function() {
               
               var answerKey = Circsim.messagesController.get('content'),
-                  comment;
+                  comment, 
+                  category,
+                  highlights,
+                  isCorrect,
+                  cells;
               
+              // Do all display stuff in here.
               if (SC.compare(answerKey, []) !== 0 && SC.compare(answerKey, null) !== 0) {
                 answerKey = answerKey.shiftObject();
-                comment   = answerKey.get('comment');              
+                
+                // Setup view here.
+                comment    = answerKey.get('comment');
+                category   = answerKey.get('category');
+                highlights = answerKey.get('highlights');
+                isCorrect  = answerKey.get('isCorrect');
+                cells      = Circsim.columnController.get('content').get('cells');
+                            
+                CoreCircsim.updateHighlighting(cells, highlights);
                 Circsim.messageController.set('content', comment);
+                Circsim.messageController.set('title', category);
+                
+                // Set coloring
+                if (isCorrect) {
+                  Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
+                }else{
+                  Circsim.messageController.set('color', Circsim.ERRORCOLOR);
+                }  
               }              
+            },
+            
+            exitState: function(){
+              var cells = Circsim.columnController.get('content').get('cells');
+              // Remove highlighting
+              CoreCircsim.updateHighlighting(cells, null);
+              // Disable all cells
+              cells.forEach(function(cell) {cell.set("isEnabled", NO);});
+              
+              // Reset Messages
+              Circsim.messageController.set('title', '');
+              Circsim.messageController.set('content', "");
+              Circsim.messageController.set('color', Circsim.NORMALCOLOR);                                          
             },
             
             next: function(){

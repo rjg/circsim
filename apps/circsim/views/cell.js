@@ -5,20 +5,20 @@ Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
   contentDisplayProperties: "value isHighlighted isEnabled".w(),
   
   render: function(context, f) {
-    var content         = this.get('content'),
-        isHighlighted   = content.get('isHighlighted'),
-        value           = content.get('value'),
-        column          = content.get('column').get('header'),
-        isEnabled       = content.get('isEnabled');
+    var content          = this.get('content'),
+        value            = content.get('value'),
+        column           = content.get('column').get('header'),
+        isEnabled        = content.get('isEnabled'),
+        isHighlighted    = content.get('isHighlighted');
         
-        var enabled  = isEnabled;
-        var disabled = !isEnabled;
-        var classes = { 'enabled': enabled, 'disabled': disabled };
         
-        var highlighted = highlighted; 
-        var unhighlighted = !highlighted; 
-        var highlightClasses = {'highlighted': highlighted};
-      
+        // Sets background color of cell.
+        var enabled     = isEnabled;
+        var disabled    = !isEnabled && !isHighlighted;
+        var highlighted = !isEnabled && isHighlighted;
+        var classes  = { 'enabled': enabled, 'disabled': disabled, 'highlighted': highlighted};
+        
+        // Sets value of cell.
         switch (value) {
           case 0: 
             value = "<img src="+sc_static("no-change")+" />";

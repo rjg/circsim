@@ -3,3 +3,5 @@ tmp/
 .DS_Store
 design/JM Notes/*
 .sass-cache/*
+index.html
+static/*

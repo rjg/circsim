@@ -24,6 +24,8 @@ require 'optparse'
 
 config = {}
 argparser = OptionParser.new {|opts|
+
+  config[:app_name] = 'circsim'
   opts.on('-a', '--application-name [name]', "The application name (required)"){|name|
     config[:app_name] = name
   }

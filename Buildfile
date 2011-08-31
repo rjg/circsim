@@ -4,7 +4,10 @@ config :all, :required => [:sproutcore, :core_circsim]
 config :corephysio do |c|
   c[:required] = 'sproutcore/empty_theme'
   c[:theme_name] = 'corephysio'
-  c[:load_fixtures] = true    
+end
+
+config :core_circsim do |c|
+  c[:load_fixtures] = true
 end
 
 

@@ -34,8 +34,16 @@ Circsim.statechart = SC.Statechart.create({
 
     "Procedure": SC.State.design({
       enterState: function(){
+  
         var procedure = Circsim.procedureController;
-        CoreCircsim.createGrid(procedure);        
+        
+        // TODO: This is a huge hack to account for that bug when the collection view is clicked on but not a procedure.
+        if (procedure.get('title')) {
+          CoreCircsim.createGrid(procedure);          
+        } else {
+          console.log("No procedure selected. Catching this bug.");
+          this.gotoState('Running');
+        }
       },
       
       // initialSubstate: "ProcedureIntro",

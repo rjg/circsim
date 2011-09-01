@@ -9,11 +9,12 @@ Circsim.PVView = SC.View.design({
     
     pvLabel: SC.LabelView.design({
       layout: {top: 15, width: 150, height: 20, left: 20},
-      value: "Primary Variable:"
+      value: "Primary Variable:",
+      layerId: 'pv-label'
     }),
     
     pvSelection: SC.SelectFieldView.design({          
-      layout: {top: 15, width: 250, height: 20, right: 50},
+      layout: {top: 15, width: 340, height: 20, right: 15},
       valueBinding: "Circsim.pvSelectionController.content",
       objectsBinding: "Circsim.procedureController.rows",
       disableSort: true,

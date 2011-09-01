@@ -9,24 +9,23 @@ sc_require("lib/grid_patch");
 Circsim.contentViews.procedureView = SC.View.design({
   layerId: 'procedure',
   layout: { left: 0, top: 0, right: 0, bottom: 0, minWidth: 800},
-  childViews: "procedureTitle procedureToolbar procedureContent".w(),
-  procedureTitle: SC.LabelView.design({
-    layout: {top: 0, right: 10, left: 10, height: 20, centerY: 0},
-    tagName: "h1",
-    layerId: "procedure-title",
-    valueBinding: "Circsim.procedureController.title"
-  }),
-  
-  procedureToolbar: SC.View.design({
-    layout: {top: 40, right: 10, left: 10, height: 40},
+  childViews: "procedureToolbar procedureContent".w(),  
+  procedureToolbar: SC.View.design({    
+    layout: {top: 20, right: 10, left: 10, height: 40},
     tagName: "div",
     layerId: "procedure-toolbar",
-    backgroundColor: "#777",
-    childViews: "nextButton".w(),
+    childViews: "procedureTitle nextButton".w(),
+    procedureTitle: SC.LabelView.design({
+      layout: {top: 0, right: 10, left: 10, height: 20, centerY: 0},
+      tagName: "h3",
+      layerId: "procedure-title",
+      valueBinding: "Circsim.procedureController.title"
+    }),
     nextButton: SC.ButtonView.design({
-      useStaticLayou: YES,
+      layout: {right: 10, width: 31, height: 15, centerY: -5},
       tagName: "div",
       layerId: "next-button",
+      classNames: 'btn',
       title: "Next",
       target: "Circsim.statechart",
       action: "next",
@@ -35,10 +34,11 @@ Circsim.contentViews.procedureView = SC.View.design({
         context.push(title);
       }      
     })
+
   }),
   
   procedureContent: SC.View.design({
-    layout: {top: 80, right: 10, left: 10, bottom: 0},
+    layout: {top: 60, right: 10, left: 10, bottom: 0},
     tagName: "div",
     layerId: "procedure-content",
     childViews: "pvView predictionTableView messagesView".w(),

@@ -29,7 +29,7 @@ Circsim.sidebarViews.runningView = SC.View.design({
       contentBinding: 'Circsim.proceduresController.arrangedObjects',
       selectionBinding: 'Circsim.proceduresController.selection',
       contentValueKey: 'title',
-      rowHeight: 42,
+      rowHeight: 62,
       canDeleteContent: NO,
       actOnSelect: YES, 
       target: "Circsim.statechart",

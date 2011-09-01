@@ -16,6 +16,14 @@ div {
   border-right: 1px solid #DCDCDC;
 }
 
+.sc-list-item-view{
+  font-size: 14px;
+}
+
 .sc-list-item-view.sel{
   background-color: steelblue;
+  label {
+    color: #FFF;
+    font-size: 14px;
+  }
 }

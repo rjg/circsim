@@ -46,8 +46,7 @@ Circsim.statechart = SC.Statechart.create({
         }
       },
       
-      // initialSubstate: "ProcedureIntro",
-      initialSubstate: "InitialVariableEvaluation",
+      initialSubstate: "ProcedureIntro",  
       
       "ProcedureIntro": SC.State.design({
         enterState: function(){

@@ -4,14 +4,15 @@
 @import "compass/css3";
 @import "compass/utilities";
 
-@import "blueprint/typography";
-
 @import "partials/base";
 @import "partials/mixins";
 @import "partials/button";
+@import "partials/typography";
+
 
 
 @import "views/procedure";
 @import "views/toolbar";
 @import "views/select_view";
 @import "views/title";
+@import "views/circsim_intro";

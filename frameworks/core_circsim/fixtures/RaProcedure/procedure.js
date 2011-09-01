@@ -7,7 +7,7 @@ CoreCircsim.Procedure.FIXTURES = [
 {  
   guid: 'Ra', // GUID Must be a unique string for each procedure!
   title: "Decrease Ra",
-  introduction: "This is the introduction to the procedure.",
+  introduction: "In this experiment we will decrease arterial resistance, Ra, by 50%. This might be accomplished pharmacologically with a drug that causes arteriolar dilatation.",
   instructions: "Instructions go here.",
   isComplete: false,
   cols: ["DR", "RR", "SS"],

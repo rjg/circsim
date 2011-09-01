@@ -1,3 +1,7 @@
 #circsim-introduction{
-  padding: 20px;
+  padding: 130px;
+}
+
+#begin-procedure-button{
+  @include sc-button;
 }

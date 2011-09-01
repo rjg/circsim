@@ -9,7 +9,7 @@ Circsim.contentViews.titleView = SC.View.design({
   }),
   
   startButton: SC.ButtonView.design({
-    layout: {height: 75, width: 150, bottom: 0, centerX: 0},
+    layout: {height: 75, width: 150, bottom: 0, left: 130},
     title: "Start Circsim",
     layerId: 'start-circsim-button',
     target: "Circsim.statechart",

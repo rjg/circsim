@@ -397,8 +397,179 @@ ul#grid-rows li {
   position: absolute;
   margin-top: -9px;
   right: 10px;
-  width: 132px;
+  width: 252px;
   top: 50%;
   height: 18px;
   text-align: center;
+}
+
+/* line 1, ../src/views/_title.scss */
+#title-information {
+  text-align: center;
+  margin-top: 10px;
+}
+/* line 10, ../src/views/_title.scss */
+#title-information h1,
+#title-information h2,
+#title-information h3,
+#title-information h4,
+#title-information h5,
+#title-information h6 {
+  font-weight: bold;
+  color: #404040;
+}
+/* line 14, ../src/views/_title.scss */
+#title-information p {
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  margin-bottom: 9px;
+}
+/* line 20, ../src/views/_title.scss */
+#title-information h1 {
+  margin-bottom: 18px;
+  font-size: 30px;
+  line-height: 36px;
+}
+/* line 25, ../src/views/_title.scss */
+#title-information h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+/* line 32, ../src/views/_title.scss */
+#title-information h3,
+#title-information h4,
+#title-information h5,
+#title-information h6 {
+  line-height: 36px;
+}
+/* line 35, ../src/views/_title.scss */
+#title-information h3 {
+  font-size: 18px;
+}
+/* line 38, ../src/views/_title.scss */
+#title-information h4 {
+  font-size: 16px;
+}
+
+/* line 43, ../src/views/_title.scss */
+#start-circsim-button {
+  border: 0px none;
+  color: #555;
+  text-shadow: white 0px 1px 1px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+/* line 9, ../src/partials/_button.scss */
+#start-circsim-button:disabled {
+  opacity: .5;
+}
+/* line 12, ../src/partials/_button.scss */
+#start-circsim-button .img {
+  position: absolute;
+  left: 6px;
+  top: 3px;
+  z-index: 2;
+}
+/* line 19, ../src/partials/_button.scss */
+#start-circsim-button:sel, #start-circsim-button:def {
+  color: #fff;
+  font-weight: 200;
+  text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 1px;
+}
+/* line 24, ../src/partials/_button.scss */
+#start-circsim-button:active {
+  color: #333;
+  text-shadow: white 0px 1px 1px;
+}
+/* line 27, ../src/partials/_button.scss */
+#start-circsim-button:active .left {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 3px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAd0lEQVR4nGOyYfCUjljBJKKufFk/nEmpW0NQm4FJwkWOQZaBiY+Tn4GTgYmDgZWBCQgZ/gMhkAIxmEDsfwxM/xhAkOk/jAIrQRX8h5DDouEfSAPjz38MfxmYuB/8ZPjNwGS06MuPrwxMBnO9Zvy5xeTyUqIhqBUAMGc432X/lp0AAAAASUVORK5CYII=");
+  *background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1311210814!__s41_15' + '")');
+}
+/* line 38, ../src/partials/_button.scss */
+#start-circsim-button:active .middle {
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  right: 3px;
+  bottom: 0px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAQAAACRxV9RAAAAK0lEQVR4nGNKecJkJs2kycAkzsDExMD0n4HpH4z8h8HGFPzFwPThK1NoNwCtVhWvCA2FFgAAAABJRU5ErkJggg==");
+  *background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1311210814!__s41_16' + '")');
+}
+/* line 49, ../src/partials/_button.scss */
+#start-circsim-button:active .right {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 3px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAc0lEQVR4nGOKWOEp/Z+BST9c5XKgFpM2g7qgUjeTLIMcg7gzEyeDAAM/OxMTAwsDBwPTf4b/DIwgigHIYPrH8B9CgSCY+g9RgiEI52HVAKb+AimG30y/GX4y8Nxj+srw5YfRIqY/t7xmGMxlCmqVaGB4CQBP+DqbwhbMewAAAABJRU5ErkJggg==");
+  *background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1311210814!__s41_17' + '")');
+}
+/* line 62, ../src/partials/_button.scss */
+#start-circsim-button .left {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 3px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAZElEQVR4nGPaxLBJeuMKJgb1f5flw5mYulUE5RmY/rlIMDAwMP3lZGT4z8DEAAYw6j/Df4jgPyCEUf9RKLgcWCV+QTCP5ec/ECXw4D2IUlv04scrBibpuU4z/t5i2viSv8GhFQCWUDZMrKdSJwAAAABJRU5ErkJggg==");
+}
+/* line 72, ../src/partials/_button.scss */
+#start-circsim-button .middle {
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  right: 3px;
+  bottom: 0px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAQAAACRxV9RAAAAKklEQVR4nGPa8ITJUpqJjYGJgYHpP5iEMP6hov+ojP8w9IuB6d5XJv9uAIJ2FK/beYvTAAAAAElFTkSuQmCC");
+}
+/* line 83, ../src/partials/_button.scss */
+#start-circsim-button .right {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 3px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAYCAQAAACVMI9sAAAAZ0lEQVR4nGPauGKT9H8GJvnwf5c3azHJM6gKMnUzMTCIM/xzZvrPwMjwlx3IAwEY9Z8BBJn+MfwD8ZCo/ygUVCUDfkEo7z+Qx/wbSL1nELzH9IrhxQ+1RUx/bznNkJ7L5NDK38DwEgBOEjabenxcDAAAAABJRU5ErkJggg==");
+}
+/* line 94, ../src/partials/_button.scss */
+#start-circsim-button label {
+  height: 24px;
+  padding-top: 2px;
+  position: relative;
+  display: block;
+  line-height: 21px;
+  text-align: center;
+  margin-top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
 }

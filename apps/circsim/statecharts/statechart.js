@@ -4,7 +4,7 @@ Circsim.statechart = SC.Statechart.create({
   // trace: YES,
 
   // initialState: "Title",
-  initialState: "Running",
+  initialState: "Title",
 
   "Title": SC.State.design({
     enterState: function(){

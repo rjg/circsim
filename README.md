@@ -39,6 +39,11 @@ Visit [http://localhost:4020/sproutcore/tests](http://localhost:4020/sproutcore/
 Credits
 -------
 
+Instruction: Dr. A. A. Rovick, Dept. of Physiology
+Additional instruction: Drs. L. Brenner (Office of Computer-Based
+Education) and J. A. Michael (Dept. of Physiology), Rush Univ.
 
+Model by: Dr. C. J. Dickinson, University Hospital Medical School, England and Drs. K. Ahmed, C. H. Goldsmith, and D. L. Sackett, McMaster University Medical School, Canada 
 
-coming soon...
+IBM PC Program by: Dr. Joel Michael
+2011 Update: Ryan Golden

@@ -3,6 +3,11 @@
     | |    | || |_) | |   \___ \| || |\/| |
     | |___ | ||  _ <| |___ ___) | || |  | |
      \____|___|_| \_\\____|____/___|_|  |_|
+
+Demo
+------------
+
+You can demo the latest version of Circsim here: [Circsim](http://rjg.github.com/circsim)
      
 Installation
 ------------

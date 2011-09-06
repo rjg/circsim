@@ -3,7 +3,6 @@
 sc_require('models/answer_key');
 
 CoreCircsim.AnswerKey.FIXTURES = [
-
 {
   guid: 0, 
   procedure: 'Ra', 
@@ -414,4 +413,395 @@ CoreCircsim.AnswerKey.FIXTURES = [
   cellValues: [4], 
   category: "", 
   comment: "No, SV is down because the effect of the decrease in CVP is greater than the effect of the increase in IS. Alternatively, we can argue that SV is down because the increase in DR due to the decrease in afterload is quantitatively very small while the decrease in SV in RR due to the decrease in CSP is much larger.  Thus, in this instance the SS response follows (is in the same direction) as the RR response."
+},
+{
+  guid: 41, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: YES, 
+  highlights: [1,2], 
+  cells: [1, 2], 
+  cellValues: [1, 1], 
+  category: "CVP to SV", 
+  comment: "Right, with CVP decreased, SV will be decreased (preload is down)."
+},{
+  guid: 42, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: NO, 
+  highlights: [1,2], 
+  cells: [2], 
+  cellValues: [2], 
+  category: "CVP to SV", 
+  comment: "No, when CVP is decreased (preload is decreased) then SV must decrease."
+},{
+  guid: 43, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: NO, 
+  highlights: [1,2], 
+  cells: [2], 
+  cellValues: [0], 
+  category: "CVP to SV", 
+  comment: "No, when CVP is decreased (preload is decreased) then SV must decrease.  Preload is the most potent determinant of SV."
+},{
+  guid: 44, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: YES, 
+  highlights: [2,4], 
+  cells: [2, 4], 
+  cellValues: [1, 1], 
+  category: "SV to CO", 
+  comment: "Good, with SV down (and HR unchanged) CO must be decreased since we know that:                                         CO =SV x HR."
+},{
+  guid: 45, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: NO, 
+  highlights: [2,4], 
+  cells: [4], 
+  cellValues: [4], 
+  category: "SV to CO", 
+  comment: "No, with SV down (and HR unchanged) CO must be decreased since we know that:                                         CO =SV x HR."
+},{
+  guid: 46, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: YES, 
+  highlights: [4,6], 
+  cells: [4, 6], 
+  cellValues: [1, 1], 
+  category: "CO to MAP", 
+  comment: "Right, with CO decreased and Ra unchanged there must be a decrease in MAP since we know that                                        MAP = CO x TPR."
+},{
+  guid: 47, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: NO, 
+  highlights: [4,6], 
+  cells: [6], 
+  cellValues: [4], 
+  category: "CO to MAP", 
+  comment: "No, with CO decreased and Ra unchanged there must be a decrease in MAP since we know that                                        MAP = CO x TPR."
+},{
+  guid: 48, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: YES, 
+  highlights: [1,3,5], 
+  cells: [0, 3, 5], 
+  cellValues: [0, 0, 0], 
+  category: "Neural variables", 
+  comment: "Good.  IS, HR, and Ra are all determined by their neural inputs.  In the DR phase these inputs are unchanged."
+},{
+  guid: 49, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: NO, 
+  highlights: [1,3,5], 
+  cells: [0], 
+  cellValues: [3], 
+  category: "Neural variables", 
+  comment: "No, IS, HR, and Ra are ALL variables that are determined by their neural inputs.  Since in the DR phase these inputs are unchanged all three must be 0."
+},{
+  guid: 50, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: NO, 
+  highlights: [1,3,5], 
+  cells: [3], 
+  cellValues: [3], 
+  category: "Neural variables", 
+  comment: "No, IS, HR, and Ra are ALL variables that are determined by their neural inputs.  Since in the DR phase these inputs are unchanged all three must be 0."
+},{
+  guid: 51, 
+  procedure: 'Rv', 
+  column: 0, 
+  isCorrect: NO, 
+  highlights: [1,3,5], 
+  cells: [5], 
+  cellValues: [3], 
+  category: "Neural variables", 
+  comment: "No, IS, HR, and Ra are ALL variables that are determined by their neural inputs.  Since in the DR phase these inputs are unchanged all three must be 0."
+},{
+  guid: 52, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: YES, 
+  highlights: [1,3,5], 
+  cells: [0, 3, 5], 
+  cellValues: [2, 2, 2], 
+  category: "Neural variables", 
+  comment: "Correct.  Since the response of the system to the disturbance (the increase in Rv) was a fall in MAP, the response of the baroreceptor reflex will be to increase all the neural variables to restore MAP."
+},{
+  guid: 53, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [1,3,5], 
+  cells: [0], 
+  cellValues: [5], 
+  category: "Neural variables", 
+  comment: "No Comment."
+},{
+  guid: 54, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [1,3,5], 
+  cells: [3], 
+  cellValues: [5], 
+  category: "Neural variables", 
+  comment: "No Comment."
+},{
+  guid: 55, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [1,3,5], 
+  cells: [5], 
+  cellValues: [5], 
+  category: "Neural variables", 
+  comment: "No Comment."
+},{
+  guid: 56, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: YES, 
+  highlights: [3,4], 
+  cells: [3, 4], 
+  cellValues: [2, 2], 
+  category: "HR to CO", 
+  comment: "Right, the reflex increase in HR results in an increase in CO."
+},{
+  guid: 57, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [3,4], 
+  cells: [4], 
+  cellValues: [5], 
+  category: "HR to CO", 
+  comment: "No,  the reflex increase in HR results in an increase in CO."
+},{
+  guid: 58, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: YES, 
+  highlights: [1,4], 
+  cells: [1, 4], 
+  cellValues: [1, 2], 
+  category: "CO to CVP", 
+  comment: "Right, with CO reflexly increased there will be a decrease oin CVP as there will be a translocation of blood from the central venous compartment to the arterial compartment."
+},{
+  guid: 59, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [1,4], 
+  cells: [1], 
+  cellValues: [2], 
+  category: "CO to CVP", 
+  comment: "No, when CO increases it causes CVP to decrease.  (Keep in mind that when CVP increases first, it causes CO to increase.)"
+},{
+  guid: 60, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [1,4], 
+  cells: [1], 
+  cellValues: [0], 
+  category: "CO to CVP", 
+  comment: "No.  CO and CVP are related to one another.  When CO increases, as is the case here, it causes CVP to decrease.  When CVP increases first, this change causes CO to increase."
+},{
+  guid: 61, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: YES, 
+  highlights: [1,2], 
+  cells: [1, 2], 
+  cellValues: [1, 1], 
+  category: "CVP to SV", 
+  comment: "Right, with CVP decreased SV will decrease.  CVP, the afterload for the ventricles, is the most potent determinant of SV."
+},{
+  guid: 62, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [1,2], 
+  cells: [2], 
+  cellValues: [2], 
+  category: "CVP to SV", 
+  comment: "No, CVP is the most potent determinant of SV.  With CVP decreased there must be a decrease in SV."
+},{
+  guid: 63, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [1,2], 
+  cells: [2], 
+  cellValues: [0], 
+  category: "CVP to SV", 
+  comment: "No, changes in CVP must be reflected by changes in SV.  With CVP decreased there must be a decrease in SV."
+},{
+  guid: 64, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: YES, 
+  highlights: [4,5,6], 
+  cells: [4, 5, 6], 
+  cellValues: [2, 2, 2], 
+  category: "MAP", 
+  comment: "Right, with CO and Ra both increased there must be an increase in MAP since:                          MAP = CO x Ra.  In addition, we know that the fall in MAP as a consequence of the disturbance will trigger a baroreceptor reflex and that will reflexly raise MAP."
+},{
+  guid: 65, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [4,5,6], 
+  cells: [6], 
+  cellValues: [1], 
+  category: "MAP", 
+  comment: "No, both CO and Ra are up and this must cause an increase in MAP (relative to its value as a result of the DR response).  This is the goal of the baroreceptor reflex."
+},{
+  guid: 66, 
+  procedure: 'Rv', 
+  column: 1, 
+  isCorrect: NO, 
+  highlights: [4,5,6], 
+  cells: [6], 
+  cellValues: [0], 
+  category: "MAP", 
+  comment: "No, MAP must increase because both CO and Ra increased.  Furthermore, you know that the response to a fall in MAP (as occurred in DR) will stimulated a baroreceptor reflex to increase MAP."
+},{
+  guid: 67, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: YES, 
+  highlights: [6], 
+  cells: [6], 
+  cellValues: [1], 
+  category: "MAP", 
+  comment: "Right, the baroreceptor reflex has partially compensated for the fall in MAP that occurred.  But, MAP has gone back to its pre-disturbance valye."
+},{
+  guid: 68, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [6], 
+  cells: [6], 
+  cellValues: [2], 
+  category: "MAP", 
+  comment: "No!  Your prediction that MAP is increased would mean that its value is HIGHER than it was before the disturbance.  The baroreceptor reflex only partially conpensates for the disturbance and hence MAP is still decreased (although not as much)."
+},{
+  guid: 69, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [6], 
+  cells: [6], 
+  cellValues: [0], 
+  category: "MAP", 
+  comment: "No, your prediction that MAP is unchanged would mean that the baroreceptor reflex fully compensated for the disturbance and that MAP is now the same as it was in the control state.  However, the baroreceptor reflex can only partially compensate for the disturbance and thus MAP in the new steady state is still decreased."
+},{
+  guid: 70, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: YES, 
+  highlights: [0,3,5], 
+  cells: [0, 3, 5], 
+  cellValues: [2, 2, 2], 
+  category: "Neural variables", 
+  comment: "Correct, the neurally controlled variables, IS, HR, and Ra are increased by the baroreceptor reflex to help restore MAP.  "
+},{
+  guid: 71, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [0,3,5], 
+  cells: [0], 
+  cellValues: [5], 
+  category: "Neural variables", 
+  comment: "No, all three of the neurally controlled variables, IS, HR, and Ra are increased by the baroreceptor reflex to help restore MAP towards its pre-disturbance value."
+},{
+  guid: 72, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [0,3,5], 
+  cells: [3], 
+  cellValues: [5], 
+  category: "Neural variables", 
+  comment: "No, all three of the neurally controlled variables, IS, HR, and Ra are increased by the baroreceptor reflex to help restore MAP towards its pre-disturbance value."
+},{
+  guid: 73, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [0,3,5], 
+  cells: [5], 
+  cellValues: [5], 
+  category: "Neural variables", 
+  comment: "No, all three of the neurally controlled variables, IS, HR, and Ra are increased by the baroreceptor reflex to help restore MAP towards its pre-disturbance value."
+},{
+  guid: 74, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: YES, 
+  highlights: [3,4], 
+  cells: [3, 4], 
+  cellValues: [2, 2], 
+  category: "HR CO", 
+  comment: "Right, the increased HR (driven by the baroreceptor reflex) results in an increase in CO."
+},{
+  guid: 75, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [3,4], 
+  cells: [4], 
+  cellValues: [5], 
+  category: "HR CO", 
+  comment: "No, the increase in HR produced by the baroreceptor reflex causes an increase in CO."
+},{
+  guid: 76, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: YES, 
+  highlights: [1,4], 
+  cells: [1, 4], 
+  cellValues: [1, 2], 
+  category: "CO CVP", 
+  comment: "Right, with CO increased there is a corresponding decrease in CVP."
+},{
+  guid: 77, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [1,4], 
+  cells: [1], 
+  cellValues: [4], 
+  category: "CO CVP", 
+  comment: "No, with CO increased there is a corresponding decrease in CVP."
+},{
+  guid: 78, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: YES, 
+  highlights: [1,2], 
+  cells: [1, 2], 
+  cellValues: [1, 1], 
+  category: "CVP SV", 
+  comment: "Correct.  With CVP down (ie, pre-load is reduced) SV will decrease.  Note, however, that the reflex increase in IS buffers the fall in SV, keeping it from getting so large that CO cannot increase."
+},{
+  guid: 79, 
+  procedure: 'Rv', 
+  column: 2, 
+  isCorrect: NO, 
+  highlights: [1,2], 
+  cells: [2], 
+  cellValues: [4], 
+  category: "CVP SV", 
+  comment: "No.  With CVP down (ie, pre-load is reduced) SV will decrease.  Note, however, that the reflex increase in IS buffers the fall in SV, keeping it from getting so large that CO cannot increase."
 }];

@@ -2,8 +2,6 @@
 
 Circsim.cellsController = SC.ArrayController.create({  
   
-  contentBinding: "Circsim.columnController.selection",
-  
   colsBinding: "Circsim.procedureController.columns",
 
   allCells: function() {

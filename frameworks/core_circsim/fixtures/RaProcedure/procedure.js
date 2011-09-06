@@ -18,17 +18,17 @@ CoreCircsim.Procedure.FIXTURES = [
   answerKeys: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,21,32,33,34,35,36,37,38,39,40],
   relationshipEvaluations: [{
     equation: [4, 2, 3],
-    intro: "You will now be evaluated for CO=SVxHR",
-    errorMessage: "Your CO=SVxHR is wrong. Please fix it.",
-    summaryCorrectMessage: "CO=SVxHR correct",
-    summaryIncorrectMessage: "CO=SVxHR incorrect"
+    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: CO=SVxHR. You will be asked to correct any errors.",
+    errorMessage: "Your predictions do not agree with the relationship: CO = HR X SV. You need to correct your errors.  Click Next when you are finished.",
+    summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: CO=SVxHR",
+    summaryIncorrectMessage: "Sorry, your predictions are still not consistent with the relationship: CO=SVxHR. However, at this time we will move on."
   },
   {
     equation: [6, 4, 5],
-    intro: "You will now be evaluated for MAP",
-    errorMessage: "Your MAP is wrong 2. please fix it.",
-    summaryCorrectMessage: "MAP correct",
-    summaryIncorrectMessage: "MAP incorrect"
+    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: MAP = CO x TPR. You will be asked to correct any errors.",
+    errorMessage: "Your predictions do not agree with the relationship: MAP = CO x TPR. You need to correct your errors.  Click Next when you are finished.",
+    summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: MAP = CO x TPR",
+    summaryIncorrectMessage: "Sorry, your predictions are still not consistent with the relationship: MAP = CO x TPR. However, at this time we will move on."
   }]
 }];
 

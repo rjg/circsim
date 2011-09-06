@@ -659,6 +659,7 @@ Circsim.statechart = SC.Statechart.create({
 
     selectProcedure: function() {
       this.gotoState("Procedure");
+      Circsim.cellsController.notifyPropertyChange('allCells');
     },
 
     openHelp: function() {

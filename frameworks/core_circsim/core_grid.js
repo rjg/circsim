@@ -3,16 +3,18 @@
 SC.mixin(CoreCircsim, {
 
   createGrid: function(procedure){
-    var ids,    
-        columns = procedure.get('columns');
 
+    var columns = procedure.get('columns');
+
+    // This is a check to now create more cols/cells if the procedure has already been created.
     if (columns.length()>0) {      
       return procedure;
     }
     
+
     procedure = this.createColumns(procedure);
     procedure = this.createCells(procedure);
-    
+
     return procedure;
   },
 
@@ -84,8 +86,7 @@ SC.mixin(CoreCircsim, {
   
   setCellsToCorrectValues: function(cells, correctVals, col, rowLength, idxs){
     
-    var vals = correctVals.slice(col*rowLength, (col+1)*rowLength);
-    console.log(vals);
+    var vals = correctVals.slice(col*rowLength, (col+1)*rowLength);  
     idxs.forEach(function(i) {
       cells.objectAt(i).set('value', vals[i]);
     });

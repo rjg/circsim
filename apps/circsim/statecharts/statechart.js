@@ -65,7 +65,7 @@ Circsim.statechart = SC.Statechart.create({
           enterState: function(){
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
             Circsim.messageController.set("title", "Primary Variable");
-            Circsim.messageController.set("content", "Please use the select menu to the left to select the primary variable that is changed in this procedure.");            
+            Circsim.messageController.set("content", "Please use the menu to the left to select the primary variable that is changed in this procedure. When you have made your decision, click the Next button above.");            
             Circsim.set('pvViewDisplay', "Circsim.PVView");
           },
           
@@ -99,7 +99,7 @@ Circsim.statechart = SC.Statechart.create({
                 
         "IVSecondChance": SC.State.design({
           enterState: function() {
-            Circsim.messageController.set('content', 'Sorry, that\'s wrong. Try again.');
+            Circsim.messageController.set('content', 'Sorry, that is not the primary variable that is changed. Please try again.');
             Circsim.messageController.set('color', Circsim.ERRORCOLOR);            
           },
           
@@ -138,7 +138,7 @@ Circsim.statechart = SC.Statechart.create({
           
         "IVSelectDirection": SC.State.design({
           enterState: function(){
-            Circsim.messageController.set('content', 'Ok! Now, select the direction in the table.');            
+            Circsim.messageController.set('content', 'Great! Now, click on the cell in the table to select the direction that this variable changes.');            
             var pvIdx = Circsim.procedureController.get('initialVariable');
             var pvCell = Circsim.cellsController.get('allCells').objectAt(pvIdx);
             pvCell.set('isEnabled', YES);
@@ -176,7 +176,7 @@ Circsim.statechart = SC.Statechart.create({
         
         "IVDirectionSecondChance": SC.State.design({
           enterState: function(){
-            Circsim.messageController.set("content", "Yikes. That's the wrong direction. Try again dude");
+            Circsim.messageController.set("content", "Sorry, that's the wrong direction. Please try again. When you have made your selection, click the 'Next' button above");
             Circsim.messageController.set("color", Circsim.ERRORCOLOR);
             Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
           },
@@ -219,7 +219,7 @@ Circsim.statechart = SC.Statechart.create({
                 
         "IVCorrectSummary": SC.State.design({
           enterState: function(){
-            Circsim.messageController.set("content", "You're Amazing Dude!  Here's the summary.");
+            Circsim.messageController.set("content", "Great!  You have identified the primary variable and the direction that it changes.  Please click Next to go on.");
             Circsim.messageController.set("color", Circsim.CORRECTCOLOR);
             Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
             var procedure = Circsim.procedureController.get('content');
@@ -244,7 +244,7 @@ Circsim.statechart = SC.Statechart.create({
         
         "IVIncorrectSummary": SC.State.design({
           enterState: function(){
-            Circsim.messageController.set("content", "Incorrect Dude.  Here's the summary.");
+            Circsim.messageController.set("content", "Sorry, that is incorrect.  The correct answer is now displayed to the left.  Please click Next to move on.");
             Circsim.messageController.set("color", Circsim.ERRORCOLOR);
             Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
             
@@ -513,7 +513,7 @@ Circsim.statechart = SC.Statechart.create({
           "ProcedureSpecificIntro": SC.State.design({
             enterState: function() {
               Circsim.messageController.set('title', "Procedure Specific Evaluations");
-              Circsim.messageController.set('content', "We will now evaluate you for procedure specific errors.");
+              Circsim.messageController.set('content', "Your predictions will now be evaluated for procedure specific errors.");
               
             },
             

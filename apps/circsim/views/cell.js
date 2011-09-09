@@ -21,7 +21,7 @@ Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
         // Sets value of cell.
         switch (value) {
           case 0: 
-            value = "<img src="+sc_static("no-change")+" />";
+            value = "0";
             break;
           case 1: 
             value = "<img src="+sc_static("down")+" />";

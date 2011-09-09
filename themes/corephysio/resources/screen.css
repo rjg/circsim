@@ -2826,16 +2826,18 @@ ul#grid-rows li {
   display: block;
   height: 24px;
   width: 24px;
+  text-align: center;
+  font-weight: bold;
 }
 
-/* line 86, ../src/views/_procedure.scss */
+/* line 88, ../src/views/_procedure.scss */
 #messages-title {
   font-weight: bold;
   font-size: 14px;
   color: #444;
 }
 
-/* line 92, ../src/views/_procedure.scss */
+/* line 94, ../src/views/_procedure.scss */
 #messages-body {
   padding: 10px 20px;
 }

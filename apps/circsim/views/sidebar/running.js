@@ -5,12 +5,13 @@ Circsim.sidebarViews.runningView = SC.View.design({
   childViews: 'procedureLabelView procedureListView'.w(),        
   procedureLabelView: SC.LabelView.design({
     layout: {
-      top: 8,
-      bottom: 8,
-      left: 8,
-      right: 0,
-      height: 16
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0
     },
+    backgroundColor: "#DDDDDD",
+    layerId: "procedure-label",
     fontWeight: SC.BOLD_WEIGHT,
     value: 'Procedures:'
   }),

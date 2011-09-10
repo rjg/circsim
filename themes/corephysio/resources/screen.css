@@ -100,6 +100,29 @@ div {
   font-size: 14px;
 }
 
+/* line 31, ../src/partials/_base.scss */
+.sc-list-item-view label {
+  white-space: normal;
+  height: 40px;
+  top: 38%;
+  font-size: 14px;
+}
+
+/* line 38, ../src/partials/_base.scss */
+#procedure-label {
+  padding: 8px;
+}
+
+/* line 42, ../src/partials/_base.scss */
+#pv-summary-view {
+  color: #111;
+}
+
+/* line 46, ../src/partials/_base.scss */
+#correct-pv-display {
+  font-size: 14px;
+}
+
 /*
  * Bootstrap v1.1.1
  *

@@ -31,7 +31,6 @@ test('CoreCircsim.createGrid()', function() {
   equals(cells.length(), 3, "When createGrid is called, it will remove previous versions of columns and cells. Those are created dynamically each time.");
 });
 
-
 test('CoreCircsim.createColumns()', function() {
 
   procedure.set('cols', ["col1", "col2"]);
@@ -62,3 +61,12 @@ test('CoreCircsim.createCells()', function() {
   equals(secondCol.get('cells').length(), 3, 'Creates the correct number of cells based on the names supplied in procedure.get("rows")');
 });
 
+test('CoreCircsim.setCellsToCorrectValues(key, cells)', function() {
+  
+  var cell1 = CoreCircsim.store.createRecord(CoreCircsim.Cell, {isEnabled: NO}, 1);
+  var cell2 = CoreCircsim.store.createRecord(CoreCircsim.Cell, {isEnabled: NO}, 2);
+  var ret = CoreCircsim.setCellsToCorrectValues([0,1], [cell1, cell2]);
+  
+  equals(cell1.get('correctAnswer'), 0, 'returns correctly');
+  equals(cell2.get('correctAnswer'), 1, 'returns correctly');
+});

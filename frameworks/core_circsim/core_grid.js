@@ -84,13 +84,13 @@ SC.mixin(CoreCircsim, {
     }
   },
   
-  setCellsToCorrectValues: function(cells, correctVals, col, rowLength, idxs){
+  setCellsToCorrectValues: function(key, cells){
     
-    var vals = correctVals.slice(col*rowLength, (col+1)*rowLength);  
-    idxs.forEach(function(i) {
-      cells.objectAt(i).set('value', vals[i]);
+    cells.forEach(function(cell, idx) {
+      cell.set('correctAnswer', key[idx]);
     });
-    
+
+    return cells;
   },
   
   setPVToCorrect: function(procedure, cells){

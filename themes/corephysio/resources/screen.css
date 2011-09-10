@@ -2805,11 +2805,23 @@ ul#grid-rows li {
   background-color: #fff;
 }
 /* line 67, ../src/views/_procedure.scss */
-.sc-view .highlighted {
-  background-color: #FFF7CB;
+.sc-view .correctomundo {
+  background-color: #E8FFCA;
+}
+/* line 71, ../src/views/_procedure.scss */
+.sc-view .wrongo {
+  background-color: #FFD6D6;
+}
+/* line 75, ../src/views/_procedure.scss */
+.sc-view .correctHighlight {
+  background-color: #C5FFA3;
+}
+/* line 79, ../src/views/_procedure.scss */
+.sc-view .incorrectHighlight {
+  background-color: #FFBDBD;
 }
 
-/* line 72, ../src/views/_procedure.scss */
+/* line 85, ../src/views/_procedure.scss */
 .sc-view .cell {
   position: absolute;
   left: 0px;
@@ -2818,7 +2830,7 @@ ul#grid-rows li {
   bottom: 0px;
   border: 1px solid #999;
 }
-/* line 75, ../src/views/_procedure.scss */
+/* line 88, ../src/views/_procedure.scss */
 .sc-view .cell .cell-value {
   position: absolute;
   top: 37%;
@@ -2829,15 +2841,39 @@ ul#grid-rows li {
   text-align: center;
   font-weight: bold;
 }
+/* line 99, ../src/views/_procedure.scss */
+.sc-view .cell .cell-value-student {
+  position: absolute;
+  top: 37%;
+  left: 20%;
+  display: block;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  font-weight: bold;
+  opacity: 0.6;
+}
+/* line 111, ../src/views/_procedure.scss */
+.sc-view .cell .cell-value-correct {
+  position: absolute;
+  top: 37%;
+  right: 20%;
+  display: block;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  font-weight: bold;
+  opacity: 1;
+}
 
-/* line 88, ../src/views/_procedure.scss */
+/* line 125, ../src/views/_procedure.scss */
 #messages-title {
   font-weight: bold;
   font-size: 14px;
   color: #444;
 }
 
-/* line 94, ../src/views/_procedure.scss */
+/* line 131, ../src/views/_procedure.scss */
 #messages-body {
   padding: 10px 20px;
 }

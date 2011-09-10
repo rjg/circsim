@@ -63,10 +63,23 @@ ul#grid-rows {
   .enabled {
     background-color: #fff;
   }
-
-  .highlighted {
-    background-color: #FFF7CB;
+  
+  .correctomundo {
+    background-color: #E8FFCA;
+  }
+  
+  .wrongo {
+    background-color: #FFD6D6;
+  }
+  
+  .correctHighlight {
+    background-color: #C5FFA3;
   }  
+  
+  .incorrectHighlight {
+    background-color: #FFBDBD;
+  }
+  
 }
 
 .sc-view .cell {  
@@ -81,6 +94,30 @@ ul#grid-rows {
     width: 24px;
     text-align: center;
     font-weight: bold;
+  }
+  
+  .cell-value-student {
+    position: absolute;
+    top: 37%;
+    left: 20%;
+    display: block;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0.6;    
+  }
+  
+  .cell-value-correct {
+    position: absolute;
+    top: 37%;
+    right: 20%;
+    display: block;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 1;        
   }
   
 }

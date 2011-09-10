@@ -40,6 +40,7 @@ Circsim.statechart = SC.Statechart.create({
         // TODO: This is a huge hack to account for that bug when the collection view is clicked on but not a procedure.
         if (procedure.get('title')) {
           CoreCircsim.createGrid(procedure);          
+          
         } else {
           console.log("No procedure selected. Catching this bug.");
           this.gotoState('Running');
@@ -540,6 +541,17 @@ Circsim.statechart = SC.Statechart.create({
                 Circsim.messageController.set('content', "Your answers don't match any of the answer keys.  This is probably an error.  Please notify Dr. Michael or Dr. Shannon and record the answers you submitted so we can fix this bug.");
                 this.gotoState("DisplayProcedureSpecificComment");
               } else {
+                
+                // Setting the correctAnswer display.
+                var key          = Circsim.procedureController.get('key');
+                var col          = Circsim.columnController.get('current');
+                var rowLength    = Circsim.procedureController.get('rows').length;
+                var vals         = key.slice(col*rowLength, (col+1)*rowLength);    
+                var currentCells = Circsim.columnController.get('content').get('cells');
+                CoreCircsim.setCellsToCorrectValues(vals, currentCells);
+                
+                console.log(currentCells.getEach("correctAnswer"));
+                // Settting messages array
                 Circsim.messagesController.set('content', answerKeys);
                 this.gotoState("DisplayProcedureSpecificComment");
               }
@@ -576,13 +588,6 @@ Circsim.statechart = SC.Statechart.create({
                   Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
                 }else{
                   Circsim.messageController.set('color', Circsim.ERRORCOLOR);
-                  
-                  var idxs        = answerKey.get('cells');
-                  var correctVals = Circsim.procedureController.get('key');
-                  var col         = Circsim.columnController.get('current');
-                  var rowLength   = Circsim.procedureController.get('rows').length;
-                  
-                  CoreCircsim.setCellsToCorrectValues(cells, correctVals, col, rowLength, idxs);
                 }  
               }              
             },
@@ -647,6 +652,7 @@ Circsim.statechart = SC.Statechart.create({
       exitState: function(){
         // Reset stuff...
         Circsim.cellsController.get('allCells').forEach(function(c) {c.set('value', null);});
+        Circsim.cellsController.get('allCells').forEach(function(c) {c.set('correctAnswer', null);});
         Circsim.columnController.set('current', 0);
         Circsim.columnController.set('content', "");
         Circsim.relationshipEvaluationsController.set('current', 0);

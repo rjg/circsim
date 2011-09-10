@@ -39,6 +39,14 @@ Circsim.statechart = SC.Statechart.create({
         
         // TODO: This is a huge hack to account for that bug when the collection view is clicked on but not a procedure.
         if (procedure.get('title')) {
+          // Reset stuff...
+          Circsim.cellsController.get('allCells').forEach(function(c) {c.set('value', null);});
+          Circsim.cellsController.get('allCells').forEach(function(c) {c.set('correctAnswer', null);});
+          Circsim.columnController.set('current', 0);
+          Circsim.columnController.set('content', "");
+          Circsim.relationshipEvaluationsController.set('current', 0);
+          // End reset...
+
           CoreCircsim.createGrid(procedure);          
           
         } else {

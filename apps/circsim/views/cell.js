@@ -2,15 +2,16 @@
 
 Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
   
-  contentDisplayProperties: "value isHighlighted isEnabled correctAnswer".w(),
+  contentDisplayProperties: "value isHighlighted isEnabled displayCorrectAnswer".w(),
   
   render: function(context, f) {
-    var content          = this.get('content'),
-        value            = content.get('value'),
-        column           = content.get('column').get('header'),
-        isEnabled        = content.get('isEnabled'),
-        isHighlighted    = content.get('isHighlighted'),
-        correctAnswer    = content.get('correctAnswer');
+    var content              = this.get('content'),
+        value                = content.get('value'),
+        column               = content.get('column').get('header'),
+        isEnabled            = content.get('isEnabled'),
+        isHighlighted        = content.get('isHighlighted'),
+        correctAnswer        = content.get('correctAnswer'),
+        displayCorrectAnswer = content.get('displayCorrectAnswer');
 
         // Sets value of cell.
         switch (value) {
@@ -52,18 +53,22 @@ Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
           var incorrectHighlighting = false;
           var correctHighlight = false;
           var incorrectHighlight = false;          
-          if (correctAnswer == value) {
-            if (isHighlighted) {
-              correctHighlight = true;
-            }else {
-              correctHighlighting = true;
+
+          // This is messy, but I basically am just saying "Add color if displayCorrectAnswer is true"
+          if (displayCorrectAnswer){
+            if (correctAnswer == value) {
+              if (isHighlighted) {
+                correctHighlight = true;
+              }else {
+                correctHighlighting = true;
+              }            
+            } else {
+              if (isHighlighted) {
+                incorrectHighlight = true;
+              }else {
+                incorrectHighlighting = true;
+              }
             }            
-          } else {
-            if (isHighlighted) {
-              incorrectHighlight = true;
-            }else {
-              incorrectHighlighting = true;
-            }
           }
           
           var classes  = { 'enabled': enabled, 'disabled': disabled, 'correctomundo': correctHighlighting, 'wrongo': incorrectHighlighting, 'correctHighlight': correctHighlight, 'incorrectHighlight': incorrectHighlight};

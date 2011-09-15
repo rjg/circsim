@@ -93,6 +93,18 @@ SC.mixin(CoreCircsim, {
     return cells;
   },
   
+  displayCorrectAnswers: function(cells){
+    cells.forEach(function(cell) {
+      cell.set('displayCorrectAnswer', true);
+    });
+  },
+  
+  removeCorrectAnswers: function(cells){
+    cells.forEach(function(cell) {
+      cell.set('displayCorrectAnswer', false);
+    });
+  },
+  
   setPVToCorrect: function(procedure, cells){
     var pvIdx = procedure.get('initialVariable');
     var pvDirection = procedure.get('initialVariableDirection');

@@ -550,20 +550,29 @@ Circsim.statechart = SC.Statechart.create({
                 this.gotoState("DisplayProcedureSpecificComment");
               } else {
                 
+                Circsim.messageController.set('content', "The evaluation is complete.  Your answers are displayed on the left.  The correct answers are displayed on the right. Correct answers are in green and incorrect answers are in red.  When you are ready, we will walk through these answers one by one with explanations.  Click Next to continue.");
+                
                 // Setting the correctAnswer display.
                 var key          = Circsim.procedureController.get('key');
                 var col          = Circsim.columnController.get('current');
                 var rowLength    = Circsim.procedureController.get('rows').length;
                 var vals         = key.slice(col*rowLength, (col+1)*rowLength);    
                 var currentCells = Circsim.columnController.get('content').get('cells');
-                CoreCircsim.setCellsToCorrectValues(vals, currentCells);
+                CoreCircsim.setCellsToCorrectValues(vals, currentCells);                
                 
-                console.log(currentCells.getEach("correctAnswer"));
-                // Settting messages array
-                Circsim.messagesController.set('content', answerKeys);
-                this.gotoState("DisplayProcedureSpecificComment");
+                CoreCircsim.removeCorrectAnswers(Circsim.cellsController.get('allCells')); // First, remove all displayed answers
+                CoreCircsim.displayCorrectAnswers(currentCells); // Then display the correct ones.
+                                
+                // Setting messages array
+                Circsim.messagesController.set('content', answerKeys);                
               }
-            }            
+            },
+            
+            next: function(){
+              this.gotoState("DisplayProcedureSpecificComment");
+            }
+            
+                        
           }),
           
           "DisplayProcedureSpecificComment": SC.State.design({
@@ -596,7 +605,16 @@ Circsim.statechart = SC.Statechart.create({
                   Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
                 }else{
                   Circsim.messageController.set('color', Circsim.ERRORCOLOR);
-                }  
+                }
+
+                // This code makes the correct answers highlight
+                var correctCells = [];
+                highlights.forEach(function(idx) {
+                  correctCells.push(cells.objectAt(idx));
+                });
+                CoreCircsim.removeCorrectAnswers(Circsim.cellsController.get('allCells')); // First, remove all displayed answers
+                CoreCircsim.displayCorrectAnswers(correctCells); // Then display the correct ones.
+
               }              
             },
             
@@ -611,6 +629,9 @@ Circsim.statechart = SC.Statechart.create({
               Circsim.messageController.set('title', '');
               Circsim.messageController.set('content', '');
               Circsim.messageController.set('color', Circsim.NORMALCOLOR);                                          
+              
+              //
+              CoreCircsim.removeCorrectAnswers(Circsim.cellsController.get('allCells'));
             },
             
             next: function(){

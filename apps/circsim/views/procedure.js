@@ -22,11 +22,10 @@ Circsim.contentViews.procedureView = SC.View.design({
       valueBinding: "Circsim.procedureController.title"
     }),
     nextButton: SC.ButtonView.design({
-      layout: {right: 10, width: 31, height: 15, centerY: -5},
-      tagName: "div",
+      useStaticLayout: YES, 
       layerId: "next-button",
       classNames: 'btn',
-      title: "Next",
+      titleBinding: "Circsim.nextPromptController.content",
       target: "Circsim.statechart",
       action: "next",
       render: function(context) {
@@ -91,7 +90,7 @@ Circsim.contentViews.procedureView = SC.View.design({
       }),
       
       messageBody: SC.LabelView.design({
-        layout: {top: 40, left: 20, bottom: 0, right: 20},
+        layout: {top: 40, left: 20, height: 392, right: 20},
         valueBinding: "Circsim.messageController.content",
         layerId: 'messages-body',
         backgroundColorBinding: 'Circsim.messageController.color'

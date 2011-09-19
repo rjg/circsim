@@ -123,6 +123,13 @@ div {
   font-size: 14px;
 }
 
+/* line 50, ../src/partials/_base.scss */
+#next-button {
+  float: right;
+  margin-top: 7px;
+  margin-right: 9px;
+}
+
 /*
  * Bootstrap v1.1.1
  *
@@ -3344,6 +3351,7 @@ ul#grid-rows li a:hover {
 /* line 145, ../src/views/_procedure.scss */
 #messages-body {
   padding: 10px 20px;
+  overflow: auto;
 }
 
 /* line 1, ../src/views/_toolbar.scss */

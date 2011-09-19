@@ -74,8 +74,9 @@ Circsim.statechart = SC.Statechart.create({
           enterState: function(){
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
             Circsim.messageController.set("title", "Primary Variable");
-            Circsim.messageController.set("content", "Please use the menu to the left to select the primary variable that is changed in this procedure. When you have made your decision, click the Next button above.");            
+            Circsim.messageController.set("content", "Please use the menu to the left to select the primary variable that is changed in this procedure. When you have made your decision, click the button above to submit your choice.");            
             Circsim.set('pvViewDisplay', "Circsim.PVView");
+            Circsim.nextPromptController.set('content', 'Submit Primary Variable');
           },
           
           next: function() {  
@@ -108,7 +109,7 @@ Circsim.statechart = SC.Statechart.create({
                 
         "IVSecondChance": SC.State.design({
           enterState: function() {
-            Circsim.messageController.set('content', 'Sorry, that is not the primary variable that is changed. Please try again.');
+            Circsim.messageController.set('content', 'Sorry, that is the incorrect answer. Please select another primary variable.  When you have made your final selection, click Submit Primary Variable.');
             Circsim.messageController.set('color', Circsim.ERRORCOLOR);            
           },
           
@@ -152,6 +153,11 @@ Circsim.statechart = SC.Statechart.create({
             var pvCell = Circsim.cellsController.get('allCells').objectAt(pvIdx);
             pvCell.set('isEnabled', YES);
             Circsim.set("pvViewDisplay", "Circsim.PVSummaryView");
+            
+            
+            Circsim.nextPromptController.set('content', 'Submit Primary Variable');
+          
+            
           },
 
           clickedOnCell: function(s) {
@@ -235,6 +241,10 @@ Circsim.statechart = SC.Statechart.create({
             var cells = Circsim.cellsController.get('allCells');
             CoreCircsim.setPVToCorrect(procedure, cells);
             
+            
+            Circsim.nextPromptController.set('content', 'Next');  
+            
+            
           },
           
           exitState: function(){
@@ -261,7 +271,7 @@ Circsim.statechart = SC.Statechart.create({
             var cells = Circsim.cellsController.get('allCells');
             CoreCircsim.setPVToCorrect(procedure, cells);
                         
-            
+            Circsim.nextPromptController.set('content', 'Next');
           },
 
           exitState: function(){
@@ -285,7 +295,9 @@ Circsim.statechart = SC.Statechart.create({
           this.setCurrentColumn();
           var header = Circsim.columnController.get('content').get('header');
           Circsim.messageController.set('title', '');
-          Circsim.messageController.set('content', 'At this time, please fill out the '+header+' column.');
+          Circsim.messageController.set('content', 'At this time, please fill out the '+header+' column.  When you are finished please click the Evaluate Column button.');
+          
+          Circsim.nextPromptController.set('content', 'Evaluate Column');
           
           // Enable only correct cells.
           var activeCells = Circsim.columnController.get('content').get('cells');
@@ -329,7 +341,7 @@ Circsim.statechart = SC.Statechart.create({
             // TODO: This is a bug.. Why is it doing this?  Fix this.            
             ary = ary.slice(0,7);
             if (ary.contains(null)) {
-              Circsim.messageController.set('content',"You haven't filled in a value for all the cells yet.  Please do that before continuing.");
+              Circsim.messageController.set('content',"You haven't filled in a value for all the cells yet.  Please do that before continuing.  When you have selected a value for each cell, click Evaluate Column.");
             } else {
               this.beginEvaluations();
             }
@@ -368,6 +380,9 @@ Circsim.statechart = SC.Statechart.create({
                   re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
               Circsim.messageController.set("content", re.intro);
               Circsim.messageController.set("color", Circsim.NORMALCOLOR);
+              
+              Circsim.nextPromptController.set('content', 'Next');
+                          
             },
             
             next: function() {
@@ -467,6 +482,8 @@ Circsim.statechart = SC.Statechart.create({
               
               Circsim.messageController.set('content', re.summaryCorrectMessage);
               Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
+              
+              Circsim.nextPromptController.set('content', 'Next');
             },
             
             exitState: function(){
@@ -494,6 +511,8 @@ Circsim.statechart = SC.Statechart.create({
               
               Circsim.messageController.set('content', re.summaryIncorrectMessage);
               Circsim.messageController.set('color', Circsim.ERRORCOLOR);
+              
+              Circsim.nextPromptController.set('content', 'Next');
             },
             
             exitState: function(){
@@ -522,8 +541,8 @@ Circsim.statechart = SC.Statechart.create({
           "ProcedureSpecificIntro": SC.State.design({
             enterState: function() {
               Circsim.messageController.set('title', "Procedure Specific Evaluations");
-              Circsim.messageController.set('content', "Your predictions will now be evaluated for procedure specific errors.");
-              
+              Circsim.messageController.set('content', "Your predictions will now be evaluated for errors specific to this procedure.  When you are ready, please click Evalute My Answers.");
+              Circsim.nextPromptController.set('content', 'Evalute My Answers.');
             },
             
             next: function() {
@@ -550,7 +569,9 @@ Circsim.statechart = SC.Statechart.create({
                 this.gotoState("DisplayProcedureSpecificComment");
               } else {
                 
-                Circsim.messageController.set('content', "The evaluation is complete.  Your answers are displayed on the left.  The correct answers are displayed on the right. Correct answers are in green and incorrect answers are in red.  When you are ready, we will walk through these answers one by one with explanations.  Click Next to continue.");
+                Circsim.messageController.set('content', "The evaluation is complete.  Your answers are displayed on the left.  The correct answers are displayed on the right.  When you are ready, we will walk through these answers one by one with explanations.  When you are finished reading an explanation, click Next to continue to the next one.  You will notice that if your answer matches the correct answer, the cell will be highlighted in green.  If your answer is incorrect, the cell will be highlighted in red.");
+                
+                Circsim.nextPromptController.set('content', 'Next');
                 
                 // Setting the correctAnswer display.
                 var key          = Circsim.procedureController.get('key');

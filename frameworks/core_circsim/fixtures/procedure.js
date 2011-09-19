@@ -18,14 +18,14 @@ CoreCircsim.Procedure.FIXTURES = [
   answerKeys: [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
   relationshipEvaluations: [{
     equation: [4, 2, 3],
-    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: CO=SVxHR. You will be asked to correct any errors.",
+    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: CO=SVxHR. You will be asked to correct any errors. Please click Next to continue.",
     errorMessage: "Your predictions do not agree with the relationship: CO = HR X SV. You need to correct your errors.  Click Next when you are finished.",
     summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: CO=SVxHR",
     summaryIncorrectMessage: "Sorry, your predictions are still not consistent with the relationship: CO=SVxHR. However, at this time we will move on."
   },
   {
     equation: [6, 4, 5],
-    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: MAP = CO x TPR. You will be asked to correct any errors.",
+    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: MAP = CO x TPR. You will be asked to correct any errors. Please click Next to continue.",
     errorMessage: "Your predictions do not agree with the relationship: MAP = CO x TPR. You need to correct your errors.  Click Next when you are finished.",
     summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: MAP = CO x TPR",
     summaryIncorrectMessage: "Sorry, your predictions are still not consistent with the relationship: MAP = CO x TPR. However, at this time we will move on."
@@ -45,17 +45,17 @@ CoreCircsim.Procedure.FIXTURES = [
   answerKeys: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,21,32,33,34,35,36,37,38,39,40],
   relationshipEvaluations: [{
     equation: [4, 2, 3],
-    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: CO=SVxHR. You will be asked to correct any errors.",
+    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: CO=SVxHR. You will be asked to correct any errors. Please click Next to continue.",
     errorMessage: "Your predictions do not agree with the relationship: CO = HR X SV. You need to correct your errors.  Click Next when you are finished.",
-    summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: CO=SVxHR",
+    summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: CO=SVxHR. Click Next to continue.",
     summaryIncorrectMessage: "Sorry, your predictions are still not consistent with the relationship: CO=SVxHR. However, at this time we will move on."
   },
   {
     equation: [6, 4, 5],
-    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: MAP = CO x TPR. You will be asked to correct any errors.",
+    intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: MAP = CO x TPR. You will be asked to correct any errors. Please click Next to continue.",
     errorMessage: "Your predictions do not agree with the relationship: MAP = CO x TPR. You need to correct your errors.  Click Next when you are finished.",
-    summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: MAP = CO x TPR",
-    summaryIncorrectMessage: "Sorry, your predictions are still not consistent with the relationship: MAP = CO x TPR. However, at this time we will move on."
+    summaryCorrectMessage: "Great! Your predictions are consistent with the relationship: MAP = CO x TPR. Click Next to continue.",
+    summaryIncorrectMessage: "Sorry, your predictions are still not consistent with the relationship: MAP = CO x TPR. However, at this time we will move on. Please click Next."
   }]
 }];
 

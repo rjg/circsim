@@ -1,7 +1,7 @@
 /*globals Circsim CoreCircsim*/
 
 Circsim.statechart = SC.Statechart.create({
-  trace: YES,
+  // trace: YES,
 
   initialState: "Title",
 
@@ -19,6 +19,9 @@ Circsim.statechart = SC.Statechart.create({
   "Running": SC.State.design({
     enterState: function(){
       Circsim.set('sidebarView', 'Circsim.sidebarViews.runningView');
+      
+      // Make the display none, so when you click on a procedure, it will detect that the modal help screen isn't visible.
+      $("#help-modal").css("display", "none");
     },
     
     initialSubstate: "Introduction",
@@ -689,9 +692,12 @@ Circsim.statechart = SC.Statechart.create({
       }
     }),
 
-    selectProcedure: function() {
-      this.gotoState("Procedure");
-      Circsim.cellsController.notifyPropertyChange('allCells');
+    selectProcedure: function(sender) {
+      // This is a hack, but it solves the bug where when you click on the help menu, the selectProcedure event is triggered.
+      if ($("#help-modal") && !$("#help-modal").isVisible()) {
+        this.gotoState("Procedure");
+        Circsim.cellsController.notifyPropertyChange('allCells');
+      }      
     }
   })
 });

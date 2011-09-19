@@ -1,16 +1,14 @@
 /*globals Circsim CoreCircsim*/
 
 Circsim.statechart = SC.Statechart.create({
-  // trace: YES,
+  trace: YES,
 
-  // initialState: "Title",
   initialState: "Title",
 
   "Title": SC.State.design({
     enterState: function(){
       Circsim.contentController.set("contentDisplay", "Circsim.contentViews.titleView");
-      Circsim.set("sidebarView", "Circsim.sidebarViews.titleView");
-      Circsim.toolbarDisplayController.set("helpDisplay", "display:none;");
+      Circsim.set("sidebarView", "Circsim.sidebarViews.titleView");      
     },
     
     startCircsim: function() {
@@ -21,7 +19,6 @@ Circsim.statechart = SC.Statechart.create({
   "Running": SC.State.design({
     enterState: function(){
       Circsim.set('sidebarView', 'Circsim.sidebarViews.runningView');
-      Circsim.toolbarDisplayController.set('helpDisplay', '');
     },
     
     initialSubstate: "Introduction",
@@ -687,31 +684,14 @@ Circsim.statechart = SC.Statechart.create({
         Circsim.relationshipEvaluationsController.set('current', 0);
       },
       
-      next: function() {        
+      next: function() {
         this.gotoState("Running");
       }
     }),
 
-    selectProcedure: function() {
+    selectProcedure: function() {      
       this.gotoState("Procedure");
       Circsim.cellsController.notifyPropertyChange('allCells');
-    },
-
-    openHelp: function() {
-      this.gotoState("Help");
-    }
-  }),
-  
-  "Help": SC.State.design({
-    enterState: function() {
-      Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.helpView');
-      Circsim.toolbarDisplayController.set('helpDisplay', 'display:none;');
-    },
-
-    closeHelp: function() {
-      this.gotoHistoryState("Running");
     }
   })
-  
-
 });

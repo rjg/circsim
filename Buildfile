@@ -1,4 +1,4 @@
-config :all, :required => [:sproutcore, :core_circsim]
+config :all, :required => [:sproutcore, :core_circsim, :twitter_bootstrap]
 
 # THEME
 config :corephysio do |c|

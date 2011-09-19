@@ -26,13 +26,21 @@
   };  
 
   #help-button{
-    margin-top: -12px;
-    right: 8px; 
-    width: 64px; 
-    top: 50%; 
-    height: 24px;
-    @include sc-button(right);    
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    height: 8px;
+    padding: 5px 12px 11px;
+    width: 45px;
+    text-align: right;
+    img{
+      position: absolute;
+      left: 8px;
+      top: 4px;
+    }
   };
+  
+  z-index: 12000;
 };
 
 #footer {

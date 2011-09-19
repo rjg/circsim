@@ -11,7 +11,6 @@ Circsim.mainPage = SC.Page.design({
     
     toolbar: Circsim.ToolbarView.design({
       iconUrl: sc_static('images/help'),
-      helpDisplayBinding: "Circsim.toolbarDisplayController.helpDisplay",
       displayProperties: ["helpDisplay"],
       tagName: "div",
       layerId: "top-toolbar",

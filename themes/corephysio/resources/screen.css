@@ -3094,6 +3094,88 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   border: 0;
 }
 
+/* line 1, ../src/partials/_twipsy.scss */
+.twipsy {
+  display: block;
+  position: absolute;
+  visibility: visible;
+  padding: 5px;
+  font-size: 11px;
+  z-index: 1000;
+  filter: alpha(opacity=80);
+  -khtml-opacity: 0.8;
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+}
+
+/* line 13, ../src/partials/_twipsy.scss */
+.twipsy.fade.in {
+  filter: alpha(opacity=80);
+  -khtml-opacity: 0.8;
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+}
+
+/* line 19, ../src/partials/_twipsy.scss */
+.twipsy.above .twipsy-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #000000;
+}
+
+/* line 27, ../src/partials/_twipsy.scss */
+.twipsy.left .twipsy-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #000000;
+}
+
+/* line 35, ../src/partials/_twipsy.scss */
+.twipsy.below .twipsy-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #000000;
+}
+
+/* line 43, ../src/partials/_twipsy.scss */
+.twipsy.right .twipsy-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #000000;
+}
+
+/* line 51, ../src/partials/_twipsy.scss */
+.twipsy-inner {
+  padding: 3px 8px;
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  max-width: 200px;
+  text-decoration: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 62, ../src/partials/_twipsy.scss */
+.twipsy-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
 /* line 1, ../src/views/_procedure.scss */
 #procedure-title {
   color: #FFF;
@@ -3148,50 +3230,66 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   margin-left: 121px;
   margin-top: 20px;
 }
+/* line 41, ../src/views/_procedure.scss */
+#grid-headers div a {
+  color: gray;
+}
+/* line 43, ../src/views/_procedure.scss */
+#grid-headers div a:hover {
+  text-decoration: none;
+}
 
-/* line 44, ../src/views/_procedure.scss */
+/* line 50, ../src/views/_procedure.scss */
 ul#grid-rows {
   text-align: right;
   width: 45px;
 }
-/* line 47, ../src/views/_procedure.scss */
+/* line 53, ../src/views/_procedure.scss */
 ul#grid-rows li {
   height: 32px;
   display: block;
   padding: 0px 14px 10px 0px;
   margin-top: 10px;
 }
+/* line 59, ../src/views/_procedure.scss */
+ul#grid-rows li a {
+  color: gray;
+}
+/* line 61, ../src/views/_procedure.scss */
+ul#grid-rows li a:hover {
+  text-decoration: none;
+}
 
-/* line 56, ../src/views/_procedure.scss */
+/* line 70, ../src/views/_procedure.scss */
 .sc-view .disabled {
   background-color: #FBFBFB;
 }
-/* line 58, ../src/views/_procedure.scss */
+/* line 72, ../src/views/_procedure.scss */
 .sc-view .disabled .cell-value {
   opacity: 0.5;
 }
-/* line 63, ../src/views/_procedure.scss */
+/* line 77, ../src/views/_procedure.scss */
 .sc-view .enabled {
   background-color: #fff;
 }
-/* line 67, ../src/views/_procedure.scss */
+/* line 81, ../src/views/_procedure.scss */
 .sc-view .correctomundo {
   background-color: #E8FFCA;
 }
-/* line 71, ../src/views/_procedure.scss */
+/* line 85, ../src/views/_procedure.scss */
 .sc-view .wrongo {
   background-color: #FFD6D6;
 }
-/* line 75, ../src/views/_procedure.scss */
+/* line 89, ../src/views/_procedure.scss */
 .sc-view .correctHighlight {
   background-color: #C5FFA3;
 }
-/* line 79, ../src/views/_procedure.scss */
+/* line 93, ../src/views/_procedure.scss */
 .sc-view .incorrectHighlight {
   background-color: #FFBDBD;
 }
 
-/* line 85, ../src/views/_procedure.scss */
+/* line 99, ../src/views/_procedure.scss */
 .sc-view .cell {
   position: absolute;
   left: 0px;
@@ -3200,7 +3298,7 @@ ul#grid-rows li {
   bottom: 0px;
   border: 1px solid #999;
 }
-/* line 88, ../src/views/_procedure.scss */
+/* line 102, ../src/views/_procedure.scss */
 .sc-view .cell .cell-value {
   position: absolute;
   top: 37%;
@@ -3211,7 +3309,7 @@ ul#grid-rows li {
   text-align: center;
   font-weight: bold;
 }
-/* line 99, ../src/views/_procedure.scss */
+/* line 113, ../src/views/_procedure.scss */
 .sc-view .cell .cell-value-student {
   position: absolute;
   top: 37%;
@@ -3223,7 +3321,7 @@ ul#grid-rows li {
   font-weight: bold;
   opacity: 0.6;
 }
-/* line 111, ../src/views/_procedure.scss */
+/* line 125, ../src/views/_procedure.scss */
 .sc-view .cell .cell-value-correct {
   position: absolute;
   top: 37%;
@@ -3236,14 +3334,14 @@ ul#grid-rows li {
   opacity: 1;
 }
 
-/* line 125, ../src/views/_procedure.scss */
+/* line 139, ../src/views/_procedure.scss */
 #messages-title {
   font-weight: bold;
   font-size: 14px;
   color: #444;
 }
 
-/* line 131, ../src/views/_procedure.scss */
+/* line 145, ../src/views/_procedure.scss */
 #messages-body {
   padding: 10px 20px;
 }

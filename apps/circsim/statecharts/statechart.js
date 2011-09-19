@@ -1,7 +1,7 @@
 /*globals Circsim CoreCircsim*/
 
 Circsim.statechart = SC.Statechart.create({
-  trace: YES,
+  // trace: YES,
 
   initialState: "Title",
 

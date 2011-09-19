@@ -38,6 +38,12 @@
     float: left;
     margin-left:121px;
     margin-top:20px;
+    a {
+      color: gray;
+      &:hover{
+        text-decoration: none;
+      };
+    }
   }
 }
 
@@ -49,6 +55,14 @@ ul#grid-rows {
     display: block;
     padding: 0px 14px 10px 0px;
     margin-top: 10px;
+    
+    a{
+      color: gray;
+      &:hover{
+        text-decoration: none;
+      };
+
+    }
   }
 }
 

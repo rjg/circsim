@@ -25,7 +25,6 @@ Circsim.sidebarViews.runningView = SC.View.design({
       right: 0
     },
     backgroundColor: '#FBFBFB',
-    //Here is the original list view, which is bound to the tasksController
     contentView: SC.ListView.design({
       contentBinding: 'Circsim.proceduresController.arrangedObjects',
       selectionBinding: 'Circsim.proceduresController.selection',

@@ -52,6 +52,15 @@ argparser = OptionParser.new {|opts|
 }
 argparser.parse!
 
+# Here's my autobuild script
+`git checkout gh-pages`
+`rm -rf index.html`
+`rm -rf tmp`
+`rm -rf static`
+`git commit -am 'prep for autobuild'`
+`git checkout master`
+# End of first part of autobuild
+
 config[:input] = File.join('tmp', 'build')
 config[:source] = File.expand_path(config[:source])
 config[:output] = File.expand_path(config[:output])
@@ -96,6 +105,12 @@ end
 
 FileUtils.mv "#{app_path}/index.html", "#{config[:output]}/index.html"
 
-elapsed = Time.now - start_time
+# Second part of autobuild
+`git checkout gh-pages`
+`git commit -am 'autobuild #{Time.now.to_s}'`
+puts "Pushing to live server."
+`git push remote gh-pages`
+# End of second part of autobuild
 
+elapsed = Time.now - start_time
 puts "Ready (took #{elapsed.to_i}s)"

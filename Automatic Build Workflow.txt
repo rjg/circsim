@@ -1,0 +1,7 @@
+Implemented an autobuild script. Theoretically, I shouldn't need to ever use the gh-pages branch again.  
+
+Work in whatever feature branch I'm on.
+Test locally.
+When it's working, merge into master.
+Commit and push master to github.
+Run $ ruby build.rb and it will automatically build the project and push it to gh-pages site.

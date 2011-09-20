@@ -108,6 +108,7 @@ FileUtils.mv "#{app_path}/index.html", "#{config[:output]}/index.html"
 
 # Second part of autobuild
 `git checkout gh-pages`
+`git add .`
 `git commit -am 'autobuild #{Time.now.to_s}'`
 `git push origin gh-pages`
 `git checkout master`

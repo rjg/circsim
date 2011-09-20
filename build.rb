@@ -52,6 +52,10 @@ argparser = OptionParser.new {|opts|
 }
 argparser.parse!
 
+start_time = Time.now
+puts "Starting at #{start_time.localtime}"
+
+
 # Here's my autobuild script
 `git checkout gh-pages`
 `rm -rf index.html`
@@ -65,9 +69,6 @@ config[:input] = File.join('tmp', 'build')
 config[:source] = File.expand_path(config[:source])
 config[:output] = File.expand_path(config[:output])
 
-start_time = Time.now
-
-puts "Starting at #{start_time.localtime}"
 
 if config[:build] or not File.exists?(config[:input])
   build_bin   = File.join(config[:source], 'bin', 'sc-build')
@@ -108,8 +109,8 @@ FileUtils.mv "#{app_path}/index.html", "#{config[:output]}/index.html"
 # Second part of autobuild
 `git checkout gh-pages`
 `git commit -am 'autobuild #{Time.now.to_s}'`
-puts "Pushing to live server."
-`git push remote gh-pages`
+`git push origin gh-pages`
+`git checkout master`
 # End of second part of autobuild
 
 elapsed = Time.now - start_time

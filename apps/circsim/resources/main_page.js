@@ -11,6 +11,7 @@ Circsim.mainPage = SC.Page.design({
     
     toolbar: Circsim.ToolbarView.design({
       iconUrl: sc_static('images/help'),
+      schematicUrl: sc_static('images/schematic-icon'),
       displayProperties: ["helpDisplay"],
       tagName: "div",
       layerId: "top-toolbar",

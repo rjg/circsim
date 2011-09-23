@@ -22,6 +22,7 @@ Circsim.statechart = SC.Statechart.create({
       
       // Make the display none, so when you click on a procedure, it will detect that the modal help screen isn't visible.
       $("#help-modal").css("display", "none");
+      $("#display-modal").css("display", "none");
     },
     
     initialSubstate: "Introduction",
@@ -718,6 +719,9 @@ Circsim.statechart = SC.Statechart.create({
       if ($("#help-modal") && !$("#help-modal").isVisible()) {
         this.gotoState("Procedure");
         Circsim.cellsController.notifyPropertyChange('allCells');
+      }else if ($("#schematic-modal") && !$("#schematic-modal").isVisible()) {
+        this.gotoState("Procedure");
+        Circsim.cellsController.notifyPropertyChange('allCells');        
       }      
     }
   })

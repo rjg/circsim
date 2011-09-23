@@ -2781,11 +2781,11 @@ limitations under the License.*/
 /* line 29, ../src/partials/_modal.scss */
 .modal {
   position: fixed;
-  top: 50%;
+  top: 70%;
   left: 50%;
   z-index: 11000;
   width: 860px;
-  margin: -250px 0 0 -400px;
+  margin: -400px 0 0 -400px;
   background-color: #ffffff;
   border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -2819,7 +2819,7 @@ limitations under the License.*/
 
 /* line 63, ../src/partials/_modal.scss */
 .modal.fade.in {
-  top: 50%;
+  top: 70%;
 }
 
 /* line 66, ../src/partials/_modal.scss */
@@ -3415,8 +3415,24 @@ ul#grid-rows li a:hover {
   left: 8px;
   top: 4px;
 }
+/* line 43, ../src/views/_toolbar.scss */
+#top-toolbar #schematic-button {
+  position: absolute;
+  right: 88px;
+  top: 5px;
+  height: 8px;
+  padding: 5px 12px 11px;
+  width: 78px;
+  text-align: right;
+}
+/* line 51, ../src/views/_toolbar.scss */
+#top-toolbar #schematic-button img {
+  position: absolute;
+  left: 8px;
+  top: 4px;
+}
 
-/* line 46, ../src/views/_toolbar.scss */
+/* line 61, ../src/views/_toolbar.scss */
 #footer {
   position: absolute;
   left: 0px;
@@ -3435,7 +3451,7 @@ ul#grid-rows li a:hover {
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAsCAAAAACBTI29AAAAGklEQVR4nGN6x8TA9B+OUUlUFjoPXQ2CBGIAcuYgKD9pJ2MAAAAASUVORK5CYII=");
 }
-/* line 60, ../src/views/_toolbar.scss */
+/* line 75, ../src/views/_toolbar.scss */
 #footer #copyright {
   position: absolute;
   margin-top: -9px;

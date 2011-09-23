@@ -4,11 +4,13 @@ Circsim.ToolbarView = SC.View.extend({
     
     render: function(context){          
       var iconUrl = this.get('iconUrl');
+      var schematicUrl = this.get('schematicUrl');
       context.push(
         '  <div id="logo-image"></div>',
         '  <div id="circsim-title">',
         '    Circsim',
         '  </div>',
+        '  <a href="#" data-controls-modal="schematic-modal" class="btn" id="schematic-button"><img src="'+schematicUrl+'">Schematic</a>',
         '  <a href="#" data-controls-modal="help-modal" class="btn" id="help-button"><img src="'+iconUrl+'">Help</a>',
         '<div id="help-modal" class="modal hide fade" style="display: block; ">',
         '  <div class="modal-header">',
@@ -22,7 +24,19 @@ Circsim.ToolbarView = SC.View.extend({
         '  </div>',
         '  <div class="modal-footer">',
         '  </div>',
+        '</div>',
+        '<div id="schematic-modal" class="modal hide fade" style="display: block; ">',
+        '  <div class="modal-header">',
+        '    <a href="#" class="close">×</a>',
+        '    <h3>Circsim Schematic</h3>',
+        '  </div>',
+        '  <div class="modal-body">',
+        '    <img src="http://placehold.it/820x400">',
+        '  </div>',
+        '  <div class="modal-footer">',
+        '  </div>',
         '</div>'
+        
       );
     }
 });

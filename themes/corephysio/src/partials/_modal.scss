@@ -28,11 +28,11 @@ limitations under the License.*/
 
 .modal {
   position: fixed;
-  top: 50%;
+  top: 70%;
   left: 50%;
   z-index: 11000;
   width: 860px;
-  margin: -250px 0 0 -400px;
+  margin: -400px 0 0 -400px;
   background-color: #ffffff;
   border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -61,7 +61,7 @@ limitations under the License.*/
   top: -25%;
 }
 .modal.fade.in {
-  top: 50%;
+  top: 70%;
 }
 .modal-header {
   border-bottom: 1px solid #eee;

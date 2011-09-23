@@ -3,6 +3,7 @@ require 'pathname'
 require 'optparse'
 
 require 'csv'
+require 'iconv'
 
 AK_FIXTURE_START = %Q(/*globals CoreCircsim */
 
@@ -63,14 +64,13 @@ procedures.each do |procedure|
     template += "," unless row == answerkey_csv[-1]
     answerkey_guids.push(counter)
     counter +=1
-    answerkey_output += template
+    answerkey_output += template    
   end
+  answerkey_output += "," unless procedure == procedures[-1]
 
   procedure_csv = CSV.table("#{procedure}/procedure.csv")
   procedure_csv = procedure_csv[0]
-    
-  # PUT PROCEDURE TEMPLATE STUFF HERE!!
-  # use the answerkey_guids as the guids for the answer keys for each procedure
+
   template = %Q({
     guid: "#{procedure}",
     title: "#{procedure_csv[:title]}",
@@ -82,7 +82,7 @@ procedures.each do |procedure|
     key: [#{procedure_csv[:key]}],
     initialVariable: #{procedure_csv[:initial_variable]},
     initialVariableDirection: #{procedure_csv[:initial_variable_direction]},
-    answerKeys: [#{answerkey_guids}],
+    answerKeys: #{answerkey_guids},
     relationshipEvaluations: [{
       equation: [4, 2, 3],
       intro: "Before the simulation is run your predictions will be reviewed for logical consistency and for conformity to the relationship: CO=SVxHR. You will be asked to correct any errors. Please click Next to continue.",
@@ -108,8 +108,25 @@ end
 answerkey_output += FIXTURE_END
 procedure_output += FIXTURE_END
 
+# Encoding fix
+ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+answerkey_output = ic.iconv(answerkey_output + ' ')[0..-2]
+
+ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+procedure_output = ic.iconv(procedure_output + ' ')[0..-2]
+
+
+
 # - remove/erase the current fixture files (doing this at the end so that it will only do this if there are no errors above)
-IO.popen('pbcopy', 'r+') { |clipboard| clipboard.puts procedure_output }
+# , encoding: "UTF-8"
+File.open("./frameworks/core_circsim/fixtures/procedure.js", "w") do |file|
+  file << procedure_output
+end
+
+File.open("./frameworks/core_circsim/fixtures/answer_key.js", "w") do |file|
+  file << answerkey_output
+  file.set_encoding("UTF-8")
+end
 
 
 # ===================================

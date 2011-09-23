@@ -5,3 +5,4 @@ design/JM Notes/*
 .sass-cache/*
 index.html
 static/
+build/*

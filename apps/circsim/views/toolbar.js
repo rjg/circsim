@@ -5,6 +5,7 @@ Circsim.ToolbarView = SC.View.extend({
     render: function(context){          
       var iconUrl = this.get('iconUrl');
       var schematicUrl = this.get('schematicUrl');
+      var schematicImage = sc_static('images/schematic');
       context.push(
         '  <div id="logo-image"></div>',
         '  <div id="circsim-title">',
@@ -31,7 +32,7 @@ Circsim.ToolbarView = SC.View.extend({
         '    <h3>Circsim Schematic</h3>',
         '  </div>',
         '  <div class="modal-body">',
-        '    <img src="http://placehold.it/820x400">',
+        '    <img src="'+schematicImage+'">',
         '  </div>',
         '  <div class="modal-footer">',
         '  </div>',

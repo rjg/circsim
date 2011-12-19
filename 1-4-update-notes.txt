@@ -1,5 +1,6 @@
 Todo: 
-  remove twitter bootstrap code
-  remove references to SC.Statechart
-  add Ki
-  remove all TemplateView code
+  remove references to compass
+  update the theme to be ace again
+
+Features to Reimplement: 
+  - schematic and help menu

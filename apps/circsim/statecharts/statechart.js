@@ -19,10 +19,6 @@ Circsim.statechart = Ki.Statechart.create({
   "Running": Ki.State.design({
     enterState: function(){
       Circsim.set('sidebarView', 'Circsim.sidebarViews.runningView');
-      
-      // Make the display none, so when you click on a procedure, it will detect that the modal help screen isn't visible.
-      $("#help-modal").css("display", "none");
-      $("#display-modal").css("display", "none");
     },
     
     initialSubstate: "Introduction",
@@ -715,14 +711,7 @@ Circsim.statechart = Ki.Statechart.create({
     }),
 
     selectProcedure: function(sender) {
-      // This is a hack, but it solves the bug where when you click on the help menu, the selectProcedure event is triggered.
-      if ($("#help-modal") && !$("#help-modal").isVisible()) {
-        this.gotoState("Procedure");
-        Circsim.cellsController.notifyPropertyChange('allCells');
-      }else if ($("#schematic-modal") && !$("#schematic-modal").isVisible()) {
-        this.gotoState("Procedure");
-        Circsim.cellsController.notifyPropertyChange('allCells');        
-      }      
+      this.gotoState("Procedure");
     }
   })
 });

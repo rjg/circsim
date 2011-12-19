@@ -1,4 +1,4 @@
-config :all, :required => [:sproutcore, :twitter_bootstrap, :core_circsim]
+config :all, :required => [:sproutcore, :core_circsim]
 
 # THEME
 config :corephysio do |c|
@@ -13,7 +13,6 @@ end
 
 config :circsim do |c|
   c[:theme] = 'corephysio'
-  c[:required] = 'twitter_bootstrap'
 end 
 
 

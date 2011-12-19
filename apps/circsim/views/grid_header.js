@@ -10,13 +10,13 @@ Circsim.GridHeaderView = SC.View.extend({
         context.push('<div>');
           switch (h) {
             case "DR": 
-              context.push('<a href="#" rel="twipsy" data-original-title="Direct Response">'+h+'</a>');
+              context.push('DR');
               break;
             case "RR": 
-              context.push('<a href="#" rel="twipsy" data-original-title="Reflex Response">'+h+'</a>');
+              context.push('RR');
               break;
             case "SS": 
-              context.push('<a href="#" rel="twipsy" data-original-title="Steady State">'+h+'</a>');
+              context.push('SS');
               break;
             default:
               context.push(h);
@@ -26,7 +26,6 @@ Circsim.GridHeaderView = SC.View.extend({
         });
 
         context.push('</div>');
-        $("#grid-headers a[rel=twipsy]").twipsy({live:true, placement: "above"});        
 
     }
 });

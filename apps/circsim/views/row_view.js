@@ -9,25 +9,25 @@ Circsim.RowView = SC.View.extend({
         context.push("<li>");
         switch (h) {
           case "IS": 
-            context.push('<a href="#" rel="twipsy" data-original-title="Inotropic State">'+h+'</a>');
+            context.push('IS');
             break;
           case "CVP": 
-            context.push('<a href="#" rel="twipsy" data-original-title="Central Venous Pressure">'+h+'</a>');
+            context.push('CVP');
             break;
           case "SV": 
-            context.push('<a href="#" rel="twipsy" data-original-title="Stroke Volume">'+h+'</a>');
+            context.push('SV');
             break;
           case "HR": 
-            context.push('<a href="#" rel="twipsy" data-original-title="Heart Rate">'+h+'</a>');
+            context.push('HR');
             break;
           case "CO": 
-            context.push('<a href="#" rel="twipsy" data-original-title="Cardiac Output">'+h+'</a>');
+            context.push('CO');
             break;
           case "Ra": 
-            context.push('<a href="#" rel="twipsy" data-original-title="Arterial Resistance">'+h+'</a>');
+            context.push('Ra');
             break;
           case "MAP": 
-            context.push('<a href="#" rel="twipsy" data-original-title="Mean Arterial Pressure">'+h+'</a>');
+            context.push('MAP');
             break;
           default:
             context.push(h);
@@ -36,7 +36,6 @@ Circsim.RowView = SC.View.extend({
         context.push("</li>");      
       });          
       context.push('</ul>');
-      $("#grid-rows a[rel=twipsy]").twipsy({live:true, placement: "left"});
   }
 
 });

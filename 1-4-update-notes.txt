@@ -4,3 +4,4 @@ Todo:
 
 Features to Reimplement: 
   - schematic and help menu
+  - tooltips for colums and row

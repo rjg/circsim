@@ -3,8 +3,7 @@
 Circsim.contentViews.titleView = SC.View.design({
   childViews: "circsimLogoView startButton".w(),
   
-  circsimLogoView: SC.TemplateView.design({
-    templateName: "title",
+  circsimLogoView: SC.View.design({
     layerId: 'title-information'
   }),
   

@@ -45,8 +45,8 @@ Circsim.mainPage = SC.Page.design({
       })
     }),
 
-    bottomView: SC.TemplateView.design({
-      templateName: "footer"
+    bottomView: SC.ToolbarView.design({
+      anchorLocation: SC.ANCHOR_BOTTOM
     })
   })
 

@@ -1,11 +1,11 @@
 /*globals Circsim CoreCircsim*/
 
-Circsim.statechart = SC.Statechart.create({
+Circsim.statechart = Ki.Statechart.create({
   // trace: YES,
 
   initialState: "Title",
 
-  "Title": SC.State.design({
+  "Title": Ki.State.design({
     enterState: function(){
       Circsim.contentController.set("contentDisplay", "Circsim.contentViews.titleView");
       Circsim.set("sidebarView", "Circsim.sidebarViews.titleView");      
@@ -16,7 +16,7 @@ Circsim.statechart = SC.Statechart.create({
     }
   }),
 
-  "Running": SC.State.design({
+  "Running": Ki.State.design({
     enterState: function(){
       Circsim.set('sidebarView', 'Circsim.sidebarViews.runningView');
       
@@ -27,13 +27,13 @@ Circsim.statechart = SC.Statechart.create({
     
     initialSubstate: "Introduction",
 
-    "Introduction": SC.State.design({
+    "Introduction": Ki.State.design({
       enterState: function(){
         Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.introView');        
       }
     }),
 
-    "Procedure": SC.State.design({
+    "Procedure": Ki.State.design({
       enterState: function(){
   
         var procedure = Circsim.procedureController;
@@ -58,7 +58,7 @@ Circsim.statechart = SC.Statechart.create({
       
       initialSubstate: "ProcedureIntro",  
       
-      "ProcedureIntro": SC.State.design({
+      "ProcedureIntro": Ki.State.design({
         enterState: function(){
           Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureIntroView');          
         },
@@ -68,10 +68,10 @@ Circsim.statechart = SC.Statechart.create({
         }
       }),
       
-      "InitialVariableEvaluation": SC.State.design({
+      "InitialVariableEvaluation": Ki.State.design({
         initialSubstate: "IVStudentPrompt", 
         
-        "IVStudentPrompt": SC.State.design({
+        "IVStudentPrompt": Ki.State.design({
           enterState: function(){
             Circsim.contentController.set('contentDisplay', 'Circsim.contentViews.procedureView');
             Circsim.messageController.set("title", "Primary Variable");
@@ -108,7 +108,7 @@ Circsim.statechart = SC.Statechart.create({
           }                      
         }),
                 
-        "IVSecondChance": SC.State.design({
+        "IVSecondChance": Ki.State.design({
           enterState: function() {
             Circsim.messageController.set('content', 'Sorry, that is the incorrect answer. Please select another primary variable.  When you have made your final selection, click Submit Primary Variable.');
             Circsim.messageController.set('color', Circsim.ERRORCOLOR);            
@@ -147,7 +147,7 @@ Circsim.statechart = SC.Statechart.create({
           }
         }),
           
-        "IVSelectDirection": SC.State.design({
+        "IVSelectDirection": Ki.State.design({
           enterState: function(){
             Circsim.messageController.set('content', 'Great! Now, click on the cell in the table to select the direction that this variable changes.');            
             var pvIdx = Circsim.procedureController.get('initialVariable');
@@ -190,7 +190,7 @@ Circsim.statechart = SC.Statechart.create({
           }
         }),
         
-        "IVDirectionSecondChance": SC.State.design({
+        "IVDirectionSecondChance": Ki.State.design({
           enterState: function(){
             Circsim.messageController.set("content", "Sorry, that's the wrong direction. Please try again. When you have made your selection, click the 'Next' button above");
             Circsim.messageController.set("color", Circsim.ERRORCOLOR);
@@ -233,7 +233,7 @@ Circsim.statechart = SC.Statechart.create({
           }
         }),
                 
-        "IVCorrectSummary": SC.State.design({
+        "IVCorrectSummary": Ki.State.design({
           enterState: function(){
             Circsim.messageController.set("content", "Great!  You have identified the primary variable and the direction that it changes.  Please click Next to go on.");
             Circsim.messageController.set("color", Circsim.CORRECTCOLOR);
@@ -262,7 +262,7 @@ Circsim.statechart = SC.Statechart.create({
           }
         }),
         
-        "IVIncorrectSummary": SC.State.design({
+        "IVIncorrectSummary": Ki.State.design({
           enterState: function(){
             Circsim.messageController.set("content", "Sorry, that is incorrect.  The correct answer is now displayed to the left.  Please click Next to move on.");
             Circsim.messageController.set("color", Circsim.ERRORCOLOR);
@@ -290,7 +290,7 @@ Circsim.statechart = SC.Statechart.create({
         })
       }),
       
-      "ColumnInput": SC.State.design({
+      "ColumnInput": Ki.State.design({
         
         enterState: function(){
           this.setCurrentColumn();
@@ -358,10 +358,10 @@ Circsim.statechart = SC.Statechart.create({
         }
       }),
       
-      "ColumnEvaluation": SC.State.design({
+      "ColumnEvaluation": Ki.State.design({
         initialSubstate: "RelationshipEvaluation",
         
-        "RelationshipEvaluation": SC.State.design({
+        "RelationshipEvaluation": Ki.State.design({
           initialSubstate: "REIntroduction",
           
           enterState: function() {
@@ -375,7 +375,7 @@ Circsim.statechart = SC.Statechart.create({
             Circsim.messageController.set('title', "");
           },
           
-          "REIntroduction": SC.State.design({
+          "REIntroduction": Ki.State.design({
             enterState: function(){
               var idx = Circsim.relationshipEvaluationsController.get('current'),
                   re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
@@ -420,7 +420,7 @@ Circsim.statechart = SC.Statechart.create({
             
           }),
           
-          "REErrorCorrection": SC.State.design({
+          "REErrorCorrection": Ki.State.design({
             enterState: function() {
               var idx = Circsim.relationshipEvaluationsController.get('current');
               var re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);  
@@ -476,7 +476,7 @@ Circsim.statechart = SC.Statechart.create({
             }
           }),
           
-          "RECorrectSummary": SC.State.design({
+          "RECorrectSummary": Ki.State.design({
             enterState: function(){
               var idx = Circsim.relationshipEvaluationsController.get('current'),
                   re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
@@ -505,7 +505,7 @@ Circsim.statechart = SC.Statechart.create({
             }
           }),
           
-          "REIncorrectSummary": SC.State.design({
+          "REIncorrectSummary": Ki.State.design({
             enterState: function(){
               var idx = Circsim.relationshipEvaluationsController.get('current'),
                   re  = Circsim.relationshipEvaluationsController.get('content').objectAt(idx);
@@ -535,11 +535,11 @@ Circsim.statechart = SC.Statechart.create({
           })          
         }),
         
-        "ProcedureSpecificEvaluation": SC.State.design({
+        "ProcedureSpecificEvaluation": Ki.State.design({
                     
           initialSubstate: "ProcedureSpecificIntro",
           
-          "ProcedureSpecificIntro": SC.State.design({
+          "ProcedureSpecificIntro": Ki.State.design({
             enterState: function() {
               Circsim.messageController.set('title', "Procedure Specific Evaluations");
               Circsim.messageController.set('content', "Your predictions will now be evaluated for errors specific to this procedure.  When you are ready, please click Evalute My Answers.");
@@ -551,7 +551,7 @@ Circsim.statechart = SC.Statechart.create({
             }
           }),
           
-          "PerformProcedureSpecificEvaluations": SC.State.design({
+          "PerformProcedureSpecificEvaluations": Ki.State.design({
             enterState: function(){
               var column    = Circsim.columnController.get('content'),
                   cells     = column.get('cells'),
@@ -597,7 +597,7 @@ Circsim.statechart = SC.Statechart.create({
                         
           }),
           
-          "DisplayProcedureSpecificComment": SC.State.design({
+          "DisplayProcedureSpecificComment": Ki.State.design({
             enterState: function() {
               
               var answerKey = Circsim.messagesController.get('content'),
@@ -668,7 +668,7 @@ Circsim.statechart = SC.Statechart.create({
         })
       }),
       
-      "CheckForRemainingColumns": SC.State.design({
+      "CheckForRemainingColumns": Ki.State.design({
         
         enterState: function() {
           var totalColumns  = Circsim.procedureController.get('columns').length(),
@@ -693,7 +693,7 @@ Circsim.statechart = SC.Statechart.create({
       })
     }),
 
-    "ProcedureComplete": SC.State.design({
+    "ProcedureComplete": Ki.State.design({
       enterState: function(){
         Circsim.procedureController.get('content').set('isComplete', true);
         var title = Circsim.procedureController.get('content').get('title');

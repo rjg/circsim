@@ -1,4 +1,4 @@
-config :all, :required => [:sproutcore, :core_circsim]
+config :all, :required => [:sproutcore, :ki, :core_circsim]
 
 # THEME
 config :corephysio do |c|

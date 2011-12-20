@@ -1,7 +1,6 @@
 /*globals Circsim*/ 
 
 Circsim = SC.Application.create({
-
   NAMESPACE: 'Circsim',
   VERSION: '0.1.0',
   ERRORCOLOR: "#FFD6D6",
@@ -9,6 +8,4 @@ Circsim = SC.Application.create({
   NORMALCOLOR: "#FBFBFB",
 
   pvViewDisplay: ''
-
-  
 });

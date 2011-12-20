@@ -14,5 +14,3 @@ end
 config :circsim do |c|
   c[:theme] = 'corephysio'
 end 
-
-

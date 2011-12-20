@@ -7,21 +7,20 @@ Circsim.PVView = SC.View.design({
   backgroundColor: "#999",
   childViews: "pvLabel pvSelection".w(),
     
-    pvLabel: SC.LabelView.design({
-      layout: {top: 15, width: 150, height: 20, left: 20},
-      value: "Primary Variable:",
-      layerId: 'pv-label'
-    }),
-    
-    pvSelection: SC.SelectFieldView.design({          
-      layout: {top: 15, width: 340, height: 20, right: 15},
-      valueBinding: "Circsim.pvSelectionController.content",
-      objectsBinding: "Circsim.procedureController.rows",
-      disableSort: true,
-      emptyName: "Select the Primary Variable",
-      layerId: 'pv-select'
-      
-    })
+  pvLabel: SC.LabelView.design({
+    layout: {top: 15, width: 150, height: 20, left: 20},
+    value: "Primary Variable:",
+    layerId: 'pv-label'
+  }),
+
+  pvSelection: SC.SelectFieldView.design({          
+    layout: {top: 15, width: 340, height: 20, right: 15},
+    valueBinding: "Circsim.pvSelectionController.content",
+    objectsBinding: "Circsim.procedureController.rows",
+    disableSort: true,
+    emptyName: "Select the Primary Variable",
+    layerId: 'pv-select'
+  })
 });
 
 Circsim.PVSummaryView = SC.View.design({

@@ -1,7 +1,6 @@
 /*globals CoreCircsim*/
 
 CoreCircsim.Procedure = SC.Record.extend({
-
   title: SC.Record.attr(String),
   introduction: SC.Record.attr(String),
   currentColumn: SC.Record.attr(Number),
@@ -9,12 +8,12 @@ CoreCircsim.Procedure = SC.Record.extend({
   rows: SC.Record.attr(Array),
   initialVariable: SC.Record.attr(Number),
   initialVariableDirection: SC.Record.attr(Number),
-  
   key: SC.Record.attr(Array),
     
   remainingColumns: SC.Record.attr(Number, {
     defaultValue: 0
   }),
+
   isComplete: SC.Record.attr(Boolean, {
     defaultValue: false
   }),
@@ -28,8 +27,4 @@ CoreCircsim.Procedure = SC.Record.extend({
     isMaster: YES,
     inverse: 'procedure'
   })
-  
-  
-  
-    
 });

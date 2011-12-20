@@ -45,7 +45,6 @@ Circsim.statechart = Ki.Statechart.create({
           // End reset...
 
           CoreCircsim.createGrid(procedure);          
-          
         } else {
           console.log("No procedure selected. Catching this bug.");
           this.gotoState('Running');

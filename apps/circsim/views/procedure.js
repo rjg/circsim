@@ -33,7 +33,6 @@ Circsim.contentViews.procedureView = SC.View.design({
         context.push(title);
       }      
     })
-
   }),
   
   procedureContent: SC.View.design({
@@ -98,6 +97,4 @@ Circsim.contentViews.procedureView = SC.View.design({
       })
     })
   })
-  
-    
 });

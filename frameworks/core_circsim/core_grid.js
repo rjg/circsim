@@ -1,16 +1,15 @@
 /*globals CoreCircsim*/
 
 SC.mixin(CoreCircsim, {
-
   createGrid: function(procedure){
-
     var columns = procedure.get('columns');
 
-    // This is a check to now create more cols/cells if the procedure has already been created.
+    // FIXME:
+    // This is here to check if the procedure has already been created.
+    // I'm sure there's actually a better way to do this, but for now all the tests are passing.
     if (columns.length()>0) {      
       return procedure;
     }
-    
 
     procedure = this.createColumns(procedure);
     procedure = this.createCells(procedure);
@@ -111,5 +110,4 @@ SC.mixin(CoreCircsim, {
     var pvText = procedure.get('rows')[pvIdx];
     cells.objectAt(pvIdx).set('value', pvDirection);
   }
-
 });

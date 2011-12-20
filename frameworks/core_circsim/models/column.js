@@ -1,7 +1,6 @@
 /*globals CoreCircsim*/
 
 CoreCircsim.Column = SC.Record.extend({
-
   header: SC.Record.attr(String),
 
   cells: SC.Record.toMany('CoreCircsim.Cell', {
@@ -17,6 +16,4 @@ CoreCircsim.Column = SC.Record.extend({
     isMaster: YES,
     inverse: 'column'
   })
-  
-
 });

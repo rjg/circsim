@@ -1,7 +1,11 @@
 Todo: 
-  remove references to compass
-  update the theme to be ace again
+  [ ] figure out why the prediction table isn't loading
+  [ ] remove references to compass
+  [ ] fix the styling on the bottom toolbar
 
 Features to Reimplement: 
   - schematic and help menu
   - tooltips for colums and row
+
+Bugs: 
+  - Ok, so the 'columns' property isn't being set on the procedure object until you click it a second time. 

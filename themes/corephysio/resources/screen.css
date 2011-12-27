@@ -130,6 +130,11 @@ div {
   margin-right: 9px;
 }
 
+/* line 56, ../src/partials/_base.scss */
+.sc-regular-size.sc-label-view {
+  font-size: 14px;
+}
+
 /*
  * Bootstrap v1.1.1
  *
@@ -864,7 +869,7 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
  * ---------------------------------------------------------------------------------------- */
 /* line 558, ../src/partials/_typography.scss */
 p {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: normal;
   line-height: 18px;
   margin-bottom: 9px;

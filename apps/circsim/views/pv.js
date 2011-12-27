@@ -14,7 +14,7 @@ Circsim.PVView = SC.View.design({
     }),
     
     pvSelection: SC.SelectFieldView.design({          
-      layout: {top: 15, width: 340, height: 20, right: 15},
+      layout: {top: 15, width: 330, height: 20, right: 15},
       valueBinding: "Circsim.pvSelectionController.content",
       objectsBinding: "Circsim.procedureController.rows",
       disableSort: true,
@@ -37,7 +37,7 @@ Circsim.PVSummaryView = SC.View.design({
   }),
   
   pvAnswer: SC.LabelView.design({          
-    layout: {top: 13, width: 250, height: 20, left: 114},
+    layout: {top: 14, width: 250, height: 20, left: 132},
     valueBinding: "Circsim.procedureController.currentPV",
     fontWeight: SC.BOLD_WEIGHT,
     layerId: "correct-pv-display"

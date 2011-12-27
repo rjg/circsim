@@ -8,4 +8,5 @@ Features to Reimplement:
   - tooltips for colums and row
 
 Bugs: 
-  - Ok, so the 'columns' property isn't being set on the procedure object until you click it a second time. 
+  - The "reset" implementation I had is creating this problem. I really need to just understand the data model and the progression through the app. Basically, I need to rethink the progression of data through the lifecycle of this application. I think that is what's tripping me up.  I have haphazard resets thrown in.  The framework is functioning fine, but I just have a bunch of shit resets that are going on everywhere. 
+  - The above is part and parcel with updating the statechart.  Simplifying the statechart that is. 

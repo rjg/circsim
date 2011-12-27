@@ -1,7 +1,6 @@
 /*globals CoreCircsim*/
 
 CoreCircsim.AnswerKey = SC.Record.extend({
-  
   highlights: SC.Record.attr(Array),
   category: SC.Record.attr(String),
   isCorrect: SC.Record.attr(Boolean),
@@ -13,5 +12,4 @@ CoreCircsim.AnswerKey = SC.Record.extend({
   procedure: SC.Record.toOne('CoreCircsim.Procedure', {
     isMaster: NO
   })
-
 });

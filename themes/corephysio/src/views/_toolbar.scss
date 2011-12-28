@@ -1,3 +1,7 @@
+.sc-button-view{
+  @include sc-button;
+}
+
 #top-toolbar{
   @include sc-toolbar;
   #logo-image, 
@@ -15,8 +19,8 @@
   };
   
   #circsim-title{
-    margin-top: -12px;
-    left: 10px;
+    margin-top: 4px;
+    margin-left: 12px;
     width: 330px;
     top: 50%;
     height: 24px;
@@ -68,7 +72,7 @@
   background-repeat: repeat-x;
   color: #555;
   border-bottom: 1px solid #999;
-  z-index: 10;  
+  z-index: 12000;  
   @include single-text-shadow(white, 0px, 1px, 1px);
   @include single-box-shadow(rgba(0, 0, 0, 0.5), 0px, 0px, 4px);
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAsCAAAAACBTI29AAAAGklEQVR4nGN6x8TA9B+OUUlUFjoPXQ2CBGIAcuYgKD9pJ2MAAAAASUVORK5CYII=");  

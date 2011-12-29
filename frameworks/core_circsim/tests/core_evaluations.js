@@ -20,7 +20,6 @@ module("Initial Variable and Relationship Evaluations", {
 });
 
 test('CoreCircsim.evaluateInitialVariableSelection()', function() {
-
   procedure.set('initialVariable', 5);
 
   var wrong = CoreCircsim.evaluateInitialVariableSelection(procedure, 4);
@@ -28,11 +27,9 @@ test('CoreCircsim.evaluateInitialVariableSelection()', function() {
 
   ok(right, "Returns true when initial variable is correct");
   ok(!wrong, "Returns false when initial variable is incorrect");
-
 });
 
 test('CoreCircsim.evaluateInitialVariableDirection()', function() {
-
   procedure.set('initialVariableDirection', 0);
 
   var wrong = CoreCircsim.evaluateInitialVariableDirection(procedure, 1);
@@ -43,7 +40,6 @@ test('CoreCircsim.evaluateInitialVariableDirection()', function() {
 });
 
 test('Initial Variable Evaluations when NO initial variable exists', function() {
-
   procedure.set('initialVariable', -1);
   procedure.set('initialVariableDirection', -1);
 
@@ -56,7 +52,6 @@ test('Initial Variable Evaluations when NO initial variable exists', function() 
   ok(alsoCorrect, "Handles situation where no initial variable changes... Returns true no matter what");
   ok(directionCorrect, "Handles situation where no initial variable direction changes...");
   ok(directionAlsoCorrect, "Handles situation where no initial variable direction changes... Returns true no matter what");
-
 });
 
 test('CoreCircsim.evaluateRelationships()', function() {
@@ -86,8 +81,6 @@ test('CoreCircsim.evaluateRelationships()', function() {
   ok(!correct, 'returns false when null values are given.');
   equals(incorrect1, 'Err message 1', 'returns correct error messages when all relationships DO NOT evaluate correctly');
   equals(incorrect2, 'Err message 2', 'returns correct error messages when all relationships DO NOT evaluate correctly');
-
-  
 });
 
 module("Procedure Specific Evaluations", {
@@ -184,8 +177,6 @@ test('CoreCircsim.evaluateProcedureSpecificErrors()', function() {
   ok(SC.compare(noMatches,[]) === 0, "returns empty array if there are no matches (TODO: handle this situation)");
   ok(SC.compare(wrongNumberOfAnswers,[]) === 0, "returns empty array if studentInput has wrong number of answers (TODO: handle this situation)");
   ok(SC.compare(noAnswerKeys,[]) === 0, "returns empty array if there are no keys for that column. (TODO: handle this situation)");
-  
-
 });
 
 test('CoreCircsim.compareStudentInputWithKey', function() {
@@ -224,8 +215,4 @@ test('CoreCircsim.compareStudentInputWithKey', function() {
   ].forEach(function(n) {
     ok(!CoreCircsim.compareStudentInputWithKey(n[0], n[1]), "2 'Not' keys, NonMatches");
   });
-  
-  
-  
 });
-

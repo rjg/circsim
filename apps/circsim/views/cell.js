@@ -77,8 +77,6 @@ Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
           context.setClass(classes);       
           context.push('<span class="cell-value-student">'+value+'</span>');   
           context.push('<span class="cell-value-correct">'+correctAnswer+'</span>');   
-          
-          
         } else {
           // Sets background color of cell.
           enabled     = isEnabled;
@@ -88,7 +86,6 @@ Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
           // Render the html
           context.setClass(classes);
           context.push('<span class="cell-value">'+value+'</span>');   
-          
         }
         
   }

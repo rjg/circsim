@@ -85,7 +85,6 @@ SC.mixin(CoreCircsim, {
   },
   
   setCellsToCorrectValues: function(key, cells){
-    
     cells.forEach(function(cell, idx) {
       cell.set('correctAnswer', key[idx]);
     });

@@ -483,12 +483,22 @@ Circsim.mixin({
                 Circsim.messageController.set('content', re.summaryCorrectMessage);
                 Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
                 
+                // setup cell highlighting
+                var highlights = re['equation'];
+                var cells = Circsim.columnController.get('content').get('cells');
+                CoreCircsim.updateHighlighting(cells, highlights);
+                debugger;
+               
                 Circsim.nextPromptController.set('content', 'Next');
               },
               
               exitState: function(){
                 Circsim.messageController.set('content', "");
                 Circsim.messageController.set('color', Circsim.NORMALCOLOR);              
+               
+                // remove cell highlighting
+                var cells = Circsim.columnController.get('content').get('cells');
+                CoreCircsim.updateHighlighting(cells, null);
               },
               
               next: function(){

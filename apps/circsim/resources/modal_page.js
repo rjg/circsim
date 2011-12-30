@@ -55,5 +55,32 @@ Circsim.modalsPage = SC.Page.design({
         action: 'toggleHelp'
       })
     })
-  })
+  }), 
+
+  progressView: SC.PanelPane.design({
+    layout: {height: 168, width: 420, centerX: 0, centerY: 0},
+    isModal: YES, 
+    modalPane: SC.ModalPane.design({
+      layout: {top:0, bottom: 0, left: 0, right: 0}, 
+      layerId: 'schematic-modal',
+      backgroundColor: "black"
+    }),
+
+    contentView: SC.View.design({
+      childViews: 'progressBar progressLabel'.w(), 
+      progressBar: SC.ProgressView.design({
+        layout: {centerX: 0,centerY: 0, height: 20, width: 300 },
+        valueBinding: 'Circsim.progressController.content',
+        minimum: 0,
+        maximum: 100
+      }),
+
+      progressLabel: SC.LabelView.design({
+        layout: {left: 10, top: 11, width: 200, height: 24},
+        layerId: 'schematic-label',
+        value: "Evaluating your answers.."
+      })
+    })
+  }), 
+
 })

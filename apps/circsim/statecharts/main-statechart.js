@@ -561,10 +561,38 @@ Circsim.mixin({
               },
               
               next: function() {
-                this.gotoState("PerformProcedureSpecificEvaluations");
+                // this.gotoState("PerformProcedureSpecificEvaluations");
+                this.gotoState('Progress')
+              }
+            }), 
+
+            'Progress': SC.State.design({
+              enterState: function() {
+                var modal = Circsim.modalsPage.get('progressView');  
+                this._modal = modal;
+                modal.append();
+                this.invokeLater(Circsim.progressController.progressVal, 10);
+                this._timer = SC.Timer.schedule({
+                  interval: 1300, 
+                  action: function() {
+                    Circsim.statechart.sendEvent('closeProgress');
+                  }
+                })
+              }, 
+        
+              closeProgress: function() {
+                this.gotoState('PerformProcedureSpecificEvaluations')
+              },
+
+              exitState: function() {
+                var modal = this._modal;
+                modal.remove();
+                modal = null
+                this._timer.invalidate();
+                this._timer = null;
               }
             }),
-            
+        
             "PerformProcedureSpecificEvaluations": SC.State.design({
               enterState: function(){
                 var column    = Circsim.columnController.get('content'),

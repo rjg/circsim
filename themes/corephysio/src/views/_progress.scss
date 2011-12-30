@@ -1,0 +1,109 @@
+.progress .track > .left {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAQAAADmB58qAAAAKUlEQVR4nGPK/s+kyMAkysDEzcD0j4GJgYHpPxKCiPxD5QIZXxiY8goBmc0OmMDt290AAAAASUVORK5CYII=");
+*background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1325012339!__s65_205' + '")')
+;
+}
+
+.progress .track > .middle {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAQAAADmB58qAAAAJ0lEQVR4nGMq/8+kw8AkzcDEz8D0j4HpPyr6h0oCEQOY/YGBKaQQAOZgEJgGppaxAAAAAElFTkSuQmCC");
+*background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1325012339!__s65_206' + '")')
+;
+}
+
+.progress .track > .right {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAQAAADmB58qAAAAKUlEQVR4nGPK/s+kyMAkysDEzcD0j4GJgYHpPxKCiPxD5QIZXxiY8goBmc0OmMDt290AAAAASUVORK5CYII=");
+*background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1325012339!__s65_207' + '")')
+;
+}
+
+.progress .content > .left {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAMAAAB70KeTAAAAM1BMVEUnTpYnTpooUJspU5YqVJstV5wwXJ4zYJ82ZaA6aaI9b6NAc6VDd5ZDd6ZFeqdIfqdJgKdNh93yAAAAEXRSTlP///8A/////////////////zcnnr4AAAAbSURBVHicY+JhYmJiBML/YPgPSv9H4jMAMTMA/rkOLJgj17oAAAAASUVORK5CYII=");
+*background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1325012339!__s65_208' + '")')
+;
+}
+
+.progress .content > .middle {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAMAAAB70KeTAAAAOVBMVEUjR40pU5Y1a9M1a9Q3btU6c9Y9bZY+eNdCftlGhNtLi91Pkd9UmOFYnuNcpOVgqOVgqeZjrudlsei2REO6AAAAE3RSTlP/AP//////////////////////DgPlJAAAABtJREFUeJxjYmPiZGJiYmT6D4T/wCQC/oPTjAAD9g8q+3ZrOAAAAABJRU5ErkJggg==");
+*background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1325012339!__s65_209' + '")')
+;
+}
+
+.progress .content > .right {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAUCAMAAAB70KeTAAAAM1BMVEUjR40kSo4nTI8nT5YpUJAsVJEuWJIyXZM1YJU4ZZY7aZY9bZZAcZZCdJZDdpZEepb///9fllfrAAAAEXRSTlP/////////////////////ACWtmWIAAAAaSURBVHicY+Jn+svECIT/scB/YJKBiZmJFwAgsQ453k+xdgAAAABJRU5ErkJggg==");
+*background-image: expression('url("mhtml:' + document.location.protocol + '//' + document.location.host + '/static/sproutcore/ace/en/current/__sc_chance_mhtml.txt?1325012339!__s65_210' + '")')
+;
+}
+
+.progress {
+  border: 0px none;
+}
+.progress .track {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.progress .track > .left {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 1px;
+}
+.progress .track > .middle {
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  position: absolute;
+  left: 1px;
+  top: 0px;
+  right: 1px;
+  bottom: 0px;
+}
+.progress .track > .right {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 1px;
+}
+.progress .content {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  }
+.progress .content > .left {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 1px;
+}
+.progress .content > .middle {
+  background-position: 0px 0px;
+  background-repeat: repeat-x;
+  position: absolute;
+  left: 1px;
+  top: 0px;
+  right: 1px;
+  bottom: 0px;
+}
+.progress .content > .right {
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 1px;
+}
+.progress.disabled {
+  opacity: .5;
+}

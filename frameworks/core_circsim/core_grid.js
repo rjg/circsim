@@ -1,7 +1,6 @@
 /*globals CoreCircsim*/
 
 SC.mixin(CoreCircsim, {
-
   createGrid: function(procedure){
 
     var columns = procedure.get('columns');
@@ -85,7 +84,6 @@ SC.mixin(CoreCircsim, {
   },
   
   setCellsToCorrectValues: function(key, cells){
-    
     cells.forEach(function(cell, idx) {
       cell.set('correctAnswer', key[idx]);
     });
@@ -111,5 +109,4 @@ SC.mixin(CoreCircsim, {
     var pvText = procedure.get('rows')[pvIdx];
     cells.objectAt(pvIdx).set('value', pvDirection);
   }
-
 });

@@ -1,7 +1,7 @@
 /*globals Circsim*/
 
 Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
-  contentDisplayProperties: "value isHighlighted isEnabled displayCorrectAnswer".w(),
+  contentDisplayProperties: "value isHighlighted isEnabled displayCorrectAnswer highlightRECorrect highlightREIncorrect".w(),
   
   render: function(context, f) {
     var content              = this.get('content'),
@@ -10,7 +10,9 @@ Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
         isEnabled            = content.get('isEnabled'),
         isHighlighted        = content.get('isHighlighted'),
         correctAnswer        = content.get('correctAnswer'),
-        displayCorrectAnswer = content.get('displayCorrectAnswer');
+        displayCorrectAnswer = content.get('displayCorrectAnswer'),
+        highlightRECorrect   = content.get('highlightRECorrect'),
+        highlightREIncorrect = content.get('highlightREIncorrect');
 
     // Sets value of cell.
     switch (value) {
@@ -80,8 +82,13 @@ Circsim.CellView = SC.View.extend(SC.ContentDisplay, {
       // Sets background color of cell.
       enabled     = isEnabled;
       disabled    = !isEnabled;
-      classes  = { 'enabled': enabled, 'disabled': disabled};
 
+      // Do RE Highlighting
+      highlightRECorrect = highlightRECorrect;
+      highlightREIncorrect = highlightREIncorrect;
+
+      classes  = { 'enabled': enabled, 'disabled': disabled, 'highlightRECorrect': highlightRECorrect, 'highlightREIncorrect': highlightREIncorrect};
+      
       // Render the html
       context.setClass(classes);
       context.push('<span class="cell-value">'+value+'</span>');   

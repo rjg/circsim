@@ -3285,11 +3285,11 @@ ul#grid-rows li a:hover {
   background-color: #fff;
 }
 /* line 81, ../src/views/_procedure.scss */
-.sc-view .correctomundo {
+.sc-view .correctomundo, .sc-view .highlightRECorrect {
   background-color: #E8FFCA;
 }
 /* line 85, ../src/views/_procedure.scss */
-.sc-view .wrongo {
+.sc-view .wrongo, .sc-view .highlightREIncorrect {
   background-color: #FFD6D6;
 }
 /* line 89, ../src/views/_procedure.scss */

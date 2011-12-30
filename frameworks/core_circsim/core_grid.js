@@ -2,7 +2,6 @@
 
 SC.mixin(CoreCircsim, {
   createGrid: function(procedure){
-
     var columns = procedure.get('columns');
 
     // This is a check to now create more cols/cells if the procedure has already been created.
@@ -108,5 +107,24 @@ SC.mixin(CoreCircsim, {
     var pvDirection = procedure.get('initialVariableDirection');
     var pvText = procedure.get('rows')[pvIdx];
     cells.objectAt(pvIdx).set('value', pvDirection);
+  }, 
+
+  highlightCorrectRelationships: function(cells, indices) {
+    indices.forEach(function(i) {
+      cells.objectAt(i).set('highlightRECorrect', true)
+    });
+  },
+
+  highlightIncorrectRelationships: function(cells, indices) {
+    indices.forEach(function(i) {
+      cells.objectAt(i).set('highlightREIncorrect', true)
+    });
+  },
+
+  removeREHighlights: function(cells) {
+    cells.forEach(function(cell) {
+      cell.set('highlightRECorrect', false);
+      cell.set('highlightREIncorrect', false);
+    });
   }
 });

@@ -484,11 +484,18 @@ Circsim.mixin({
                 Circsim.messageController.set('color', Circsim.CORRECTCOLOR);
                 
                 Circsim.nextPromptController.set('content', 'Next');
+
+                // Do RE Highlighting
+                var cells = Circsim.columnController.get('content').get('cells');
+                var relationshipIndices = re['equation'];
+                CoreCircsim.highlightCorrectRelationships(cells, relationshipIndices);
               },
               
               exitState: function(){
                 Circsim.messageController.set('content', "");
                 Circsim.messageController.set('color', Circsim.NORMALCOLOR);              
+                var cells = Circsim.columnController.get('content').get('cells');
+                CoreCircsim.removeREHighlights(cells);
               },
               
               next: function(){
@@ -513,11 +520,19 @@ Circsim.mixin({
                 Circsim.messageController.set('color', Circsim.ERRORCOLOR);
                 
                 Circsim.nextPromptController.set('content', 'Next');
+
+                // RE Highlighting Stuff
+                var cells = Circsim.columnController.get('content').get('cells');
+                var relationshipIndices = re['equation'];
+                CoreCircsim.highlightIncorrectRelationships(cells, relationshipIndices);
+
               },
               
               exitState: function(){
                 Circsim.messageController.set('content', '');
                 Circsim.messageController.set('color', Circsim.NORMALCOLOR);              
+                var cells = Circsim.columnController.get('content').get('cells');
+                CoreCircsim.removeREHighlights(cells);
               },
               
               next: function(){

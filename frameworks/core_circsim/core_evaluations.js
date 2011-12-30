@@ -1,7 +1,6 @@
 /*globals CoreCircsim*/
 
 SC.mixin(CoreCircsim, {
-
   evaluateInitialVariableSelection: function(procedure, studentSelection) {
     var correctAnswer = procedure.get('initialVariable');
     if (correctAnswer === -1) return true;
@@ -42,8 +41,16 @@ SC.mixin(CoreCircsim, {
   // This method returns an array populated by CoreCircsim.AnswerKey objects.
   evaluateProcedureSpecificErrors: function(procedure, columnNumber, studentInput) {
     var keyMatches = [];    
+    // I think this shoudl be done in controller layer
+    // I think the signature should be (answerKeys, studentInput)
+    // This would be best because when I refactor the model layer, I will only be pulling out column specific answer keys anyway.  But that shouldn't matter here. 
     var answerKeys = procedure.get('answerKeys').filterProperty('column', columnNumber);
     
+    // Validations
+    var numberOfCells = procedure.get('rows').length;
+    if (numberOfCells != studentInput.length) return [];
+
+    // This is getting the appropriate value from the student input to compare
     function getStudentInput(indices, studentInput) {
       var arr = [];
       indices.forEach(function(i) {
@@ -57,42 +64,78 @@ SC.mixin(CoreCircsim, {
       var key = answerKey.get('cellValues');
       var indices = answerKey.get('cells');
       var student = getStudentInput(indices, studentInput);
-
-      if (CoreCircsim.compareStudentInputWithKey(key, student) === false) keyMatches.removeObject(answerKey);
+      var isCorrect = answerKey.get('isCorrect');
+      // Everything up to this point is just getting the correct values to compare, so this is the method that really needs to change.
+      // This bascially just says if it is not a match, then remove it from the returned answer keys
+      if (isCorrect) {
+        if (CoreCircsim.compareStudentInputWithKey(key, true, student) === false) keyMatches.removeObject(answerKey);
+      } else if(!isCorrect) {
+        if (CoreCircsim.compareStudentInputWithKey(key, false, student) === false) keyMatches.removeObject(answerKey);
+      }
     });
 
     return keyMatches;
   },
 
   // This returns true or false based on whether it's a match
-  compareStudentInputWithKey: function(key, student) {
-    var returnVal = true;
-    for (var i = 0; i < key.length; i++) {
-      var k = key[i];
-      var s = student[i];
-      if (k == 3) {
-        if (SC.compare(0, s) === 0) {
-          returnVal = false;
-          break;
-        }
-      } else if (k == 4) {
-        if (SC.compare(1, s) === 0) {
-          returnVal = false;
-          break;
-        }
-      } else if (k == 5) {
-        if (SC.compare(2, s) === 0) {
-          returnVal = false;
-          break;
-        }
-      } else {
-        if (SC.compare(k, s) !== 0) {
-          returnVal = false;
-          break;
+  compareStudentInputWithKey: function(key, isCorrect, student) {
+    var returnVal;
+    if (isCorrect) {
+      returnVal = true;
+      for (var i = 0; i < key.length; i++) {
+        var k = key[i];
+        var s = student[i];
+        if (k == 3) {
+          if (SC.compare(0, s) === 0) {
+            returnVal = false;
+            break;
+          }
+        } else if (k == 4) {
+          if (SC.compare(1, s) === 0) {
+            returnVal = false;
+            break;
+          }
+        } else if (k == 5) {
+          if (SC.compare(2, s) === 0) {
+            returnVal = false;
+            break;
+          }
+        } else {
+          if (SC.compare(k, s) !== 0) {
+            returnVal = false;
+            break;
+          }
         }
       }
+      return returnVal;
+    } else {
+      returnVal = false;
+      for (var i = 0; i < key.length; i++) {
+        var k = key[i];
+        var s = student[i];
+        if (k == 3) {
+          if (SC.compare(0, s) !== 0) {
+            returnVal = true;
+            break;
+          }
+        } else if (k == 4) {
+          if (SC.compare(1, s) !== 0) {
+            returnVal = true;
+            break;
+          }
+        } else if (k == 5) {
+          if (SC.compare(2, s) !== 0) {
+            returnVal = true;
+            break;
+          }
+        } else {
+          if (SC.compare(k, s) === 0) {
+            returnVal = true;
+            break;
+          }
+        }
+      }
+      return returnVal;
     }
-    return returnVal;
   }
-
 });

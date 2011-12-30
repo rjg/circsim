@@ -105,8 +105,8 @@ module("Procedure Specific Evaluations", {
       category: "Category 1",
       isCorrect: NO,
       comment: "Explanation of incorrect answer.",
-      cells: [0,1],
-      cellValues: [3,0],
+      cells: [0],
+      cellValues: [3],
       column: 0,
       id: 2
     },  {
@@ -114,8 +114,8 @@ module("Procedure Specific Evaluations", {
       category: "Category 1",
       isCorrect: NO,
       comment: "Another explanation of incorrect answer.",
-      cells: [0,1],
-      cellValues: [0,3],
+      cells: [1],
+      cellValues: [1],
       column: 0,
       id: 3
     },  {
@@ -123,8 +123,8 @@ module("Procedure Specific Evaluations", {
       category: "Category 1",
       isCorrect: NO,
       comment: "Another explanation of incorrect answer.",
-      cells: [0,1],
-      cellValues: [0,4],
+      cells: [1],
+      cellValues: [2],
       column: 0,
       id: 4
     }];
@@ -148,7 +148,6 @@ module("Procedure Specific Evaluations", {
     [1, 2, 3, 4].forEach(function(i) {
       CoreCircsim.store.destroyRecord(CoreCircsim.AnswerKey, i);
     });
-    
   }
 });
 
@@ -160,49 +159,52 @@ test('CoreCircsim.evaluateProcedureSpecificErrors()', function() {
   var afour = procedure.get('answerKeys').objectAt(3);
   
   [
-    [[0,0], [aone, afour]],
-    [[1,0], [atwo]],
-    [[0,1], [athree]],
-    [[0,2], [athree, afour]],
-    [[1,1], []]
+    [[0,0, 0,0,0,0,0], [aone]],
+    [[1,0, 0,0,0,0,0], [atwo]],
+    [[0,1, 0,0,0,0,0], [athree]],
+    [[0,2, 0,0,0,0,0], [afour]],
+    [[1,1, 0,0,0,0,0], [atwo, athree]]
   ].forEach(function(n) {    
     var a = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, n[0]);
-    ok(SC.compare(a, n[1]) === 0, "Displays the correct message when there is a match.");
+    ok(SC.compare(a, n[1]) === 0, "Displays the correct message when there is a match: [" + n[0]+"]");
   });
   
-  var noMatches = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [null, null, null, null, null, null, null]);
+  var noMatches = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [0, null, null, null, null, null, null]);
   var wrongNumberOfAnswers = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 0, [null]);
   var noAnswerKeys = CoreCircsim.evaluateProcedureSpecificErrors(procedure, 1, [0,0,0,0,0,0,0]);
     
+  debugger;
+
   ok(SC.compare(noMatches,[]) === 0, "returns empty array if there are no matches (TODO: handle this situation)");
   ok(SC.compare(wrongNumberOfAnswers,[]) === 0, "returns empty array if studentInput has wrong number of answers (TODO: handle this situation)");
   ok(SC.compare(noAnswerKeys,[]) === 0, "returns empty array if there are no keys for that column. (TODO: handle this situation)");
 });
 
-test('CoreCircsim.compareStudentInputWithKey', function() {
-  var noNotKeysMatch = CoreCircsim.compareStudentInputWithKey([0,0,0], [0,0,0]);
-  var noNotKeysNonMatch = CoreCircsim.compareStudentInputWithKey([0,0,0], [1,0,0]);
-  
-  var oneNotKeyMatch = CoreCircsim.compareStudentInputWithKey([0,3,0], [0,1,0]);
-  var oneNotKeyMatch2 = CoreCircsim.compareStudentInputWithKey([0,3,0], [0,2,0]);
-  var oneNotKeyNonMatch = CoreCircsim.compareStudentInputWithKey([0,3,0], [0,0,0]);
-  
-  var twoNotKeyMatch = CoreCircsim.compareStudentInputWithKey([0,3,4], [0,1,0]);
-  
+test('CoreCircsim.compareStudentInputWithKey(key, isCorrect, student)', function() {
+  //////
+  // isCorrect == true.  This means an AND evaluation is applied
+  //
+  var noNotKeysMatch    = CoreCircsim.compareStudentInputWithKey([0,0,0], true, [0,0,0]);
+  var noNotKeysNonMatch = CoreCircsim.compareStudentInputWithKey([0,0,0], true, [1,0,0]);
   ok(noNotKeysMatch, "0 'Not' keys, Match");
   ok(!noNotKeysNonMatch, "0 'Not' keys, Nonmatch");
-
+ 
+  // You can use 'not' conditions in correct answer keys
+  var oneNotKeyMatch    = CoreCircsim.compareStudentInputWithKey([0,3,0], true, [0,1,0]);
+  var oneNotKeyMatch2   = CoreCircsim.compareStudentInputWithKey([0,3,0], true, [0,2,0]);
+  var oneNotKeyNonMatch = CoreCircsim.compareStudentInputWithKey([0,3,0], true, [0,0,0]);
   ok(oneNotKeyMatch, "1 'Not' keys, Match");
   ok(oneNotKeyMatch2, "1 'Not' keys, Match 2");
   ok(!oneNotKeyNonMatch, "1 'Not' keys, Nonmatch");
   
+  // Two 'not' keys
   [
     [[0,3,4],[0,1,0]],
     [[0,3,4],[0,1,2]],
     [[0,3,4],[0,2,0]],
     [[0,3,4],[0,2,2]]
   ].forEach(function(n) {
-    ok(CoreCircsim.compareStudentInputWithKey(n[0], n[1]), "2 'Not' keys, Matches");
+    ok(CoreCircsim.compareStudentInputWithKey(n[0], true, n[1]), "2 'Not' keys, Matches");
   });
 
   [
@@ -213,6 +215,45 @@ test('CoreCircsim.compareStudentInputWithKey', function() {
     [[0,3,4],[1,0,0]],
     [[0,3,4],[2,0,0]]    
   ].forEach(function(n) {
-    ok(!CoreCircsim.compareStudentInputWithKey(n[0], n[1]), "2 'Not' keys, NonMatches");
+    ok(!CoreCircsim.compareStudentInputWithKey(n[0], true, n[1]), "2 'Not' keys, NonMatches");
   });
+});
+
+test('CoreCircsim.compareStudentInputWithKey(key, !isCorrect, student)', function() {
+  //////
+  // isCorrect == false.  This means an OR evaluation is applied
+  //
+  // simple matches
+  [0,1,2].forEach(function(n) {
+    ok(CoreCircsim.compareStudentInputWithKey([n], false, [n]), "simple match: "+n);
+  });
+  
+  // simple non-matches
+  [0,1,2].forEach(function(n) {
+    ok(!CoreCircsim.compareStudentInputWithKey([n], false, [n+1]), "simple non-match: "+n);
+  });
+
+  // simple 'Not' keys
+  // 3 = not 0 
+  // 4 = not 1
+  // 5 = not 2
+  ok(CoreCircsim.compareStudentInputWithKey([3], false, [8]), "Not keys 1")
+  ok(CoreCircsim.compareStudentInputWithKey([4], false, [8]), "Not keys 2")
+  ok(CoreCircsim.compareStudentInputWithKey([5], false, [8]), "Not keys 3")
+
+  ok(!CoreCircsim.compareStudentInputWithKey([3], false, [0]), "Not keys 4")
+  ok(!CoreCircsim.compareStudentInputWithKey([4], false, [1]), "Not keys 5")
+  ok(!CoreCircsim.compareStudentInputWithKey([5], false, [2]), "Not keys 6")
+
+  // Testing the OR function
+  ok(CoreCircsim.compareStudentInputWithKey([0,0],false,[1,0]), "Testing the OR function1")
+  ok(CoreCircsim.compareStudentInputWithKey([0,0],false,[0,0]), "Testing the OR function2")
+  ok(CoreCircsim.compareStudentInputWithKey([0,0],false,[0,1]), "Testing the OR function3")
+  ok(!CoreCircsim.compareStudentInputWithKey([0,0],false,[1,1]), "Testing the OR function non-match")
+
+  // Testing the OR function with 'not' values
+  ok(CoreCircsim.compareStudentInputWithKey([3,3],false,[1,0]), "Testing the OR function5")
+  ok(CoreCircsim.compareStudentInputWithKey([3,3],false,[1,1]), "Testing the OR function6")
+  ok(CoreCircsim.compareStudentInputWithKey([3,3],false,[0,1]), "Testing the OR function7")
+  ok(!CoreCircsim.compareStudentInputWithKey([3,3],false,[0,0]), "Testing the OR function non-match")
 });

@@ -3278,30 +3278,38 @@ ul#grid-rows li a:hover {
 }
 /* line 72, ../src/views/_procedure.scss */
 .sc-view .disabled .cell-value {
-  opacity: 0.5;
+  opacity: 0.65;
 }
 /* line 77, ../src/views/_procedure.scss */
 .sc-view .enabled {
   background-color: #fff;
 }
-/* line 81, ../src/views/_procedure.scss */
+/* line 79, ../src/views/_procedure.scss */
+.sc-view .enabled:hover {
+  background-color: #fafff7;
+}
+/* line 82, ../src/views/_procedure.scss */
+.sc-view .enabled:active {
+  background-color: #fff;
+}
+/* line 87, ../src/views/_procedure.scss */
 .sc-view .correctomundo, .sc-view .highlightRECorrect {
   background-color: #E8FFCA;
 }
-/* line 85, ../src/views/_procedure.scss */
+/* line 91, ../src/views/_procedure.scss */
 .sc-view .wrongo, .sc-view .highlightREIncorrect {
   background-color: #FFD6D6;
 }
-/* line 89, ../src/views/_procedure.scss */
+/* line 95, ../src/views/_procedure.scss */
 .sc-view .correctHighlight {
   background-color: #C5FFA3;
 }
-/* line 93, ../src/views/_procedure.scss */
+/* line 99, ../src/views/_procedure.scss */
 .sc-view .incorrectHighlight {
   background-color: #FFBDBD;
 }
 
-/* line 99, ../src/views/_procedure.scss */
+/* line 105, ../src/views/_procedure.scss */
 .sc-view .cell {
   position: absolute;
   left: 0px;
@@ -3310,7 +3318,7 @@ ul#grid-rows li a:hover {
   bottom: 0px;
   border: 1px solid #999;
 }
-/* line 102, ../src/views/_procedure.scss */
+/* line 108, ../src/views/_procedure.scss */
 .sc-view .cell .cell-value {
   position: absolute;
   top: 37%;
@@ -3321,7 +3329,7 @@ ul#grid-rows li a:hover {
   text-align: center;
   font-weight: bold;
 }
-/* line 113, ../src/views/_procedure.scss */
+/* line 119, ../src/views/_procedure.scss */
 .sc-view .cell .cell-value-student {
   position: absolute;
   top: 37%;
@@ -3333,7 +3341,7 @@ ul#grid-rows li a:hover {
   font-weight: bold;
   opacity: 0.6;
 }
-/* line 125, ../src/views/_procedure.scss */
+/* line 131, ../src/views/_procedure.scss */
 .sc-view .cell .cell-value-correct {
   position: absolute;
   top: 37%;
@@ -3346,14 +3354,14 @@ ul#grid-rows li a:hover {
   opacity: 1;
 }
 
-/* line 139, ../src/views/_procedure.scss */
+/* line 145, ../src/views/_procedure.scss */
 #messages-title {
   font-weight: bold;
   font-size: 14px;
   color: #444;
 }
 
-/* line 145, ../src/views/_procedure.scss */
+/* line 151, ../src/views/_procedure.scss */
 #messages-body {
   padding: 10px 20px;
   overflow: auto;

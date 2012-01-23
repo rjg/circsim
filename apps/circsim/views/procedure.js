@@ -93,7 +93,7 @@ Circsim.contentViews.procedureView = SC.View.design({
         layout: {top: 40, left: 20, height: 392, right: 20},
         valueBinding: "Circsim.messageController.content",
         layerId: 'messages-body',
-        backgroundColorBinding: 'Circsim.messageController.color'
+        backgroundColorBinding: 'Circsim.messageController.color',
         escapeHTML: NO
       })
     })

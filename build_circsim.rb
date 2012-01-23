@@ -156,7 +156,7 @@ argparser = OptionParser.new {|opts|
 argparser.parse!
 
 start_time = Time.now
-puts "Starting at #{start_time.localtime}"
+puts "Starting build at #{start_time.localtime}"
 
 config[:input] = File.join('tmp', 'build')
 config[:source] = File.expand_path(config[:source])
@@ -167,7 +167,7 @@ if config[:build] or not File.exists?(config[:input])
   build_bin   = File.join(config[:source], 'bin', 'sc-build')
   build_bin   = 'sc-build' unless File.exist?(build_bin)
   
-  puts "Building: #{build_bin} #{config[:app_name]} -cr --languages=en --mode=#{config[:mode]}"
+  puts "Building Circsim.  This may take a minute or two..."
   
   FileUtils.rm_rf config[:input]
   `#{build_bin} #{config[:app_name]} -cr --languages=en --mode=#{config[:mode]}`
@@ -175,14 +175,14 @@ end
 
 built_path = Dir[File.join(config[:input], 'static', config[:app_name])]
 
-puts "Copying: #{config[:output]}"
+puts "Copying Circsim to: #{config[:output]}"
 FileUtils.rm_rf config[:output] + "/index.html"
 FileUtils.rm_rf config[:output] + "/static/#{config[:app_name]}"
 FileUtils.mkdir_p config[:output] + "/static/#{config[:app_name]}"
 deployed_path = Dir[File.join(config[:output], 'static')]
 FileUtils.cp_r built_path, deployed_path
 
-puts "Cleanup"
+puts "Cleanup..."
 
 app_path = Dir[File.join(config[:output], 'static', config[:app_name], 'en', '*')].first
 

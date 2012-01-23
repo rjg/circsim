@@ -7,7 +7,8 @@ Circsim.contentViews.procedureIntroView = SC.View.design({
   
   procedureIntroText: SC.LabelView.design({
     layout: {right: 0, left: 0, top: 0, bottom: 30},    
-    valueBinding: "Circsim.procedureController.introduction"    
+    valueBinding: "Circsim.procedureController.introduction",
+    escapeHTML: NO
   }),
   
   startProcedureButton: SC.ButtonView.design({
